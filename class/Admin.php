@@ -35,4 +35,12 @@ class Admin
         $result1 = $this->successResponse($config);
         echo json_encode($result1);
     }
+
+                //========== company
+        function get_company()
+        {
+            $query = "select * from company_details where id='1'";
+            $result = $this->db_handle->runBaseQuery($query);
+            return $result;
+        }
 }
