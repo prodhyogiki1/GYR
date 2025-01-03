@@ -35,7 +35,7 @@ class User
 
            function profile(){}
 
-           function profile(){}
+           
 
            function mybooking(){}
 
@@ -46,4 +46,11 @@ class User
            function viewreview_all(){}
 
            function feedback_send(){}
+
+           function get_all_booking()
+           {
+            $query = "select * from user_booking";
+            $result = $this->db_handle->runBaseQuery($query);
+            return $result;
+           }
 }

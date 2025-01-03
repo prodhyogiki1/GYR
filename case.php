@@ -33,4 +33,33 @@ case "dashboard":
  		}
  		break;
 //--- dashboard closed
+
+
+//-- admin 
+case "admin":
+	if($_GET['action']=='admin')
+ 		{
+			if($_GET['query']=='get_details')
+			{
+				if($_GET['type']=='state')
+				{
+					$state=$admin->get_states($_GET['id']);
+					foreach($state as $r=>$v)
+					{
+						echo "<option value='".$state[$r]['id']."'>".$state[$r]['name']."</option>";
+					}
+				}
+
+				if($_GET['type']=='city')
+				{
+					$city=$admin->get_cities($_GET['id']);
+					foreach($city as $r=>$v)
+					{
+						echo "<option value='".$city[$r]['id']."'>".$city[$r]['name']."</option>";
+					}
+				}
+			}
+		}	
+break;
+
     }

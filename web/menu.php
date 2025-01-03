@@ -22,7 +22,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link primary-hover-bg"
-                href="<?php echo $base_url.'index.php';?>"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=dashboard';?>"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-primary rounded-3">
@@ -35,12 +35,24 @@ data-sidebar-position="fixed" data-header-position="fixed">
 
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
-              <span class="hide-menu">Add Agent(s)</span>
+              <span class="hide-menu">Agent(s)</span>
             </li>
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link warning-hover-bg"
-                href="./ui-buttons.html"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=add_agent';?>"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-warning rounded-3">
+                  <i class="ti ti-user fs-7 text-warning"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">Add Agents</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link warning-hover-bg"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=viewall_agent';?>"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-warning rounded-3">
@@ -49,10 +61,11 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <span class="hide-menu ms-2 ps-1">View All Agents</span>
               </a>
             </li>
+
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link danger-hover-bg"
-                href="./ui-alerts.html"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=location';?>"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-danger rounded-3">
@@ -64,7 +77,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link success-hover-bg"
-                href="./ui-card.html"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=bikes';?>"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-success rounded-3">
@@ -76,7 +89,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link primary-hover-bg"
-                href="./ui-forms.html"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=support_tickets';?>"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-primary rounded-3">
@@ -88,7 +101,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link indigo-hover-bg"
-                href="./ui-typography.html"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=reviews';?>"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-indigo rounded-3">
@@ -97,20 +110,17 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <span class="hide-menu ms-2 ps-1">Review(s)</span>
               </a>
             </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
-              <span class="hide-menu">Auth</span>
-            </li>
+
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link success-hover-bg"
-                href="./icon-tabler.html"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=bookings';?>"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-success rounded-3">
                   <i class="ti ti-mood-happy fs-7 text-success"></i>
                 </span>
-                <span class="hide-menu ms-2 ps-1">Profile</span>
+                <span class="hide-menu ms-2 ps-1">Booking(s)</span>
               </a>
             </li>
             <li class="sidebar-item">

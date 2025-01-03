@@ -43,4 +43,49 @@ class Admin
             $result = $this->db_handle->runBaseQuery($query);
             return $result;
         }
+
+
+function get_country()
+{
+    $query = "select * from countries Order by name ASC";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+function get_states($country_id)
+{
+  echo  $query = "select * from states where country_id='$country_id' Order by name ASC";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+function get_cities($state_id)
+{
+    $query = "select * from cities where state_id='$state_id' Order by name ASC";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+
+//---------- bikes
+function get_all_bikes()
+{
+    $query = "select * from bikes";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+
+//---------- support
+function get_all_support_tickets()
+{
+    $query = "select * from support_tickets";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+function get_all_feedback()
+{
+    $query = "select * from feedback";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
 }
