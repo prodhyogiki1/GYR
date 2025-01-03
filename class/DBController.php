@@ -12,9 +12,9 @@
 
     //-- online
     private $host = "localhost";
-    private $user = "u429142817_user";
-    private $password = "Sethia@#0291";
-    private $database = "u429142817_erp";
+    private $user = "u667746222_gyk_user";
+    private $password = "Gyk@#0291";
+    private $database = "u667746222_gyk";
     private $conn;
 
 	
