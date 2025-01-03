@@ -4,18 +4,18 @@
 
 
     //-- offline
-    private $host = "localhost";
-    private $user = "root";
-    private $password = "";
-    private $database = "gyr";
-    private $conn;
+    // private $host = "localhost";
+    // private $user = "root";
+    // private $password = "";
+    // private $database = "gyr";
+    // private $conn;
 
     //-- online
-    // private $host = "localhost";
-    // private $user = "u429142817_user";
-    // private $password = "Sethia@#0291";
-    // private $database = "u429142817_erp";
-    // private $conn;
+    private $host = "localhost";
+    private $user = "u429142817_user";
+    private $password = "Sethia@#0291";
+    private $database = "u429142817_erp";
+    private $conn;
 
 	
 
@@ -24,7 +24,7 @@
 
         $this->conn = $this->connectDB();
          
-      //error_reporting(0);
+      error_reporting(0);
     }   
     
     function default_timezone()
