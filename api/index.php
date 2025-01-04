@@ -66,6 +66,11 @@ case "api":
                         $user->served_location();
                     }
 
+                    if($json['page']=='search')
+                    {
+                        $user->search($json['city']);
+                    }
+
 
                 
             }

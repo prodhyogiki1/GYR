@@ -127,9 +127,58 @@ class User
                 }
            }
 
+           function search($city)
+           {
+            $data=array();
+            $query = "SELECT * FROM agent  INNER JOIN agent_bikes ON agent.id=agent_bikes.aid AND  agent.city='$city'";
+            $result = $this->db_handle->runBaseQuery($query);
+            if($result)
+                {
+                    
+                    
+                    foreach($result as $r=>$v)
+                    {
+                        //-- get bike info
+                        $bike=$this->get_bike($result[$r]['bid']);
+                    $returnObj = new stdClass();
+                    $returnObj->city = $result[$r]['city'];
+                    $returnObj->agent = $result[$r]['aid'];
+                    $returnObj->bid = $result[$r]['bid'];
+                    $returnObj->bimage = $result[$r]['bimage_actual'];
+                    //-- bike details
+                    $returnObj->bike_name = $bike[0]['name'];
+                    $returnObj->bike_brand = $bike[0]['brand'];
+                    $returnObj->bike_power = $bike[0]['max power'];
+
+                    $returnObj->kms_run = $result[$r]['bkm'];
+                    $returnObj->availble = $result[$r]['bavailable'];
+                    array_push($data, $returnObj);
+                    }
+                    
+                    $result1 = $this->successResponse($data);
+                    echo json_encode($result1);
+                }
+                else
+                {
+                    $returnObj = new stdClass();
+                    $returnObj->msg = "No City Found";
+                    array_push($data, $returnObj);
+
+                    $result1 = $this->errorResponse($data);
+                    echo json_encode($result1);
+
+                }
+           }
+
+
            function profile(){}
 
-           
+           function get_bike($bid)
+           {
+            $query = "select * from bikes where id='$bid' ";
+            $result = $this->db_handle->runBaseQuery($query);
+            return $result;
+           }
 
            function mybooking(){}
 
