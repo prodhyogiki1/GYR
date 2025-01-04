@@ -9,7 +9,7 @@ session_start();
 
 $db_handle=new DBController($db);
 $profile = new Profile();
-$base_url="https://www.getyouride.in/"
+$base_url="https://www.getyouride.in/";
 $image = $base_url."images/";
 
 

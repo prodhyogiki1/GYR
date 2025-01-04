@@ -28,8 +28,15 @@ class User
         $this->db_handle = new DBController();
     }
 
-            function login()
-            {}
+            function userlogin($mobile)
+            {
+                echo $query = "select * from users where phone='$mobile'";
+                $result = $this->db_handle->runBaseQuery($query);
+                if(mysqli_num_rows($result)>0)
+                {
+                    echo $otp=rand(0,999999);
+                }
+            }
 
            function regiter(){}
 

@@ -5,6 +5,9 @@
 switch ($action) {
 				
 case "dashboard":
+
+	//-- include here only 
+	
  		if($_GET['action']=='dashboard')
  		{
  			
@@ -62,4 +65,6 @@ case "admin":
 		}	
 break;
 
-    }
+
+				
+}		
