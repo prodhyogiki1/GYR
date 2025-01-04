@@ -30,13 +30,70 @@ class User
 
             function userlogin($mobile)
             {
-                echo $query = "select * from users where phone='$mobile'";
+                $data = array();
+                $query = "select * from user where phone='$mobile'";
                 $result = $this->db_handle->runBaseQuery($query);
-                if(mysqli_num_rows($result)>0)
+                if($result)
                 {
-                    echo $otp=rand(0,999999);
+                    $otp=rand(0,999999);
+                    $returnObj = new stdClass();
+                    $returnObj->otp = $otp;
+                    $returnObj->msg = "Otp has been sent to your mobile number";
+                    array_push($data, $returnObj);
+                    
+                    $this->update_otp($mobile,$otp);
+                    $result1 = $this->successResponse($data);
+                    echo json_encode($result1);
+                }
+                else
+                {
+                    $returnObj = new stdClass();
+                    $returnObj->msg = "No User Found";
+                    array_push($data, $returnObj);
+
+                    $result1 = $this->errorResponse($data);
+                    echo json_encode($result1);
+
                 }
             }
+
+           function check_otp($mobile,$otp)
+           {
+            $query = "select * from user where phone='$mobile' AND otp='$otp' ";
+            $result = $this->db_handle->runBaseQuery($query);
+            if($result)
+                {
+                    
+                    $returnObj = new stdClass();
+                    $returnObj->name = $result[0]['name'];
+                    $returnObj->name = $result[0]['email'];
+                    $returnObj->name = $result[0]['phone'];
+                    $returnObj->name = $result[0]['address'];
+                    
+                    array_push($data, $returnObj);
+                    
+                    
+                    $result1 = $this->successResponse($data);
+                    echo json_encode($result1);
+                }
+                else
+                {
+                    $returnObj = new stdClass();
+                    $returnObj->msg = "No User Found";
+                    array_push($data, $returnObj);
+
+                    $result1 = $this->errorResponse($data);
+                    echo json_encode($result1);
+
+                }
+           }
+           
+           function update_otp($mobile,$otp)
+           {
+            $update="update user SET otp='$otp' where phone='$mobile'";
+            $update=$this->db_handle->update($update);
+            return $update;
+           }
 
            function regiter(){}
 

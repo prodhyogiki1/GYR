@@ -6,7 +6,7 @@ include_once('../class/Agent.php');
 //declare db classes
 session_start();
 
-
+$base_url="http://localhost/gyr/";
 $db_handle=new DBController();
 $admin = new Admin();
 $agent = new Agent();
