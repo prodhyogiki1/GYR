@@ -49,7 +49,17 @@ case "api":
                     if($json['page']=='userlogin')
                     {
                         $user->userlogin($json['mobile']);
-                    }  
+                    }
+                    
+                    if($json['page']=='otp_varify')
+                    {
+                        $user->userlogin($json['mobile'],$json['otp']);
+                    }
+
+                    if($json['page']=='register')
+                    {
+                        $user->userlogin($json['mobile']);
+                    }
                 
             }
     break;

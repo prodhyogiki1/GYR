@@ -57,7 +57,7 @@ class User
                 }
             }
 
-           function check_otp($mobile,$otp)
+           function otp_varify($mobile,$otp)
            {
             $query = "select * from user where phone='$mobile' AND otp='$otp' ";
             $result = $this->db_handle->runBaseQuery($query);
