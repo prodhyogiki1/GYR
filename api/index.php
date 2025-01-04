@@ -71,6 +71,26 @@ case "api":
                         $user->search($json['city']);
                     }
 
+                    if($json['page']=='user_booking_add')
+                    {
+                        $user->user_booking_add($json['bid'],$json['uid'],$json['aid'],$json['from_date'],$json['to_date'],$json['amount']);
+                    }
+
+                    if($json['page']=='booking_cancel')
+                    {
+                        $user->booking_cancel($json['id']);
+                    }
+
+                    if($json['page']=='update_booking_date')
+                    {
+                        $user->update_booking_date($json['id'],$json['from_date'],$json['to_date']);
+                    }
+
+                    if($json['page']=='mybooking')
+                    {
+                        $user->mybooking($json['uid']);
+                    }
+
 
                 
             }
