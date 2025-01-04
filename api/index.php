@@ -53,13 +53,20 @@ case "api":
                     
                     if($json['page']=='otp_varify')
                     {
-                        $user->userlogin($json['mobile'],$json['otp']);
+                        $user->otp_varify($json['mobile'],$json['otp']);
                     }
 
                     if($json['page']=='register')
                     {
                         $user->userlogin($json['mobile']);
                     }
+
+                    if($json['page']=='served_location')
+                    {
+                        $user->served_location();
+                    }
+
+
                 
             }
     break;

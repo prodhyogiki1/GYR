@@ -59,6 +59,7 @@ class User
 
            function otp_varify($mobile,$otp)
            {
+            $data=array();
             $query = "select * from user where phone='$mobile' AND otp='$otp' ";
             $result = $this->db_handle->runBaseQuery($query);
             if($result)
@@ -66,9 +67,9 @@ class User
                     
                     $returnObj = new stdClass();
                     $returnObj->name = $result[0]['name'];
-                    $returnObj->name = $result[0]['email'];
-                    $returnObj->name = $result[0]['phone'];
-                    $returnObj->name = $result[0]['address'];
+                    $returnObj->email = $result[0]['email'];
+                    $returnObj->phone = $result[0]['phone'];
+                    $returnObj->address = $result[0]['address'];
                     
                     array_push($data, $returnObj);
                     
@@ -79,7 +80,7 @@ class User
                 else
                 {
                     $returnObj = new stdClass();
-                    $returnObj->msg = "No User Found";
+                    $returnObj->msg = "Otp not Found";
                     array_push($data, $returnObj);
 
                     $result1 = $this->errorResponse($data);
@@ -95,7 +96,36 @@ class User
             return $update;
            }
 
-           function regiter(){}
+           function served_location()
+           {
+            $data=array();
+            $query = "select DISTINCT(city) from agent ORDER by city ASC";
+            $result = $this->db_handle->runBaseQuery($query);
+            if($result)
+                {
+                    
+                    
+                    foreach($result as $r=>$v)
+                    {
+                        $returnObj = new stdClass();
+                     $returnObj->city = $result[$r]['city'];
+                    array_push($data, $returnObj);
+                    }
+                    
+                    $result1 = $this->successResponse($data);
+                    echo json_encode($result1);
+                }
+                else
+                {
+                    $returnObj = new stdClass();
+                    $returnObj->msg = "No City Found";
+                    array_push($data, $returnObj);
+
+                    $result1 = $this->errorResponse($data);
+                    echo json_encode($result1);
+
+                }
+           }
 
            function profile(){}
 
