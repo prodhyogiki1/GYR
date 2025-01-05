@@ -66,7 +66,7 @@ class User
                 {
                     
                     $returnObj = new stdClass();
-                    $returnObj->name = $result[0]['name'];
+                    $returnObj->name = $result[0]['uname'];
                     $returnObj->email = $result[0]['email'];
                     $returnObj->phone = $result[0]['phone'];
                     $returnObj->address = $result[0]['address'];
