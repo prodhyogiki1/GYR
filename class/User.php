@@ -70,7 +70,7 @@ class User
                     $returnObj->email = $result[0]['email'];
                     $returnObj->phone = $result[0]['phone'];
                     $returnObj->address = $result[0]['address'];
-                    
+                    $returnObj->uid = $result[0]['id'];
                     array_push($data, $returnObj);
                     
                     
