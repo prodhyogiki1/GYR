@@ -58,7 +58,7 @@ case "api":
 
                     if($json['page']=='register')
                     {
-                        $user->userlogin($json['mobile']);
+                        $user->register($json['mobile']);
                     }
 
                     if($json['page']=='served_location')

@@ -28,6 +28,46 @@ class User
         $this->db_handle = new DBController();
     }
 
+    function register($mobile)
+    {$data=array();
+
+        if(strlen($mobile) != 10)
+        {
+                     $returnObj = new stdClass();
+                    $returnObj->msg = "Mobile number should be 10 digit long !!!";
+                    array_push($data, $returnObj);
+                    $result1 = $this->errorResponse($data);
+                    echo json_encode($result1);
+                    exit();
+        }
+
+
+                $query = "select * from user where phone='$mobile'";
+                $result = $this->db_handle->runBaseQuery($query);
+                if($result)
+                {
+                    $returnObj = new stdClass();
+                    $returnObj->msg = "Mobile number is alaready resgistered !!!";
+                    array_push($data, $returnObj);
+                    $result1 = $this->errorResponse($data);
+                    echo json_encode($result1);
+                }
+                else
+                {
+                    $query = "insert into user (phone) Values ('$mobile') ";
+                    $result = $this->db_handle->update($query);
+                    
+                    $otp=rand(0,999999);
+                    $this->update_otp($mobile,$otp);
+                    
+                    $returnObj = new stdClass();
+                    $returnObj->otp = $otp;
+                    $returnObj->msg = "Mobile number Successfully Resgistered !!!";
+                    array_push($data, $returnObj);
+                    $result1 = $this->successResponse($data);
+                    echo json_encode($result1);
+                }
+    }
             function userlogin($mobile)
             {
                 $data = array();
@@ -175,7 +215,7 @@ function user_booking_add($bid,$uid,$aid,$from_date,$to_date,$amount)
 {
 //--- to do check is there any another booking on from or to date 
     $data=array();
-   $insert="insert into user_booking(bid,uid,aid,from_date,to_date,amount,status)Values('$bid','$uid','$aid','$from_date','$to_date','$amount','1')";
+    $insert="insert into user_booking(bid,uid,aid,from_date,to_date,amount,status)Values('$bid','$uid','$aid','$from_date','$to_date','$amount','1')";
     $insert=$this->db_handle->update($insert);
     if($insert)
     {
