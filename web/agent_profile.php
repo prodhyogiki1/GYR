@@ -2,7 +2,9 @@
         <div class="container-fluid">
           <div class="card">
             
-               
+      <?php 
+        $agent_p=$agent->view_agent_one($_SESSION['uid']);
+      ?>         
     <div class="card-header">
         <h5 class="card-title">Agent Information Form</h5>
     </div>
@@ -11,29 +13,29 @@
             <div class="form-group row">
                 <div class="form-group col-sm-4">
                     <label for="agentName">Agent Name</label>
-                    <input type="text" class="form-control" id="agentName" placeholder="Agent Name">
+                    <input type="text" class="form-control" id="agentName" placeholder="Agent Name" value="<?php echo $agent_p[0]['aname'];?>">
                 </div>
                 <div class="form-group col-sm-4">
                     <label for="phone">Phone</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="Phone">
+                    <input type="tel" class="form-control" id="phone" placeholder="Phone" value="<?php echo $agent_p[0]['phone'];?>">
                 </div>
                 <div class="form-group col-sm-4">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email">
+                    <input type="email" class="form-control" id="email" placeholder="Email" value="<?php echo $agent_p[0]['email'];?>">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="form-group col-sm-4">
                     <label for="alternatePhone">Alternate Phone</label>
-                    <input type="tel" class="form-control" id="alternatePhone" placeholder="Alternate Phone">
+                    <input type="tel" class="form-control" id="alternatePhone" placeholder="Alternate Phone" value="<?php echo $agent_p[0]['phone2'];?>">
                 </div>
                 <div class="form-group col-sm-4">
                     <label for="address">Address</label>
-                    <textarea class="form-control" id="address" rows="3" placeholder="Address"></textarea>
+                    <textarea class="form-control" id="address" rows="3" placeholder="Address"><?php echo $agent_p[0]['address'];?></textarea>
                 </div>
                 <div class="form-group col-sm-4">
                     <label for="gstin">GSTIN</label>
-                    <input type="text" class="form-control" id="gstin" placeholder="GSTIN">
+                    <input type="text" class="form-control" id="gstin" placeholder="GSTIN" value="<?php echo $agent_p[0]['gstin'];?>">
                 </div>
             </div>
             <div class="form-group  row">
@@ -74,7 +76,7 @@
             <div class="form-group row">
                 <div class="form-group col-sm-4">
                     <label for="panNumber">Pan Number</label>
-                    <input type="text" class="form-control" id="panNumber" placeholder="Pan Number">
+                    <input type="text" class="form-control" id="panNumber" placeholder="Pan Number" value="<?php echo $agent_p[0]['pan'];?>">
                 </div>
                 <div class="form-group col-sm-4">
                     <label for="companyDocument">Company Document(s)</label>

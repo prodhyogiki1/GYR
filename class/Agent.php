@@ -33,7 +33,12 @@ class Agent
     function add_agent(){}
 function edit_agent(){}
 function view_agent_all(){}
-function view_agent_one(){}
+function view_agent_one($id)
+{
+    $query="select * from agent where uid='$id'";
+    $result=$this->db_handle->runBaseQuery($query);
+    return $result;
+}
 function delete_agent(){}
 function disable_agent(){}
 function booking_agent(){}

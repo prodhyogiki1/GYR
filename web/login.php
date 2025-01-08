@@ -14,6 +14,10 @@ include('header.php');?>
                 <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
                   <img src="<?php echo $base_url;?>theme/assets/images/logos/logo.jpeg" width="180" alt="">
                 </a>
+
+                <?php if(isset($_GET['status'])){?>
+			<p class="auth-msg alert alert-danger">Wrong Credentials</p>
+			<?php }?>
                 <form name="login" action="../processlogin.php" method="post">
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Username</label>
