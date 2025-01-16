@@ -20,3 +20,26 @@ function get_details(inputid,outputid,url)
         });
 
 }
+
+
+function form_submit(x) 
+{
+      var form = $("#"+x);
+        $('#msg'+x).html("Please Wait !");
+       // form.hide();
+        $.ajax({
+           type: "POST",
+           url: $("#"+x).attr("action"),
+           data: form.serialize(),
+           success: function(result)
+           {
+              $('#msg'+x).html(result);  
+              // setTimeout(function(){
+              //       $('#msg'+x).slideUp('slow').fadeOut(function() {
+              //           window.location.reload();
+              //       });
+              // }, 1000); 
+           }
+        }); 
+        //form.show(); 
+ } 

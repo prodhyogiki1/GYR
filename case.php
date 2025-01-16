@@ -1,5 +1,3 @@
-
-
 <?php
 
 switch ($action) {
@@ -35,8 +33,17 @@ case "dashboard":
  				{require_once("web/dashboard.php");}
  		}
  		break;
-//--- dashboard closed
 
+//--- agent
+case "agent":
+	if($_GET['action']=='agent')
+	{
+		if($_GET['query']=='signup')
+		{
+			$signup=$agent->signup($_POST['aname'],$_POST['phone'],$_POST['email'],$_POST['pan'],$_POST['gstin']);
+		}
+	}
+	break;
 
 //-- admin 
 case "admin":
@@ -61,7 +68,11 @@ case "admin":
 						echo "<option value='".$city[$r]['id']."'>".$city[$r]['name']."</option>";
 					}
 				}
+
+				
 			}
+
+			
 		}	
 break;
 
