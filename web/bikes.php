@@ -5,6 +5,8 @@
                
     <div class="card-header">
         <h5 class="card-title">View All Bikes </h5>
+        <a href="<?php echo $base_url.'index.php?action=dashboard&page=add_bike_agent';?>" class="btn btn-primary btn-sm"><i class="ti ti-user-plus"></i> Add Bike For Agent</a>&nbsp;&nbsp;
+        <a href="<?php echo $base_url.'index.php?action=dashboard&page=add_bike_collection';?>" class="btn btn-secondary btn-sm" ><i class="ti ti-key"></i> Add Bike In Collection</a>
     </div>
     <div class="card-body content">
     <table id="example" class="display" style="width:100%">

@@ -43,3 +43,35 @@ function form_submit(x)
         }); 
         //form.show(); 
  } 
+
+
+  //-- action, query , id
+function deleteme(h,i,j)
+{
+  var r = confirm("Are you sure you want to delete  ??");
+  
+  if (r == true) 
+  {
+     $.ajax({
+           type: "GET",
+           url: 'index.php?action='+h+'&query='+i+'&id='+j,
+           success: function(data)
+           {
+            //alert(data);
+               alert('index.php?action='+h+'&query='+i+'&id='+j);
+               $('#'+j).toggle(750); 
+            
+           }
+       }); 
+  } 
+}
+
+
+function show_page_model(title,page)
+{
+  //alert(base_url+page);
+  $('#modal-title').html(title); 
+  //alert(page);
+  $('#modal-body').html('<img src='+loading_img+'>');
+  $('#modal-body').load(page); 
+}

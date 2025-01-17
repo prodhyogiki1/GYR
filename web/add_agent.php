@@ -7,7 +7,7 @@
         <h5 class="card-title">Agent Information Form</h5>
     </div>
     <div class="card-body content">
-        <form>
+        <form name="add_agent" action="<?php echo $base_url.'index.php?action=agent&query=add_agent';?>" method="post" enctype="multipart/form-data">
         <hr>
             <h5>Contact Person Details</h5>
             <hr>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group col-sm-3">
                     <label for="alternatePhone">Alternate Phone</label>
-                    <input type="tel" class="form-control" name="alternatePhone" placeholder="Alternate Phone">
+                    <input type="tel" class="form-control" name="phone2" placeholder="Alternate Phone">
                 </div>
                 
             </div>
@@ -73,7 +73,7 @@
 								<div class="col-md-4">
                   <div class="form-group">
                     <label>Country</label>
-                    <select class="form-control" name="country" id="country" onchange="get_details('country','state','<?php echo $base_url.'index.php?action=leads&query=get_details&type=state&id=';?>')">
+                    <select class="form-control" name="country" id="country" onchange="get_details('country','state','<?php echo $base_url.'index.php?action=admin&query=get_details&type=state&id=';?>')">
                     <option disabled="disabled" selected="selected" >-- Select --</option>
                     <?php $country=$admin->get_country();
                     foreach($country as $r => $v)
@@ -88,7 +88,7 @@
 									<div class="form-group">
 									  <label>State</label>
 									 
-									  <select class="form-control" name="state" id="state" onchange="get_details('state','city','<?php echo $base_url.'index.php?action=leads&query=get_details&type=city&id=';?>')"></select>
+									  <select class="form-control" name="state" id="state" onchange="get_details('state','city','<?php echo $base_url.'index.php?action=admin&query=get_details&type=city&id=';?>')"></select>
 									  <span id="msgstate"></span> 
 									</div>
 								  </div>
@@ -107,17 +107,20 @@
             <div class="form-group row">
                 <div class="form-group col-sm-3">
                     <label for="panNumber">GSTIN</label>
-                    <input type="file" class="form-control" name="gstin" placeholder="GSTIN">
+                    <input type="file" class="form-control" name="gstin_file" placeholder="GSTIN"><br>
+                    <input type="text" class="form-control" name="gstin" placeholder="GSTIN">
                 </div>
             
                 <div class="form-group col-sm-3">
                     <label for="panNumber">Pan Card</label>
-                    <input type="file" class="form-control" name="pan" placeholder="Pan Number">
+                    <input type="file" class="form-control" name="pan_file" placeholder="Pan Number"><br>
+                    <input type="text" class="form-control" name="pan" placeholder="Pan Number">
                 </div>
 
                 <div class="form-group col-sm-3">
                     <label for="companyDocument">Business Licence</label>
-                    <input type="file" class="form-control" name="business_licence" multiple>
+                    <input type="file" class="form-control" name="business_licence_file" placeholder="Business Licence File"><br>
+                    <input type="text" class="form-control" name="business_licence" placeholder="Business Licence">
                 </div>
 
                 <div class="form-group col-sm-3">

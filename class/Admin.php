@@ -73,6 +73,26 @@ function get_all_bikes()
     return $result;
 }
 
+function get_bikes_brand()
+{
+    $query = "select DISTINCT(brand) from bikes";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+function get_bikes($brand)
+{
+    $query = "select * from bikes where brand='$brand'";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+function get_bike_one($id)
+{
+    $query = "select * from bikes where id='$id'";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
 
 //---------- support
 function get_all_support_tickets()
@@ -88,4 +108,25 @@ function get_all_feedback()
     $result = $this->db_handle->runBaseQuery($query);
     return $result;
 }
+
+
+//------------ file upload
+function upload_files($pic)
+	{
+       $a=$pic;
+		$filename = $a['name'];
+		$tempname = $a["tmp_name"];
+		
+
+        //-- rename file
+        $temp = explode(".", $filename);
+        $newfilename = round(microtime(true)) . '.' . end($temp);
+        $folder = "./theme/assets/images/". $newfilename;
+    
+		if (move_uploaded_file($tempname, $folder)) {
+			return $newfilename;
+		} else {
+			return 0;
+		}
+	}
 }

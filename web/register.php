@@ -42,12 +42,12 @@ include('header.php');?>
                   <div class="mb-4 row">
                     <div class="col-sm-6">
                       <label for="exampleInputPassword1" class="form-label">GSTIN</label>
-                      <input type="text" class="form-control" name="aname">
+                      <input type="text" class="form-control" name="gstin">
                     </div>
 
                     <div class="col-sm-6">
                       <label for="exampleInputPassword1" class="form-label">PAN Number</label>
-                      <input type="text" class="form-control" name="aname">
+                      <input type="text" class="form-control" name="pan">
                     </div>
                   </div>
                   
