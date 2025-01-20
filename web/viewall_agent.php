@@ -31,7 +31,7 @@
                 echo "<td> GSTIN : ".$row['gstin']."<br>"."PAN : ".$row['pan']."<br>"."Licence : ".$row['business_licence']."</td>";
                 echo "<td>";
                 ?>
-                    <a href="<?php echo $base_url.'index.php?action=edit_agent&id='.$row['id'];?>"><i class='ti ti-pencil btn btn-info btn-sm'></i></a>
+                    <a href="<?php echo $base_url.'index.php?action=dashboard&page=edit_agent&id='.$row['id'];?>"><i class='ti ti-pencil btn btn-info btn-sm'></i></a>
                     <a href="<?php echo $base_url.'index.php?action=dashboard&page=agent_bike_viewall&aid='.$row['id'];?>"><i class='ti ti-bike btn btn-warning btn-sm' data-toggle="modal" data-target="#exampleModal"></i></a>
                     <i class='ti ti-trash btn btn-danger btn-sm' onclick="deleteme('<?php echo $row['id'];?>')"></i>
                 <?php
