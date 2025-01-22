@@ -38,13 +38,10 @@ case "dashboard":
 case "agent":
 	if($_GET['action']=='agent')
 	{
-		if($_GET['query']=='signup')
-		{
-			$signup=$agent->signup($_POST['aname'],$_POST['phone'],$_POST['email'],$_POST['pan'],$_POST['gstin']);
-		}
+		
 		if($_GET['query']=='add_agent')
 		{
-			print_r($_POST);
+			//print_r($_POST);
 			$signup=$agent->add_agent($_POST['fname'],$_POST['lname'],$_POST['phone'],$_POST['email'],$_POST['designation'],$_POST['phone2'],$_POST['bname'],$_POST['landmark'],$_POST['country'],$_POST['state'],$_POST['city'],$_POST['google_business_link'],$_POST['gstin'],$_POST['pan'],$_POST['business_licence'],$_FILES['gstin_file'],$_FILES['pan_file'],$_POST['business_licence_file']);
 		}
 		if($_GET['query']=='add_bike')

@@ -27,26 +27,40 @@ class Agent
     {
         $this->db_handle = new DBController();
         $this->admin = new Admin();
+        
     }
 
 
-function signup($aname,$phone,$email,$pan,$gstin)
+function signup($fname,$lname,$phone,$email,$pan,$gstin)
 {
     //--check with same gstin
-    $query="select * from agent where gstin='$gstin'";
+    $query="select * from agent where gstin='$gstin' OR phone='$phone' OR email='$email' OR pan='$pan'";
     $result=$this->db_handle->runBaseQuery($query);
     
-    if($query)
-    {echo "<div class='alert alert-danger'>GST already exist</div>";}
+    if(!$query)
+    {echo "<div class='alert alert-danger'>Detail(s) already exist</div>";}
     else
     {
-        $query = "insert into agent(aname,phone,email,pan,gstin)VALUES(?,?,?,?,?)";
-        $paramType = "sssss";
-        $paramValue = array($aname,$phone,$email,$pan,$gstin);
+        $query = "insert into agent(fname,lname,phone,email,pan,gstin)VALUES(?,?,?,?,?,?)";
+        $paramType = "ssssss";
+        $paramValue = array($fname,$lname,$phone,$email,$pan,$gstin);
         $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
         
-        echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=signup&success=1';</script>";
-    }     
+        //-- send email to agent 
+        $msg="Thankyou $fname $lname,<br>Your profile has been sent for verification. Our support team will check your details.<br>After a successfull verfication you will be able to login to your account by the password sent to you.<br>Regards,<br>Team Get Your Ride";
+        
+        $subject="Registered Successfully !!!";
+        $reg_email = $this->admin->send_email($fname,$lname,$email,$msg,$subject);
+        if($reg_email){echo "<div class='alert alert-danger'>Email Has Not Sent, Please Try Again Or Call To Our Support Team !!!</div>";}
+        else{echo "<div class='alert alert-danger'>Thank you showing interest in us. You profile has been sent for verification. !!!</div>"; echo "<a href='login.php' class='btn btn-success'>Back To Login</a>";}
+
+        //-- register and disbale to tbluser
+        $uname=$fname.'_'.$lname;
+        $person_name=$fname.' '.$lname;
+        $create_user = $this->admin->create_user($uname,'123','2',$email,$phone,$person_name);
+
+        exit();
+    }
 }
 
 

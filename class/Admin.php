@@ -9,29 +9,11 @@ require '../library/vendor/autoload.php';
 class Admin
 {
     private $db_handle;
-
-    function successResponse($res)
-    {
-        $succResp = new stdClass();
-        $succResp->success = true;
-        $succResp->error = false;
-        $succResp->response = $res;
-        return $succResp;
-    }
-
-    function errorResponse($res)
-    {
-        $errorResp = new stdClass();
-        $errorResp->success = false;
-        $errorResp->error = true;
-        $errorResp->response = $res;
-        return $errorResp;
-    }
-
+    private $mail;
     function __construct()
     {
         $this->db_handle = new DBController();
-       
+        
     }
 
     function app_config()
@@ -139,32 +121,106 @@ function upload_files($pic)
 
 
 //--- send email by php mailer
-function send_email()
+function send_email($fname,$lname,$email,$msg,$subject)
 {
     $mail = new PHPMailer(true);
  
 try {
-    $mail->SMTPDebug = 2;                                       
-    $mail->isSMTP();                                            
-    $mail->Host       = 'smtp.hostinger.com;';                    
-    $mail->SMTPAuth   = true;                             
-    $mail->Username   = 'info@getyourride.in';                 
-    $mail->Password   = 'Info@#021';                        
-    $mail->SMTPSecure = 'tls';                              
-    $mail->Port       = 587;  
- 
-    $mail->setFrom('info@getyourride.in', 'Name');           
-    $mail->addAddress('sid.vyas786@gmail.com');
-    $mail->addAddress('sid.vyas786@gmail.com', 'Name');
-      
-    $mail->isHTML(true);                                  
-    $mail->Subject = 'Subject';
-    $mail->Body    = 'HTML message body in <b>bold</b> ';
-    $mail->AltBody = 'Body in plain text for non-HTML mail clients';
-    $mail->send();
-    echo "Mail has been sent successfully!";
+    $to      = $email;
+    $subject = $subject;
+    $message = $msg;
+    $headers = 'From: noreply@getyourride.in'       . "\r\n" .
+                 'Reply-To: noreply@getyourride.in' . "\r\n" .
+                 'X-Mailer: PHP/' . phpversion();
+
+    mail($to, $subject, $message, $headers);
+    
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    
 }
-}    
+} 
+
+
+//=========users
+
+
+function create_user($uname,$upass,$utype,$email,$contact,$person_name)
+{
+    
+    $query = "insert into tbluser(uname,upass,utype,uemail,ucontact,person_name)VALUES(?,?,?,?,?,?)";
+    $paramType = "ssssss";
+    $paramValue = array($uname,$upass,$utype,$email,$contact,$person_name);
+    $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
+    return $insertId;    
 }
+
+function get_maxid()
+{
+    $query="select MAX(id) as id from tbluser";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+function edit_user($uname,$upass,$utype,$email,$contact,$person_name,$id)
+{
+    
+        
+     $query = "Update tbluser SET uname='$uname',upass='$upass',utype='$utype',uemail='$email',ucontact='$contact',person_name='$person_name' where id='$id' ";
+    $result = $this->db_handle->update($query);
+    return $result;	
+}
+
+function delete_user($id)
+{
+    $query="delete from tbluser where id='$id' ";
+    $result = $this->db_handle->runSingleQuery($query);
+    return $result;	
+}
+
+function get_alluser()
+{
+    $query="select * from tbluser";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+function get_alluser_ofc()
+{
+    $query="select * from tbluser where utype != '3' ";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+
+function getone_user($id)
+{
+    $query="select * from tbluser where id = $id";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+function getone_user_rand_bytype($type)
+{
+    $query="select * from tbluser where utype='$type' ORDER by rand() LIMIT 1";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+function getonetype_user($utype)
+{
+    $query="select * from tbluser where utype = $utype Order by uname DESC";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;	
+}
+
+
+
+
+
+
+
+
+}
+
+

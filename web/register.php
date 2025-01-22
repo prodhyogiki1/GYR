@@ -1,6 +1,9 @@
 <?php 
-include('../session.php');
-include('header.php');?>
+$base_url = 'http://localhost/gyr/';
+include('header.php');
+include('../class/DBController.php');
+
+?>
 <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
@@ -15,39 +18,50 @@ include('header.php');?>
                   <img src="<?php echo $base_url;?>theme/assets/images/logos/logo.jpeg" width="180" alt="">
                 </a>
                 <p class="text-center">Get Your Ride</p>
-                <span id="msgasignup"></span>
-                <form id="asignup" action="<?php echo $base_url.'index.php?action=agent&query=signup';?>" method="post" name="agent_sinup">
+                <span id="msgasignup">
+                  <?php if(isset($_POST['submit']))
+                    {
+                    include('../class/Agent.php');
+                    $agent=new Agent();
+                    $signup=$agent->signup($_POST['fname'],$_POST['lname'],$_POST['phone'],$_POST['email'],$_POST['pan'],$_POST['gstin']);
+                    if(!$signup)
+                    {echo "<a href='web/login.php'>Login</a>";}
+                    }
+                    
+                    ?>
+                </span>
+                <form id="asignup" action="" method="post" name="agent_sinup">
                   <div class="mb-3 row">
                     <div class="col-sm-6">
                       <label for="exampleInputtext1" class="form-label">First Name</label>
-                      <input type="text" class="form-control" name="fname">
+                      <input type="text" class="form-control" name="fname" value="<?php if(isset($_POST['fname'])){echo $_POST['fname'];}; ?>">
                     </div>
                     <div class="col-sm-6">
                       <label for="exampleInputtext1" class="form-label">Last Name</label>
-                      <input type="text" class="form-control" name="lname">
+                      <input type="text" class="form-control" name="lname" value="<?php if(isset($_POST['lname'])){echo $_POST['lname'];}; ?>">
                     </div>
                     
                   </div>
                   <div class="mb-3 row">
                     <div class="col-sm-6">
                       <label for="exampleInputEmail1" class="form-label">Email Address</label>
-                      <input type="email" class="form-control" name="email">
+                      <input type="email" class="form-control" name="email" value="<?php if(isset($_POST['email'])){echo $_POST['email'];}; ?>">
                     </div>
                     <div class="col-sm-6">
                       <label for="exampleInputEmail1" class="form-label">Mobile Number</label>
-                      <input type="number" class="form-control" name="phone">
+                      <input type="number" class="form-control" name="phone" value="<?php if(isset($_POST['phone'])){echo $_POST['phone'];}; ?>">
                     </div>
                   </div>
                   
                   <div class="mb-4 row">
                     <div class="col-sm-6">
                       <label for="exampleInputPassword1" class="form-label">GSTIN</label>
-                      <input type="text" class="form-control" name="gstin">
+                      <input type="text" class="form-control" name="gstin" value="<?php if(isset($_POST['gstin'])){echo $_POST['gstin'];}; ?>">
                     </div>
 
                     <div class="col-sm-6">
                       <label for="exampleInputPassword1" class="form-label">PAN Number</label>
-                      <input type="text" class="form-control" name="pan">
+                      <input type="text" class="form-control" name="pan" value="<?php if(isset($_POST['pan'])){echo $_POST['pan'];}; ?>">
                     </div>
                   </div>
                   
@@ -58,7 +72,7 @@ include('header.php');?>
                     </div>
 
                     <div class="col-sm-6">
-                    <input type="submit" onclick="form_submit('asignup')" class="btn btn-primary w-100 fs-4 mb-4 rounded-2" value="Sign Up">
+                    <input type="submit" name="submit" class="btn btn-primary w-100 fs-4 mb-4 rounded-2" value="Sign Up">
                     </div>
                   
                   </div>
