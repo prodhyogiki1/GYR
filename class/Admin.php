@@ -128,10 +128,17 @@ function send_email($fname,$lname,$email,$msg,$subject)
 try {
     $to      = $email;
     $subject = $subject;
-    $message = $msg;
+    $message = '<p>'.$msg.'</p>';    
     $headers = 'From: noreply@getyourride.in'       . "\r\n" .
                  'Reply-To: noreply@getyourride.in' . "\r\n" .
                  'X-Mailer: PHP/' . phpversion();
+
+$headers  = "From: Get Your Ride"."\r\n";
+$headers .= "Reply-To: no-reply@getyourride.in". "\r\n";
+$headers .= "CC: info@getyourride.in\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
 
     mail($to, $subject, $message, $headers);
     
