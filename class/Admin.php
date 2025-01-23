@@ -124,11 +124,13 @@ function upload_files($pic)
 function send_email($fname,$lname,$email,$msg,$subject)
 {
     //$mail = new PHPMailer(true);
- 
+ $comp=$this->get_company();
+
 try {
     $to      = $email;
     $subject = $subject;
-    $message = '<p>'.$msg.'</p>';    
+    $message = '<p>'.$msg.'</p>';
+    $messege .="<hr><img src='../theme/assets/images/".$comp[0]['logo']."'>";    
     $headers = 'From: noreply@getyourride.in'       . "\r\n" .
                  'Reply-To: noreply@getyourride.in' . "\r\n" .
                  'X-Mailer: PHP/' . phpversion();
