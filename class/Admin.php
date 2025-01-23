@@ -1,10 +1,10 @@
 <?php
 require_once("DBController.php");
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
 
-require '../library/vendor/autoload.php';
+// require './library/vendor/autoload.php';
 
 class Admin
 {
@@ -123,7 +123,7 @@ function upload_files($pic)
 //--- send email by php mailer
 function send_email($fname,$lname,$email,$msg,$subject)
 {
-    $mail = new PHPMailer(true);
+    //$mail = new PHPMailer(true);
  
 try {
     $to      = $email;
@@ -140,6 +140,39 @@ try {
     
 }
 } 
+
+//--- notification
+function save_alerts($from,$msg,$to)
+{
+    $query = "insert into notification(from_uid,msg,to_uid)VALUES(?,?,?)";
+    $paramType = "isi";
+    $paramValue = array($from,$msg,$to);
+    $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
+    return $insertId;
+}
+
+function my_alerts($uid)
+{
+    $query = "select * from notification where to_uid='$uid' ORDER BY id DESC";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+function latest_alerts($uid)
+{
+    $query = "select * from notification where to_uid='$uid' AND status='0' ORDER BY id DESC";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+function read_alerts($uid)
+{
+    $query = "select * from notification where to_uid='$uid' AND status='1' ORDER BY id DESC";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+
 
 
 //=========users
@@ -214,6 +247,12 @@ function getonetype_user($utype)
     return $result;	
 }
 
+function update_user_status($uid,$status)
+{
+    $query="update tbluser SET status = '$status' where id='$uid' ";
+    $result = $this->db_handle->update($query);
+    return $result;	
+}
 
 
 
