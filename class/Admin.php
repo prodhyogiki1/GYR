@@ -129,7 +129,7 @@ function send_email($fname,$lname,$email,$msg,$subject)
 try {
     $to      = $email;
     $subject = $subject;
-   echo $message = "<p>".$msg."</p><hr><img src='https://getyourride.in/theme/assets/images/".$comp[0]['logo']."' height='80' width='auto'>";
+    $message = "<p>".$msg."</p><hr><img src='https://getyourride.in/theme/assets/images/".$comp[0]['logo']."' height='80' width='auto'>";
     
 
     $headers = 'From: noreply@getyourride.in'       . "\r\n" .
