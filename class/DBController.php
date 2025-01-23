@@ -4,18 +4,18 @@
 
 
     //-- offline
-    private $host = "localhost";
-    private $user = "root";
-    private $password = "";
-    private $database = "gyr";
-    private $conn;
+    // private $host = "localhost";
+    // private $user = "root";
+    // private $password = "";
+    // private $database = "gyr";
+    // private $conn;
 
     //-- online
-    // private $host = "localhost";
-    // private $user = "u667746222_gyk_user";
-    // private $password = "Gyk@#0291";
-    // private $database = "u667746222_gyk";
-    // private $conn;
+    private $host = "localhost";
+    private $user = "u667746222_gyk_user";
+    private $password = "Gyk@#0291";
+    private $database = "u667746222_gyk";
+    private $conn;
 
 	
 
