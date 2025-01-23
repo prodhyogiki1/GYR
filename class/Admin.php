@@ -133,8 +133,8 @@ try {
                  'Reply-To: noreply@getyourride.in' . "\r\n" .
                  'X-Mailer: PHP/' . phpversion();
 
-$headers  = "From: Get Your Ride"."\r\n";
-$headers .= "Reply-To: no-reply@getyourride.in". "\r\n";
+// $headers  = "From: Get Your Ride"."\r\n";
+// $headers .= "Reply-To: no-reply@getyourride.in". "\r\n";
 $headers .= "CC: info@getyourride.in\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
