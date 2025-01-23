@@ -4,31 +4,38 @@
             
                <?php 
                 $agent_details = $agent->view_agent_one($_GET['id']);
+                  $user_details = $admin->getone_user($agent_details[0]['uid']);  
+
                ?>
     <div class="card-header">
-        <h5 class="card-title">Edit Agent Information Form</h5>
+        <h5 class="card-title">Edit Verification Form</h5>
     </div>
+    <?php include('alert.php');?>
     <div class="card-body content">
-        <form name="add_agent" action="<?php echo $base_url.'index.php?action=agent&query=edit_agent';?>" method="post" enctype="multipart/form-data">
+        <form name="add_agent" action="<?php echo $base_url.'index.php?action=agent&query=verify_agent';?>" method="post" enctype="multipart/form-data">
+        
+        <input type="hidden" name="id" value="<?php echo $agent_details[0]['id'];?>"/>
+        <input type="hidden" name="uid" value="<?php echo $agent_details[0]['uid'];?>"/>
+
         <hr>
             <h5>Contact Person Details</h5>
             <hr>
             <div class="form-group row">
                 <div class="form-group col-sm-3">
                     <label for="agentName">First Name</label>
-                    <input type="text" class="form-control" name="fname" value="<?php echo $agent_details[0]['fname'];?>" placeholder="Agent First Name">
+                    <input type="text" class="form-control" name="fname" value="<?php echo $agent_details[0]['fname'];?>" placeholder="Agent First Name" required>
                 </div>
                 <div class="form-group col-sm-3">
                     <label for="agentName">Last Name</label>
-                    <input type="text" class="form-control" name="lname" value="<?php echo $agent_details[0]['lname'];?>" placeholder="Agent Last Name">
+                    <input type="text" class="form-control" name="lname" value="<?php echo $agent_details[0]['lname'];?>" placeholder="Agent Last Name" required>
                 </div>
                 <div class="form-group col-sm-3">
                     <label for="phone">Phone</label>
-                    <input type="tel" class="form-control" name="phone" placeholder="Phone" value="<?php echo $agent_details[0]['phone'];?>">
+                    <input type="tel" class="form-control" name="phone" placeholder="Phone" value="<?php echo $agent_details[0]['phone'];?>" required>
                 </div>
                 <div class="form-group col-sm-3">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" placeholder="Email" value="<?php echo $agent_details[0]['email'];?>">
+                    <input type="email" class="form-control" name="email" placeholder="Email" value="<?php echo $agent_details[0]['email'];?>" required>
                 </div>
             </div>
             <div class="form-group row">
@@ -62,11 +69,11 @@
 
                       <div class="form-group col-sm-4">
                           <label for="address">Address</label>
-                          <textarea class="form-control" name`="baddress" rows="3" placeholder="Address"></textarea>
+                          <textarea class="form-control" name="baddress" rows="3" placeholder="Address" required><?php echo $agent_details[0]['baddress'];?></textarea>
                       </div>
                       <div class="form-group col-sm-4">
                           <label for="address">Land Mark</label>
-                          <textarea class="form-control" name="landmark" rows="3" placeholder="Land Mark"></textarea>
+                          <textarea class="form-control" name="landmark" rows="3" placeholder="Land Mark" ><?php echo $agent_details[0]['landmark'];?></textarea>
                       </div>
                 </div>      
                 
@@ -75,7 +82,7 @@
 								<div class="col-md-4">
                   <div class="form-group">
                     <label>Country</label>
-                    <select class="form-control" name="country" id="country" onchange="get_details('country','state','<?php echo $base_url.'index.php?action=admin&query=get_details&type=state&id=';?>')">
+                    <select class="form-control" name="country" id="country" onchange="get_details('country','state','<?php echo $base_url.'index.php?action=admin&query=get_details&type=state&id=';?>')" required>
                     <option disabled="disabled" selected="selected" >-- Select --</option>
                     <?php $country=$admin->get_country();
                     foreach($country as $r => $v)
@@ -92,7 +99,7 @@
 								  <div class="col-md-4">
 									<div class="form-group">
 									  <label>State</label>
-									  <select class="form-control" name="state" id="state" onchange="get_details('state','city','<?php echo $base_url.'index.php?action=admin&query=get_details&type=city&id=';?>')"></select>
+									  <select class="form-control" name="state" id="state" onchange="get_details('state','city','<?php echo $base_url.'index.php?action=admin&query=get_details&type=city&id=';?>')" required></select>
 									  <span id="msgstate"></span> 
 									</div>
 								  </div>
@@ -100,7 +107,7 @@
 								  <div class="col-md-4">
 									<div class="form-g4oup">
 									  <label>City</label>
-									  <select class="form-control" name="city" id="city"></select>
+									  <select class="form-control" name="city" id="city" required></select>
 									  <span id="msgcity"></span> 
 									</div>
 								  </div>
@@ -111,29 +118,45 @@
             <div class="form-group row">
                 <div class="form-group col-sm-3">
                     <label for="panNumber">GSTIN</label>
-                    <input type="file" class="form-control" name="gstin_file" placeholder="GSTIN"><br>
-                    <input type="text" class="form-control" name="gstin" placeholder="GSTIN">
+                    <!-- <input type="file" class="form-control" name="gstin_file" placeholder="GSTIN" ><br> -->
+                    <input type="text" class="form-control" name="gstin" placeholder="GSTIN" value="<?php echo $agent_details[0]['gstin'];?>">
                 </div>
             
                 <div class="form-group col-sm-3">
                     <label for="panNumber">Pan Card</label>
-                    <input type="file" class="form-control" name="pan_file" placeholder="Pan Number"><br>
-                    <input type="text" class="form-control" name="pan" placeholder="Pan Number">
+                    <!-- <input type="file" class="form-control" name="pan_file" placeholder="Pan Number" ><br> -->
+                    <input type="text" class="form-control" name="pan" placeholder="Pan Number" value="<?php echo $agent_details[0]['pan'];?>">
                 </div>
 
                 <div class="form-group col-sm-3">
                     <label for="companyDocument">Business Licence</label>
-                    <input type="file" class="form-control" name="business_licence_file" placeholder="Business Licence File"><br>
-                    <input type="text" class="form-control" name="business_licence" placeholder="Business Licence">
+                    <!-- <input type="file" class="form-control" name="business_licence_file" placeholder="Business Licence File" ><br> -->
+                    <input type="text" class="form-control" name="business_licence" placeholder="Business Licence" >
                 </div>
 
                 <div class="form-group col-sm-3">
                     <label for="Google Business">Google Business Listing Link</label>
-                    <input type="text" class="form-control" name="google_business_link" placeholder="Google Business Listing Link">
+                    <input type="text" class="form-control" name="google_business_link" placeholder="Google Business Listing Link" required>
                 </div>
+
+                
             </div>
-            <hr>
-            <button type="submit" class="btn btn-primary">Submit</button>
+<hr>
+            <div class="form-group row">
+                <div class="form-group col-sm-3">
+                    <label>Verify???</label>
+                        <select name="status" class="form-control" required>
+                            <option selected="selected" disabled="disable">-Select-</option>
+                            <option value="1" <?php if($user_details[0]['status']=='1'){?>selected="selected"<?php }?>>Verified</option>
+                            <option value="2" <?php if($user_details[0]['status']=='2'){?>selected="selected"<?php }?>>Not Verified</option>
+                        </select>
+                </div>
+
+                <div class="form-group col-sm-3"><br>
+                    <input type="submit" class="btn btn-warning" value="Verify & Send Email" name="verify_agent" />
+                </div>
+            </div>    
+
         </form>
     </div>
 </div>

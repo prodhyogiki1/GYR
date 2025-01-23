@@ -41,9 +41,20 @@ function signup($fname,$lname,$phone,$email,$pan,$gstin)
     {echo "<div class='alert alert-danger'>Detail(s) already exist</div>";}
     else
     {
-        $query = "insert into agent(fname,lname,phone,email,pan,gstin)VALUES(?,?,?,?,?,?)";
-        $paramType = "ssssss";
-        $paramValue = array($fname,$lname,$phone,$email,$pan,$gstin);
+        //-- register and disbale to tbluser
+        $uname=$fname.'_'.$lname;
+        $person_name=$fname.' '.$lname;
+        $create_user = $this->admin->create_user($uname,'123','2',$email,$phone,$person_name);
+
+        //-- get max uid from tbluser
+        $query="select MAX(id) as id from tbluser";
+        $result=$this->db_handle->runBaseQuery($query);
+        $uid=$result[0]['id'];
+
+        //-- create agent details in agent table
+        $query = "insert into agent(fname,lname,phone,email,pan,gstin,uid)VALUES(?,?,?,?,?,?,?)";
+        $paramType = "ssssssi";
+        $paramValue = array($fname,$lname,$phone,$email,$pan,$gstin,$uid);
         $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
         
         //-- send email to agent 
@@ -54,15 +65,21 @@ function signup($fname,$lname,$phone,$email,$pan,$gstin)
         if($reg_email){echo "<div class='alert alert-danger'>Email Has Not Sent, Please Try Again Or Call To Our Support Team !!!</div>";}
         else{echo "<div class='alert alert-danger'>Thank you showing interest in us. You profile has been sent for verification. !!!</div>"; echo "<a href='login.php' class='btn btn-success'>Back To Login</a>";}
 
-        //-- register and disbale to tbluser
-        $uname=$fname.'_'.$lname;
-        $person_name=$fname.' '.$lname;
-        $create_user = $this->admin->create_user($uname,'123','2',$email,$phone,$person_name);
+        
+
+        //--- send notification to admin about new user
+        $reg_email = $this->admin->save_alerts($uid,"New Agent Rquest Received",'1');
 
         exit();
     }
 }
 
+function verify_agent($fname,$lname,$phone,$email,$designation,$phone2,$bname,$baddress,$landmark,$country,$state,$city,$google_business_link,$gstin,$pan,$business_licence,$id)
+{
+   echo $query = "update agent set fname='$fname',lname='$lname',phone='$phone',email='$email',designation='$destination',phone2='$phone2',bname='$bname',baddress='$baddress',landmark='$landmark',country='$country',state='$state',city='$city',google_business_link='$google_business_link',gstin='$gstin',pan='$pan',business_licence='$business_licence' where id='$id' ";
+    $result=$this->db_handle->update($query);
+    return $result;
+}
 
 function add_agent($fname,$lname,$phone,$email,$designation,$phone2,$bname,$landmark,$country,$state,$city,$google_business_link,$gstin,$pan,$business_licence,$_gstin_file,$_pan_file,$business_licence_file)
 {

@@ -57,6 +57,22 @@ case "agent":
 			else
 			{echo "<div class='alert alert-danger'>Something Went Wrong !!!</div>";}
 		}
+		if($_GET['query']=='verify_agent')
+		{
+			//print_r($_POST);
+			$signup=$agent->verify_agent($_POST['fname'],$_POST['lname'],$_POST['phone'],$_POST['email'],$_POST['designation'],$_POST['phone2'],$_POST['bname'],$_POST['baddress'],$_POST['landmark'],$_POST['country'],$_POST['state'],$_POST['city'],$_POST['google_business_link'],$_POST['gstin'],$_POST['pan'],$_POST['business_licence'],$_POST['id']);
+
+			// -- update the status and send email to agent
+			$status = $admin->update_user_status($_POST['uid'],$_POST['status']);
+			//-- send email
+			if($_POST['status']=='1')
+			{$msg="Dear ".$_POST['fname'].",<br>Your application as an agent has been approved by our support team. Please login through these credentials and complete your profile;<br><b>User Name:</b>".$_POST['fname']."_".$_POST['lname']."<br><b>Password :</b>123<br><b>Regards,</b><br>Team Get Your Ride"; $subject="Application Approved for Agent";}
+			else{$msg="Dear ".$_POST['fname'].",<br>We regret to inform you that your profile has been dis approved by our support team. For information please call or drop us an email at support@getyouride.in.<br><b>Regards,</b><br>Team Get Your Ride"; $subject="Application Declined for Agent";}
+			
+			$admin->send_email($_POST['fname'],$_POST['lname'],$_POST['email'],$msg,$subject);
+
+			echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=verify_agent&id=".$_POST['id']."&status=3';</script>";
+		}
 	}
 	break;
 
