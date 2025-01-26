@@ -12,7 +12,7 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Designation</th>
+                <th>Contact</th>
                 <th>Company</th>
                 <th>Address</th>
                 <th>Licence</th>
@@ -29,7 +29,7 @@
 
                 echo "<tr>";
                 echo "<td>".$row['fname'].' '.$row['lname']."</td>";
-                echo "<td>".$row['designation']."</td>";
+                echo "<td>".$row['phone']."<br>".$row['email']."</td>";
                 echo "<td>".$row['bname']."</td>";
                 echo "<td>".$row['baddress']."</td>";
                 echo "<td> GSTIN : ".$row['gstin']."<br>"."PAN : ".$row['pan']."<br>"."Licence : ".$row['business_licence']."</td>";

@@ -64,12 +64,12 @@
                     
                       <div class="form-group col-sm-4">
                           <label for="address">Business Name</label>
-                          <textarea class="form-control" name="bname" rows="3" placeholder="Business Name" required> <?php echo $agent_details[0]['bname'];?></textarea>
+                          <textarea class="form-control" name="bname" rows="3" placeholder="Business Name" > <?php echo $agent_details[0]['bname'];?></textarea>
                       </div>
 
                       <div class="form-group col-sm-4">
                           <label for="address">Address</label>
-                          <textarea class="form-control" name="baddress" rows="3" placeholder="Address" required><?php echo $agent_details[0]['baddress'];?></textarea>
+                          <textarea class="form-control" name="baddress" rows="3" placeholder="Address" ><?php echo $agent_details[0]['baddress'];?></textarea>
                       </div>
                       <div class="form-group col-sm-4">
                           <label for="address">Land Mark</label>
@@ -82,7 +82,7 @@
 								<div class="col-md-4">
                   <div class="form-group">
                     <label>Country</label>
-                    <select class="form-control" name="country" id="country" onchange="get_details('country','state','<?php echo $base_url.'index.php?action=admin&query=get_details&type=state&id=';?>')" required>
+                    <select class="form-control" name="country" id="country" onchange="get_details('country','state','<?php echo $base_url.'index.php?action=admin&query=get_details&type=state&id=';?>')" >
                     <option disabled="disabled" selected="selected" >-- Select --</option>
                     <?php $country=$admin->get_country();
                     foreach($country as $r => $v)
@@ -99,7 +99,7 @@
 								  <div class="col-md-4">
 									<div class="form-group">
 									  <label>State</label>
-									  <select class="form-control" name="state" id="state" onchange="get_details('state','city','<?php echo $base_url.'index.php?action=admin&query=get_details&type=city&id=';?>')" required></select>
+									  <select class="form-control" name="state" id="state" onchange="get_details('state','city','<?php echo $base_url.'index.php?action=admin&query=get_details&type=city&id=';?>')" ></select>
 									  <span id="msgstate"></span> 
 									</div>
 								  </div>
@@ -107,7 +107,7 @@
 								  <div class="col-md-4">
 									<div class="form-g4oup">
 									  <label>City</label>
-									  <select class="form-control" name="city" id="city" required></select>
+									  <select class="form-control" name="city" id="city"></select>
 									  <span id="msgcity"></span> 
 									</div>
 								  </div>
@@ -136,11 +136,11 @@
 
                 <div class="form-group col-sm-3">
                     <label for="Google Business">Google Business Listing Link</label>
-                    <input type="text" class="form-control" name="google_business_link" placeholder="Google Business Listing Link" required>
+                    <input type="text" class="form-control" name="google_business_link" placeholder="Google Business Listing Link">
                 </div>
 
                 
-            </div>
+            </div>`
 <hr>
             <div class="form-group row">
                 <div class="form-group col-sm-3">

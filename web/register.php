@@ -34,34 +34,34 @@ include('../class/DBController.php');
                   <div class="mb-3 row">
                     <div class="col-sm-6">
                       <label for="exampleInputtext1" class="form-label">First Name</label>
-                      <input type="text" class="form-control" name="fname" value="<?php if(isset($_POST['fname'])){echo $_POST['fname'];}; ?>">
+                      <input type="text" class="form-control" name="fname" value="<?php if(isset($_POST['fname'])){echo $_POST['fname'];}; ?>" required>
                     </div>
                     <div class="col-sm-6">
                       <label for="exampleInputtext1" class="form-label">Last Name</label>
-                      <input type="text" class="form-control" name="lname" value="<?php if(isset($_POST['lname'])){echo $_POST['lname'];}; ?>">
+                      <input type="text" class="form-control" name="lname" value="<?php if(isset($_POST['lname'])){echo $_POST['lname'];}; ?>" required>
                     </div>
                     
                   </div>
                   <div class="mb-3 row">
                     <div class="col-sm-6">
                       <label for="exampleInputEmail1" class="form-label">Email Address</label>
-                      <input type="email" class="form-control" name="email" value="<?php if(isset($_POST['email'])){echo $_POST['email'];}; ?>">
+                      <input type="email" class="form-control" name="email" value="<?php if(isset($_POST['email'])){echo $_POST['email'];}; ?>" required>
                     </div>
                     <div class="col-sm-6">
                       <label for="exampleInputEmail1" class="form-label">Mobile Number</label>
-                      <input type="number" class="form-control" name="phone" value="<?php if(isset($_POST['phone'])){echo $_POST['phone'];}; ?>">
+                      <input type="number" class="form-control" name="phone" value="<?php if(isset($_POST['phone'])){echo $_POST['phone'];}; ?>" required>
                     </div>
                   </div>
                   
                   <div class="mb-4 row">
                     <div class="col-sm-6">
                       <label for="exampleInputPassword1" class="form-label">GSTIN</label>
-                      <input type="text" class="form-control" name="gstin" value="<?php if(isset($_POST['gstin'])){echo $_POST['gstin'];}; ?>">
+                      <input type="text" class="form-control" name="gstin" value="<?php if(isset($_POST['gstin'])){echo $_POST['gstin'];}; ?>" style="text-transform:uppercase" required>
                     </div>
 
                     <div class="col-sm-6">
                       <label for="exampleInputPassword1" class="form-label">PAN Number</label>
-                      <input type="text" class="form-control" name="pan" value="<?php if(isset($_POST['pan'])){echo $_POST['pan'];}; ?>">
+                      <input type="text" class="form-control" name="pan" value="<?php if(isset($_POST['pan'])){echo $_POST['pan'];}; ?>" style="text-transform:uppercase" required  >
                     </div>
                   </div>
                   
