@@ -2,9 +2,11 @@
 require('session.php');
 require("class/DBController.php");
 require("class/Admin.php");
+require("class/Agent.php");
 $db = new DBController;
 $conn = $db->connectDB();
 $admin= New Admin();
+$agent= New Agent();
 if (isset($_POST['btnlogin'])) {
 
 
@@ -44,6 +46,13 @@ else{
                $_SESSION['email'] = $found_user['uemail'];
                $_SESSION['phone'] = $found_user['ucontact'];
                
+               //-- if utype = 2
+               if($_SESSION['utype']=='2')
+               {
+               $aid = $agent->view_agent_one_byuid($_SESSION['uid']);
+               $_SESSION['aid']=$aid[0]['id'];
+               }
+
                //-- get copany details
                $company=$admin->get_company();
                $_SESSION['cname'] = $company[0]['cname'];

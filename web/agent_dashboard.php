@@ -10,34 +10,33 @@
               <div class="card-body">
                 <div class="d-flex align-items-center justify-content-between mb-10">
                   <div class="">
-                    <h5 class="card-title fw-semibold">Booking & Deliveries</h5>
-                  </div>
-                  <div class="dropdown">
-                    <button
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                      class="rounded-circle btn-transparent rounded-circle btn-sm px-1 btn shadow-none"
-                    >
-                      <i class="ti ti-dots-vertical fs-7 d-block"></i>
-                    </button>
-                    <ul
-                      class="dropdown-menu dropdown-menu-end"
-                      aria-labelledby="dropdownMenuButton1"
-                    >
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li>
-                        <a class="dropdown-item" href="#">Another action</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#"
-                          >Something else here</a
-                        >
-                      </li>
-                    </ul>
+                    <h5 class="card-title fw-semibold">New Bookings</h5>
                   </div>
                 </div>
-                <div id="profit"></div>
+                <?php 
+                //--check new bookings
+                $new_bookings=$agent->new_booking($_SESSION['uid']);
+                if($new_bookings)
+                {
+                  echo "<ul>";
+                  foreach($new_bookings as $k=>$v){
+                    $bike_name=$bike->get_bike_name($new_bookings[$k]['bid']);
+                    echo "<li>";
+                      echo "<b>Customer Name : </b> ".$new_bookings[$k]['uid'];
+                      echo "<span>Date & Time : </span> ".$new_bookings[$k]['booking_date_time'];
+                      echo "<span>Bike : </span> ".$bike_name[0]['name'];                    
+                    echo "</li>";
+                  }
+                  echo "</ul>";
+                }
+                else
+                {
+                  echo "<div class='text-center'>";
+                  echo "<img src='".$base_url."theme/assets/images/not_found.jpg' width='350'>";
+                  echo "<h5>No New Booking(s)</h5>";
+                  echo "</div>";
+                }  
+                ?>
               </div>
             </div>
           </div>
@@ -50,23 +49,33 @@
                     <h5 class="card-title mb-10 fw-semibold">Profile Status</h5>
                     <div class="row align-items-center">
                       <div class="col-7">
-                        <h4 class="fw-semibold mb-3">$36,358</h4>
-                        <div class="d-flex align-items-center mb-2">
-                          <span
-                            class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-arrow-up-left text-success"></i>
-                          </span>
-                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                          <p class="fs-3 mb-0">last year</p>
-                        </div>
+                        <?php 
+                        $blank=1;
+                        $full=1;
+                        $profile = $agent->table_columns('agent');
+                        $agent_details = $agent->view_agent_one($_SESSION['uid']);
+                        foreach($profile as $k => $v)
+                        {
+                          //-- check emapty or not
+                          $col = $profile[$k]['Field'];
+                          $val = $agent_details[$k][$col];
+                          if($val=='')
+                          {$balank++;}
+                          else
+                          {$full++;}
+                        }
+                        $final = $blank+$full;
+                        $per = $full/$final*100;
+                        ?>
+                        <h4 class="fw-semibold mb-3"><?php echo $per.'%';?></h4>
                         <div class="d-flex align-items-center">
                           <div class="me-3">
                             <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">Oragnic</span>
+                            <span class="fs-2">Complete</span>
                           </div>
                           <div>
                             <span class="round-8 bg-danger rounded-circle me-2 d-inline-block"></span>
-                            <span class="fs-2">Refferal</span>
+                            <span class="fs-2">Incomplete</span>
                           </div>
                         </div>
                       </div>
@@ -85,7 +94,7 @@
                   <div class="card-body">
                     <div class="row alig n-items-start">
                       <div class="col-8">
-                        <h5 class="card-title mb-10 fw-semibold"> Product Sales</h5>
+                        <h5 class="card-title mb-10 fw-semibold"> Bike Sales</h5>
                         <h4 class="fw-semibold mb-3">$6,820</h4>
                         <div class="d-flex align-items-center pb-1">
                           <span
@@ -100,7 +109,7 @@
                         <div class="d-flex justify-content-end">
                           <div
                             class="text-white bg-danger rounded-circle p-7 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-currency-dollar fs-6"></i>
+                            <i class="ti ti-currency-ruppee fs-6">INR</i>
                           </div>
                         </div>
                       </div>
@@ -113,6 +122,51 @@
           </div>
         </div>
 
+
+        <!---- row 2 -------->
+        <div class="row">
+          <div class="col-lg-12 d-flex align-items-strech">
+            <div class="card w-100">
+              <div class="card-body">
+                  <h4>Availablity & Booking</h4>        
+                  <table class='table table-bordered'>
+                    <tr>
+                      <th>#</th>
+                      <th>Bike</th>
+                      <th>Year</th>
+                      <th>Color</th>
+                      <th>Price Per KM</th>
+                      <th>Per Day KM</th>
+                      <th>Availablility</th>
+                      <th></th>
+                    </tr>
+                  <?php 
+                  //-- view al bikes
+                  $abikes=$agent->viewall_agent_bike($_SESSION['aid']);
+                  if($abikes)
+                  {
+                  $counter=1;
+                  
+                  foreach($abikes as $k1 => $v){
+                      echo "<tr>"; 
+                        echo "<th>".$counter++."</th>";
+                        echo "<td>".$abikes[0]['bid']."</td>";
+                        echo "<td>".$abikes[$k1]['year_manufecturing']."</td>";
+                        echo "<td>".$abikes[$k1]['color']."</td>";
+                        echo "<td>".$abikes[$k1]['price_per_km']."</td>";
+                        echo "<td>".$abikes[$k1]['per_day_km']."</td>";
+                        echo "<td>".$abikes[$k1]['available']."</td>";
+                        echo "<td></td>";
+                      echo "</tr>";
+                  }}
+                  else
+                  {echo "<tr><td colspan='6'>No Bikes Found</td></tr>";}
+                  ?>                        
+                  </table>
+              </div>
+            </div>
+          </div>
+        </div>            
   </div>
 
 </div>

@@ -10,7 +10,7 @@
             <div class="form-group row">
                 <div class="form-group col-sm-4">
                     <label for="agentName">Bike Company</label>
-                    <input type="text" class="form-control" id="agentName" placeholder="Agent Name" >
+                    
                 </div>
                 <div class="form-group col-sm-4">
                     <label for="phone">Bike Model</label>

@@ -54,13 +54,26 @@ data-sidebar-position="fixed" data-header-position="fixed">
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link success-hover-bg"
-                href="<?php echo $base_url.'index.php?action=dashboard&page=agent_bikes';?>"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=add_bike_agent';?>"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-success rounded-3">
                   <i class="ti ti-bike fs-7 text-success"></i>
                 </span>
                 <span class="hide-menu ms-2 ps-1">Bikes</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link primary-hover-bg"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=bike_agent_viewall';?>"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-primary rounded-3">
+                  <i class="ti ti-bike fs-7 text-primary"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">My Bikes</span>
               </a>
             </li>
 

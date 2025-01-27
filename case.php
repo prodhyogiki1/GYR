@@ -67,6 +67,7 @@ case "agent":
 			//-- send email
 			if($_POST['status']=='1')
 			{
+				
 				//--get upassword from table user
 				$user_details = $admin->getone_user($_POST['uid']);
 				$msg="Dear ".$_POST['fname'].",<br>Your application as an agent has been approved by our support team. Please login through these credentials and complete your profile;<br><b>User Name:</b>".$_POST['fname']."_".$_POST['lname']."<br><b>Password :</b>$user_details[upass]<br><b>Regards,</b><br>Team Get Your Ride"; $subject="Application Approved for Agent";}
@@ -75,6 +76,28 @@ case "agent":
 			$admin->send_email($_POST['fname'],$_POST['lname'],$_POST['email'],$msg,$subject);
 
 			echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=verify_agent&id=".$_POST['id']."&status=3';</script>";
+		}
+
+		if($_GET['query']=='verify_agent_profile')
+		{
+			//--gstin upload
+			if(isset($_FILES['pan_file']))
+			{$pan_file=$admin->upload_files($_FILES['pan_file']);}
+			else{$pan_file=$_POST['pan_file_default'];}
+
+			if(isset($_FILES['gstin_file']))
+			{$gstin_file=$admin->upload_files($_FILES['gstin_file']);}
+			else{$gstin_file=$_POST['gstin_file_default'];}
+
+			if(isset($_FILES['business_licence_file']))
+			{$business_licence_file=$admin->upload_files($_FILES['business_licence_file']);}
+			else{$business_licence_file=$_POST['business_licence_default'];}
+
+
+			$signup=$agent->verify_agent_profile($_POST['fname'],$_POST['lname'],$_POST['phone'],$_POST['email'],$_POST['designation'],$_POST['phone2'],$_POST['bname'],$_POST['baddress'],$_POST['landmark'],$_POST['country'],$_POST['state'],$_POST['city'],$_POST['google_business_link'],$_POST['gstin'],$_POST['pan'],$_POST['business_licence'],$pan_file,$gstin_file,$business_licence_file,$_POST['id']);
+
+				
+			echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_profile&id=".$_POST['id']."&status=3';</script>";
 		}
 	}
 	break;

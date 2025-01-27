@@ -15,11 +15,20 @@
                 <div class="form-group">
                 <label>Agent Name <span class='text-danger'>*</span></label>
                 <select name="aid"  class="form-control" required>
+                
+                <?php 
+                if($_SESSION['utype']=='1'){
+                ?>
                 <option disabled="disabled" selected="selected">--Select--</option>
                 <?php
                 $agentl=$agent->viewall();
                 foreach($agentl as $k=>$v){
-                echo "<option value='".$agentl[$k]['id']."'>".$agentl[$k]['fname']." ".$agentl[$k]['lname']." - ".$agentl[$k]['baneme']."</option>";
+                echo "<option value='".$agentl[$k]['id']."'>".$agentl[$k]['fname']." ".$agentl[$k]['lname']." - ".$agentl[$k]['bneme']."</option>";
+                } }
+                else
+                {
+                    $agentl=$agent->view_agent_one_byuid($_SESSION['uid']);
+                    echo "<option value='".$agentl[0]['id']."'>".$agentl[0]['fname']." ".$agentl[0]['lname']." - ".$agentl[0]['bneme']."</option>";
                 }
                 ?>
                 </select>
