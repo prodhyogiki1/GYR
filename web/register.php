@@ -1,5 +1,7 @@
 <?php 
-$base_url = 'http://localhost/gyr/';
+//$base_url="http://localhost/gyr/";
+$base_url="https://getyourride.in/"; 
+
 include('header.php');
 include('../class/DBController.php');
 
