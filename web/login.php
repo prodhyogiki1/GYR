@@ -16,7 +16,7 @@ include('header.php');?>
                 </a>
 
                 <?php if(isset($_GET['status'])){?>
-			<p class="auth-msg alert alert-danger">Wrong Credentials Or Your Account Is Disabled</p>
+			<p class="auth-msg alert alert-danger">Wrong credentials or your account may be disabled</p>
 			<?php }?>
                 <form name="login" action="../processlogin.php" method="post">
                   <div class="mb-3">

@@ -22,7 +22,7 @@ if ($upass == '' || $uname==''){ $error = "Something is missing";
 }
 else{
 //create some sql statement             
-        $sql = "SELECT * FROM  tbluser WHERE  uname =  '" . $uname . "' AND  upass =  '" . $upass . "' AND status='1' ";
+        $sql = "SELECT * FROM  tbluser WHERE  status='1' AND uname =  '$uname' AND  upass =  '$upass'  ";
         $result = mysqli_query($conn, $sql);
 
         if ($result){

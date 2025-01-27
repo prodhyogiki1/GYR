@@ -44,7 +44,8 @@ function signup($fname,$lname,$phone,$email,$pan,$gstin)
         //-- register and disbale to tbluser
         $uname=$fname.'_'.$lname;
         $person_name=$fname.' '.$lname;
-        $create_user = $this->admin->create_user($uname,'123','2',$email,$phone,$person_name);
+        $password = rand(1,999999);
+        $create_user = $this->admin->create_user($uname,$password,'2',$email,$phone,$person_name);
 
         //-- get max uid from tbluser
         $query="select MAX(id) as id from tbluser";
@@ -76,7 +77,7 @@ function signup($fname,$lname,$phone,$email,$pan,$gstin)
 
 function verify_agent($fname,$lname,$phone,$email,$designation,$phone2,$bname,$baddress,$landmark,$country,$state,$city,$google_business_link,$gstin,$pan,$business_licence,$id)
 {
-   echo $query = "update agent set fname='$fname',lname='$lname',phone='$phone',email='$email',designation='$designation',phone2='$phone2',bname='$bname',baddress='$baddress',landmark='$landmark',country='$country',state='$state',city='$city',google_business_link='$google_business_link',gstin='$gstin',pan='$pan',business_licence='$business_licence' where id='$id' ";
+    $query = "update agent set fname='$fname',lname='$lname',phone='$phone',email='$email',designation='$designation',phone2='$phone2',bname='$bname',baddress='$baddress',landmark='$landmark',country='$country',state='$state',city='$city',google_business_link='$google_business_link',gstin='$gstin',pan='$pan',business_licence='$business_licence' where id='$id' ";
     $result=$this->db_handle->update($query);
     return $result;
 }
@@ -106,7 +107,7 @@ function add_agent($fname,$lname,$phone,$email,$designation,$phone2,$bname,$land
 function edit_agent(){}
 function viewall()
 {
-    $query="select * from agent ORDER BY id DESC";
+  echo  $query="select * from agent ORDER BY id DESC";
     $result=$this->db_handle->runBaseQuery($query);
     return $result;
 }
