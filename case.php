@@ -99,6 +99,15 @@ case "agent":
 				
 			echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_profile&id=".$_POST['id']."&status=3';</script>";
 		}
+
+		if($_GET['query']=='rates_update')
+		{
+			$rate=$agent->rate_update($_POST['available'],$_POST['from_date'],$_POST['to_date'],$_POST['rate'],$_POST['id']);
+			if($rate)
+			{echo "<span class='text-success'>Update !!!</span>";}
+			else
+			{echo "<span class='text-danger'>Error !!!</span>";}
+		}
 	}
 	break;
 

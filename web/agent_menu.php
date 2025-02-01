@@ -60,7 +60,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <span class="aside-icon p-2 bg-light-success rounded-3">
                   <i class="ti ti-bike fs-7 text-success"></i>
                 </span>
-                <span class="hide-menu ms-2 ps-1">Bikes</span>
+                <span class="hide-menu ms-2 ps-1">Add New Bikes</span>
               </a>
             </li>
 

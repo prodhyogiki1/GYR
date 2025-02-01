@@ -14,6 +14,7 @@
                 <th>Name</th>
                 <th>Contact</th>
                 <th>Company</th>
+                <th>Username & Password</th>
                 <th>Address</th>
                 <th>Licence</th>
                 <th>Status</th>
@@ -31,6 +32,7 @@
                 echo "<td>".$row['fname'].' '.$row['lname']."</td>";
                 echo "<td>".$row['phone']."<br>".$row['email']."</td>";
                 echo "<td>".$row['bname']."</td>";
+                echo "<td>".$status[0]['uname']."<br>".$status[0]['upass']."</td>";
                 echo "<td>".$row['baddress']."</td>";
                 echo "<td> GSTIN : ".$row['gstin']."<br>"."PAN : ".$row['pan']."<br>"."Licence : ".$row['business_licence']."</td>";
                 echo "<td>";

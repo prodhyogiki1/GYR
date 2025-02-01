@@ -114,7 +114,7 @@ function add_agent($fname,$lname,$phone,$email,$designation,$phone2,$bname,$land
 function edit_agent(){}
 function viewall()
 {
-  echo  $query="select * from agent ORDER BY id DESC";
+    $query="select * from agent ORDER BY id DESC";
     $result=$this->db_handle->runBaseQuery($query);
     return $result;
 }
@@ -169,7 +169,15 @@ function viewall_agent_bike($aid)
 {
     $query="select * from agent_bikes where aid='$aid'";
     $result=$this->db_handle->runBaseQuery($query);
-    return $result;}
+    return $result;
+}
+
+function viewall_agent_bike_limit($aid)
+{
+    $query="select * from agent_bikes where aid='$aid' ORDER by id DESC LIMIT 5";
+    $result=$this->db_handle->runBaseQuery($query);
+    return $result;
+}
 
 
 //--- booking
@@ -186,6 +194,12 @@ $result=$this->db_handle->runBaseQuery($select);
 return $result;
 }
 
+function rate_update($available,$from_date,$to_date,$rate,$id)
+{
+   echo  $query="update agent_bikes SET available='$available',from_date='$from_date',to_date='$to_date',rate='$rate' where id='$id'";
+    $result=$this->db_handle->update($query);
+    return $result;
+}
 
 function disable_agent(){}
 function booking_agent(){}

@@ -142,7 +142,7 @@
                     </tr>
                   <?php 
                   //-- view al bikes
-                  $abikes=$agent->viewall_agent_bike($_SESSION['aid']);
+                  $abikes=$agent->viewall_agent_bike_limit($_SESSION['aid']);
                   if($abikes)
                   {
                   $counter=1;
@@ -158,7 +158,9 @@
                         echo "<td>".$abikes[$k1]['available']."</td>";
                         echo "<td></td>";
                       echo "</tr>";
-                  }}
+                  }
+                  echo "<tr><td colspan='6'><a href='$base_url/index.php?action=dashboard&page=bike_agent_viewall'>View All</a></td></tr>";
+                  }
                   else
                   {echo "<tr><td colspan='6'>No Bikes Found</td></tr>";}
                   ?>                        
