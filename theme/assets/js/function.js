@@ -75,3 +75,36 @@ function show_page_model(title,page)
   $('#modal-body').html('<img src='+loading_img+'>');
   $('#modal-body').load(page); 
 }
+
+function show_hide(id1,id2)
+{
+  $('.'+id1).hide();
+  $('.'+id2).show();
+}
+
+
+
+function form_submit_bulk(classname) 
+{
+  var r = confirm("Are you sure you want to update all  ??");
+  
+  if (r == true) 
+  {
+    var arr=[];
+    
+   
+      $(".check_btn").each(function(){
+        var checked_Data=$(this).is(":checked");
+        
+        if(checked_Data==true)
+        {
+          var check_val =$(this).val();
+          //alert(check_val);
+        }
+
+        });
+        
+      
+
+  }
+}

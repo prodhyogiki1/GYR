@@ -1,4 +1,6 @@
-
+<style>
+  .check_btn{display:none;}
+</style>
 <div class="container-fluid">
 
   <div class="content-wrapper">
@@ -11,7 +13,10 @@
             <div class="card-header">
         
             <h4>Availablity & Booking</h4> 
-            <input type="button" name="bulk upload" value="Bulk Update" class="btn btn-secondary" id="bulk_upload" style=" margin-right:10px;">
+            <input type="button" name="bulk upload" value="Bulk Update" class="btn btn-secondary btn-sm bulk_upload" style=" margin-right:10px;" onclick="show_hide('bulk_upload','check_btn')">
+
+            <input type="button" name="submit_bulk" class="btn btn-primary btn-sm" value="Update All" onclick="form_submit_bulk('check_btn')">
+
             <hr>      
                   <table class='table table-bordered'>
                     <tr>
@@ -41,10 +46,11 @@
 
                       echo "<tr>"; 
                       ?>
-                       <form name="rates_update[]" id="<?php echo $abikes[$k1]['id'];?>" action="<?php echo $base_url.'index.php?action=agent&query=rates_update';?>" method="post">
+                       <form name="rates_update[]" id="form<?php echo $abikes[$k1]['id'];?>" action="<?php echo $base_url.'index.php?action=agent&query=rates_update';?>" method="post">
                       <?php
                         echo "<th>";?>
-                        <input type="checkbox" name="<?php echo $abikes[$k1]['id'];?>" id="check_all">
+                        <input type="checkbox" class="check_btn" value="<?php echo $abikes[$k1]['id'];?>" name="checkid">
+                        <input type="hidden" value="<?php echo $abikes[$k1]['id'];?>" name="id" >
                         <?php
                         echo "</th>";
                         //echo "<td><img src='".$base_url."theme/assets/images/".$abikes[$k1]['front']."' height='50' width='auto'></td>";
