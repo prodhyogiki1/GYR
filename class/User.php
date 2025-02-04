@@ -170,8 +170,14 @@ class User
            function search($city)
            {
             $data=array();
-            $query = "SELECT * FROM agent  INNER JOIN agent_bikes ON agent.id=agent_bikes.aid AND  agent.city='$city'";
+            //-- get city id
+             $city0 = "select * from cities where name='$city'";
+            $cresult = $this->db_handle->runBaseQuery($city0);
+
+            
+            $query = "SELECT * FROM agent  INNER JOIN agent_bikes ON agent.id=agent_bikes.aid AND  agent.city='".$cresult[0]['id']."'  AND agent_bikes.available='0' ";
             $result = $this->db_handle->runBaseQuery($query);
+
             if($result)
                 {
                     
@@ -179,20 +185,21 @@ class User
                     foreach($result as $r=>$v)
                     {
                         //-- get bike info
-                        $bike=$this->get_bike($result[$r]['bid']);
+                    $bike=$this->get_bike($result[$r]['bid']);
                     $returnObj = new stdClass();
                     $returnObj->city = $result[$r]['city'];
                     $returnObj->agent = $result[$r]['aid'];
-                    $returnObj->bid = $result[$r]['bid'];
-                    $returnObj->bimage = $result[$r]['bimage_actual'];
+                    //-- to do change solution for agent.bikes.id
+                    $returnObj->bid = $result[$r]['id'];
+                    $returnObj->bimage = 'assets/images/'.$result[$r]['front'];
                     //-- bike details
                     $returnObj->bike_name = $bike[0]['name'];
                     $returnObj->bike_brand = $bike[0]['brand'];
                     $returnObj->bike_power = $bike[0]['max power'];
 
-                    $returnObj->kms_run = $result[$r]['bkm'];
-                    $returnObj->rate_per_km = $result[$r]['per_km_inr'];
-                    $returnObj->availble = $result[$r]['bavailable'];
+                    $returnObj->kms_run = '';
+                    $returnObj->rate_per_km = $result[$r]['price_per_km'];
+                    $returnObj->availble = $result[$r]['available'];
                     array_push($data, $returnObj);
                     }
                     
@@ -215,7 +222,7 @@ function user_booking_add($bid,$uid,$aid,$from_date,$to_date,$amount)
 {
 //--- to do check is there any another booking on from or to date 
     $data=array();
-    $insert="insert into user_booking(bid,uid,aid,from_date,to_date,amount,status)Values('$bid','$uid','$aid','$from_date','$to_date','$amount','1')";
+    $insert="insert into user_booking(bid,uid,aid,booking_from,booking_to,amount,status)Values('$bid','$uid','$aid','$from_date','$to_date','$amount','1')";
     $insert=$this->db_handle->update($insert);
     if($insert)
     {

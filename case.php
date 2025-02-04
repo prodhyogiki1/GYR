@@ -102,11 +102,11 @@ case "agent":
 
 		if($_GET['query']=='rates_update')
 		{
-			$rate=$agent->rate_update($_POST['available'],$_POST['from_date'],$_POST['to_date'],$_POST['rate'],$_POST['id']);
+			$rate=$agent->rate_update($_POST['available'],$_POST['from_date'],$_POST['to_date'],$_POST['price_per_km'],$_POST['per_day_km'],$_POST['id']);
 			if($rate)
-			{echo "<span class='text-success'>Update !!!</span>";}
+			{echo "<div class='text-success'>Updated !!!</div>";}
 			else
-			{echo "<span class='text-danger'>Error !!!</span>";}
+			{echo "<div class='text-danger'>Something Went Wrong !!!</div>";}
 		}
 	}
 	break;

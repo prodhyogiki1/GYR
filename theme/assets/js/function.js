@@ -24,25 +24,45 @@ function get_details(inputid,outputid,url)
 
 function form_submit(x) 
 {
+      var form = $("#form"+x);
+      
+        $('#result'+x).html("Please Wait !");
+        
+        $.ajax({
+           type: "POST",
+           url: form.attr("action"),
+           data: form.serialize(),
+           success: function(result)
+           {
+            console.log(result);
+              $('#result'+x).html(result);  
+           }
+        }); 
+ }
+ 
+ function form_submit2(x) 
+{
       var form = $("#"+x);
-        $('#msg'+x).html("Please Wait !");
-       // form.hide();
+      
+        $('#result'+x).html("Please Wait !!");
+       
         $.ajax({
            type: "POST",
            url: $("#"+x).attr("action"),
            data: form.serialize(),
            success: function(result)
            {
-              $('#msg'+x).html(result);  
-              // setTimeout(function(){
-              //       $('#msg'+x).slideUp('slow').fadeOut(function() {
-              //           window.location.reload();
-              //       });
-              // }, 1000); 
+              //$('#result'+x).html(result);  
+              
+              console.log(result);
+              setTimeout(function(){
+                    $('#result'+x).slideUp('slow').fadeOut(function() {
+                    });
+              }, 1000); 
            }
         }); 
         //form.show(); 
- } 
+ }
 
 
   //-- action, query , id
@@ -60,7 +80,7 @@ function deleteme(h,i,j)
             //alert(data);
                alert('index.php?action='+h+'&query='+i+'&id='+j);
                $('#'+j).toggle(750); 
-            
+              
            }
        }); 
   } 
@@ -91,20 +111,22 @@ function form_submit_bulk(classname)
   if (r == true) 
   {
     var arr=[];
-    
-   
-      $(".check_btn").each(function(){
+      $("."+classname).each(function(){
         var checked_Data=$(this).is(":checked");
         
         if(checked_Data==true)
         {
           var check_val =$(this).val();
-          //alert(check_val);
+          $('#result'+check_val).html('<span class="text-secondary">Please Wait...</span>');  
+          form_submit2('form'+check_val);
+          $('#result'+check_val).html('<span class="text-success">Updated !!!</span>');  
+          show_hide('check_btn','bulk_upload');
         }
 
         });
         
-      
+      //--unchecked all checkbox
+      $('.'+classname).prop("checked", false);
 
   }
 }

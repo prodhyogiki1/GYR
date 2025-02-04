@@ -13,11 +13,12 @@
             <div class="card-header">
         
             <h4>Availablity & Booking</h4> 
-            <input type="button" name="bulk upload" value="Bulk Update" class="btn btn-secondary btn-sm bulk_upload" style=" margin-right:10px;" onclick="show_hide('bulk_upload','check_btn')">
+            <input type="button" name="bulk upload" value="Bulk Update"  class="btn btn-secondary btn-sm bulk_upload" style=" margin-right:10px;" onclick="show_hide('bulk_upload','check_btn')">
 
             <input type="button" name="submit_bulk" class="btn btn-primary btn-sm" value="Update All" onclick="form_submit_bulk('check_btn')">
 
             <hr>      
+            <span id="msgall"></span>
                   <table class='table table-bordered'>
                     <tr>
                       <th>#</th>
@@ -25,13 +26,14 @@
                       <th>Bike</th>
                       <th>Year</th>
                       <th>Color</th>
-                      <th>Price Per Day</th>
-                      <th>Per Day KM</th>
+                      
                       <th>Availablility</th>
                       <!-- <th>Document(s)</th> -->
                       <th>From</th>
                       <th>To</th>
-                      <th>Rates</th>
+                      <th>Per Day KM</th>
+                      <th>Price Per KM</th>
+                      <th>Utility</th>                      
                     </tr>
                   <?php 
                   //-- view al bikes
@@ -46,7 +48,7 @@
 
                       echo "<tr>"; 
                       ?>
-                       <form name="rates_update[]" id="form<?php echo $abikes[$k1]['id'];?>" action="<?php echo $base_url.'index.php?action=agent&query=rates_update';?>" method="post">
+                       <form name="form<?php echo $abikes[$k1]['id'];?>" id="form<?php echo $abikes[$k1]['id'];?>" action="<?php echo $base_url.'index.php?action=agent&query=rates_update';?>" method="post">
                       <?php
                         echo "<th>";?>
                         <input type="checkbox" class="check_btn" value="<?php echo $abikes[$k1]['id'];?>" name="checkid">
@@ -57,8 +59,6 @@
                         echo "<td>".$bike[0]['name']."</td>";
                         echo "<td>".$abikes[$k1]['year_manufecturing']."</td>";
                         echo "<td>".$abikes[$k1]['color']."</td>";
-                        echo "<td>".$abikes[$k1]['price_per_km']."</td>";
-                        echo "<td>".$abikes[$k1]['per_day_km']."</td>";
                         echo "<td>"
                         ?>
                             <select class="form-control-sm" name="available">
@@ -72,14 +72,16 @@
                        
                         <td><input type="date" name="from_date" class="form-control-sm" value='<?php echo $abikes[$k1]['from_date'];?>'></td>
                         <td><input type="date" name="to_date" class="form-control-sm" value='<?php echo $abikes[$k1]['to_date'];?>'></td>
+                        <td><input type="number" name="per_day_km" class="form-control-sm" style='width:100%;' value='<?php echo $abikes[$k1]['per_day_km'];?>'></td>
                         <td>
-                            <span id="msg<?php echo $abikes[$k1]['id'];?>"></span>
                             <input type="hidden" name="id" value='<?php echo $abikes[$k1]['id'];?>'>
-                            <input type="number" name="rate" class='form-control-sm' style='width:60%; display:inline;' value='<?php echo $abikes[$k1]['price_per_km'];?>'>
-                            <span class="ti ti-check btn btn-primary btn-sm" onclick="form_submit('<?php echo $abikes[$k1]['id'];?>')"></span>
-                              
+                            <input type="number" name="price_per_km" class='form-control-sm' style='width:100%;' value='<?php echo $abikes[$k1]['price_per_km'];?>'>                            
                         </td>
-                        </form>  
+                        <td>
+                          <span class="ti ti-check btn btn-primary btn-sm" onclick="form_submit('<?php echo $abikes[$k1]['id'];?>')"></span>
+                          </form>  
+                          <div  id="result<?php echo $abikes[$k1]['id'];?>"></div>
+                        </td>
                         <?php 
                       echo "</tr>";
                   }}

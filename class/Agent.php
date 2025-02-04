@@ -194,15 +194,20 @@ $result=$this->db_handle->runBaseQuery($select);
 return $result;
 }
 
-function rate_update($available,$from_date,$to_date,$rate,$id)
+function rate_update($available,$from_date,$to_date,$price_per_km,$per_day_km,$id)
 {
-   echo  $query="update agent_bikes SET available='$available',from_date='$from_date',to_date='$to_date',rate='$rate' where id='$id'";
-    $result=$this->db_handle->update($query);
-    return $result;
+   $query="update agent_bikes SET available='$available',from_date='$from_date',to_date='$to_date',price_per_km='$price_per_km',per_day_km='$per_day_km' where id='$id'";
+   $result=$this->db_handle->update($query);
+   return $result;
 }
 
 function disable_agent(){}
-function booking_agent(){}
+function mybooking($aid)
+{
+    $query="select * from user_booking where aid='$aid'";
+    $result=$this->db_handle->runBaseQuery($query);
+    return $result; 
+}
 function add_booking_agent(){}
 function edit_booking_agent(){}
 function view_booking_agent(){}
