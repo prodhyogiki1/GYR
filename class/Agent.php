@@ -189,9 +189,9 @@ function new_booking($aid){
 
 function table_columns($table)
 {
-$select="SHOW COLUMNS FROM $table";
-$result=$this->db_handle->runBaseQuery($select);
-return $result;
+    $select="SHOW COLUMNS FROM $table";
+    $result=$this->db_handle->runBaseQuery($select);
+    return $result;
 }
 
 function rate_update($available,$from_date,$to_date,$price_per_km,$per_day_km,$id)
@@ -208,10 +208,46 @@ function mybooking($aid)
     $result=$this->db_handle->runBaseQuery($query);
     return $result; 
 }
+
+function customer_details($id)
+{
+    $query="select * from user where id='$id'";
+    $result=$this->db_handle->runBaseQuery($query);
+    return $result; 
+}
+
+function view_booking_agent_one($id)
+{
+    $query="select * from user_booking where id='$id'";
+    $result=$this->db_handle->runBaseQuery($query);
+    return $result; 
+}
+
+function booking_accept($mode_of_payment,$amount,$status,$bookingid,$km_covered_start)
+{
+    $update="update user_booking SET status='$status',km_covered_start='$km_covered_start' where id='$bookingid'";
+    $result=$this->db_handle->update($update);  
+    
+
+    //-- update transaction in user_tarnsaction
+    $insert="insert into user_booking_transaction (bookingid,amount,payment_mode)Values('$bookingid','$amount','$mode_of_payment')";
+    $insert=$this->db_handle->update($insert); 
+
+    return $result;
+}
+
+             
+function get_transaction($aid)
+{
+     $query = "SELECT * FROM user_booking INNER JOIN user_booking_transaction ON user_booking.id=user_booking_transaction.bookingid AND user_booking.aid='$aid' ";
+    $result=$this->db_handle->runBaseQuery($query);  
+    return $result;
+}
+
 function add_booking_agent(){}
 function edit_booking_agent(){}
 function view_booking_agent(){}
-function view_booking_agent_one(){}
+
 function view_agent_review(){}
 
 

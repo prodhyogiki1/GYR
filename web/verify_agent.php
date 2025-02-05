@@ -83,12 +83,12 @@
                   <div class="form-group">
                     <label>Country</label>
                     <select class="form-control" name="country" id="country" onchange="get_details('country','state','<?php echo $base_url.'index.php?action=admin&query=get_details&type=state&id=';?>')" >
-                    <option disabled="disabled" selected="selected" >-- Select --</option>
+                    <option disabled="disabled" >-- Select --</option>
                     <?php $country=$admin->get_country();
                     foreach($country as $r => $v)
                     {
                       echo "<option value='".$country[$r]['id'];
-                        if($agent_details[0]['country']==$country[$r]['id']){
+                        if($country[$r]['id']==$agent_details[0]['country']){
                           echo "selected='selected'";}
                       echo "'>".$country[$r]['name']."</option>";
                     }?>
@@ -99,7 +99,9 @@
 								  <div class="col-md-4">
 									<div class="form-group">
 									  <label>State</label>
-									  <select class="form-control" name="state" id="state" onchange="get_details('state','city','<?php echo $base_url.'index.php?action=admin&query=get_details&type=city&id=';?>')" ></select>
+									  <select class="form-control" name="state" id="state" onchange="get_details('state','city','<?php echo $base_url.'index.php?action=admin&query=get_details&type=city&id=';?>')" >
+                                        
+                                      </select>
 									  <span id="msgstate"></span> 
 									</div>
 								  </div>
@@ -120,23 +122,32 @@
                     <label for="panNumber">GSTIN</label>
                     <!-- <input type="file" class="form-control" name="gstin_file" placeholder="GSTIN" ><br> -->
                     <input type="text" class="form-control" name="gstin" placeholder="GSTIN" value="<?php echo $agent_details[0]['gstin'];?>">
+                    <?php if($agent_details[0]['gstin_file']){?>
+                      <br>  <a href="<?php echo $base_url.'theme/assets/images/'.$agent_details[0]['gstin_file'];?>" target="_blank"><span class='btn btn-sm btn-priamry'>View</span></a>
+                    <?php }?>
                 </div>
             
                 <div class="form-group col-sm-3">
                     <label for="panNumber">Pan Card</label>
                     <!-- <input type="file" class="form-control" name="pan_file" placeholder="Pan Number" ><br> -->
                     <input type="text" class="form-control" name="pan" placeholder="Pan Number" value="<?php echo $agent_details[0]['pan'];?>">
+                    <?php if($agent_details[0]['pan_file']){?>
+                      <br>  <a href="<?php echo $base_url.'theme/assets/images/'.$agent_details[0]['pan_file'];?>" target="_blank"><span class='btn btn-sm btn-secondary'>View</span></a>
+                      <?php }?>
                 </div>
 
                 <div class="form-group col-sm-3">
                     <label for="companyDocument">Business Licence</label>
                     <!-- <input type="file" class="form-control" name="business_licence_file" placeholder="Business Licence File" ><br> -->
-                    <input type="text" class="form-control" name="business_licence" placeholder="Business Licence" >
+                    <input type="text" class="form-control" name="business_licence" placeholder="Business Licence" value="<?php echo $agent_details[0]['business_licence'];?>" >
+                    <?php if($agent_details[0]['business_licence_file']){?>
+                      <br>  <a href="<?php echo $base_url.'theme/assets/images/'.$agent_details[0]['business_licence_file'];?>" target="_blank"><span class='btn btn-sm btn-info'>View</span></a>
+                      <?php }?>
                 </div>
 
                 <div class="form-group col-sm-3">
                     <label for="Google Business">Google Business Listing Link</label>
-                    <input type="text" class="form-control" name="google_business_link" placeholder="Google Business Listing Link">
+                    <input type="text" class="form-control" name="google_business_link" value="<?php echo $agent_details[0]['google_business_link'];?>" placeholder="Google Business Listing Link">
                 </div>
 
                 
@@ -144,10 +155,11 @@
 <hr>
             <div class="form-group row">
                 <div class="form-group col-sm-3">
-                    <label>Verify???</label>
+                    <label>Profile Status</label>
                         <select name="status" class="form-control" required>
-                            <option selected="selected" disabled="disable">-Select-</option>
-                            <option value="1" <?php if($user_details[0]['status']=='1'){?>selected="selected"<?php }?>>Verified</option>
+                            <option  disabled="disable">-Select-</option>
+                            <option value="1" <?php if($user_details[0]['status']=='1'){?>selected="selected"<?php }?>>Verify Document</option>
+                            <option value="3" <?php if($user_details[0]['status']=='3'){?>selected="selected"<?php }?>>Verified Login</option>
                             <option value="2" <?php if($user_details[0]['status']=='2'){?>selected="selected"<?php }?>>Not Verified</option>
                         </select>
                 </div>

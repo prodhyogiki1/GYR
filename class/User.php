@@ -199,6 +199,7 @@ class User
 
                     $returnObj->kms_run = '';
                     $returnObj->rate_per_km = $result[$r]['price_per_km'];
+                    $returnObj->km_per_day = $result[$r]['per_day_km'];
                     $returnObj->availble = $result[$r]['available'];
                     array_push($data, $returnObj);
                     }
@@ -218,21 +219,24 @@ class User
                 }
            }
 
-function user_booking_add($bid,$uid,$aid,$from_date,$to_date,$amount)
+function user_booking_add($bid,$uid,$aid,$from_date,$to_date,$amount,$payment_mode)
 {
 //--- to do check is there any another booking on from or to date 
     $data=array();
-    $insert="insert into user_booking(bid,uid,aid,booking_from,booking_to,amount,status)Values('$bid','$uid','$aid','$from_date','$to_date','$amount','1')";
+    $insert="insert into user_booking(bid,uid,aid,booking_from,booking_to,amount,status,payment_mode)Values('$bid','$uid','$aid','$from_date','$to_date','$amount','1','$payment_mode')";
     $insert=$this->db_handle->update($insert);
     if($insert)
     {
-        $otp=rand(0,999999);
         $returnObj = new stdClass();
         $returnObj->msg = "Booking Confirmed";
         array_push($data, $returnObj);
         
         $result1 = $this->successResponse($data);
         echo json_encode($result1);
+
+        //-- change status of bike in agent_bikes table
+        $update="update agent_bikes SET available='1' where id='$bid'";
+        $update=$this->db_handle->update($update);
     }
     else
     {

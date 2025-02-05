@@ -65,12 +65,12 @@ case "agent":
 			// -- update the status and send email to agent
 			$status = $admin->update_user_status($_POST['uid'],$_POST['status']);
 			//-- send email
-			if($_POST['status']=='1')
+			if($_POST['status']=='3')
 			{
-				
 				//--get upassword from table user
 				$user_details = $admin->getone_user($_POST['uid']);
 				$msg="Dear ".$_POST['fname'].",<br>Your application as an agent has been approved by our support team. Please login through these credentials and complete your profile;<br><b>User Name:</b>".$_POST['fname']."_".$_POST['lname']."<br><b>Password :</b>$user_details[upass]<br><b>Regards,</b><br>Team Get Your Ride"; $subject="Application Approved for Agent";}
+
 			else{$msg="Dear ".$_POST['fname'].",<br>We regret to inform you that your profile has been dis approved by our support team. For information please call or drop us an email at support@getyouride.in.<br><b>Regards,</b><br>Team Get Your Ride"; $subject="Application Declined for Agent";}
 			
 			$admin->send_email($_POST['fname'],$_POST['lname'],$_POST['email'],$msg,$subject);
@@ -105,6 +105,15 @@ case "agent":
 			$rate=$agent->rate_update($_POST['available'],$_POST['from_date'],$_POST['to_date'],$_POST['price_per_km'],$_POST['per_day_km'],$_POST['id']);
 			if($rate)
 			{echo "<div class='text-success'>Updated !!!</div>";}
+			else
+			{echo "<div class='text-danger'>Something Went Wrong !!!</div>";}
+		}
+
+		if($_GET['query']=='booking_accept')
+		{
+			$rate=$agent->booking_accept($_POST['mode_of_payment'],$_POST['amount'],$_POST['status'],$_POST['bookingid'],$_POST['km_covered_start']);
+			if($rate)
+			{echo "<div class='text-success'>Booking Confirmed !!!</div>";}
 			else
 			{echo "<div class='text-danger'>Something Went Wrong !!!</div>";}
 		}

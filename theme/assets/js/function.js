@@ -34,7 +34,6 @@ function form_submit(x)
            data: form.serialize(),
            success: function(result)
            {
-            console.log(result);
               $('#result'+x).html(result);  
            }
         }); 
@@ -89,9 +88,8 @@ function deleteme(h,i,j)
 
 function show_page_model(title,page)
 {
-  //alert(base_url+page);
+  
   $('#modal-title').html(title); 
-  //alert(page);
   $('#modal-body').html('<img src='+loading_img+'>');
   $('#modal-body').load(page); 
 }

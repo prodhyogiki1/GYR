@@ -5,6 +5,12 @@
     
     <!------ one --->
     <div class="row">
+      <?php if($_SESSION['status']=='3'){?>
+        <div class="alert alert-info">Your Profile is incomeplete. Please fill all the detail for activation.</div>
+        <?php }if($_SESSION['status']=='2'){?>
+          <div class="alert alert-danger">Your Profile has been disabled / deactivated. Please call or email us for further help.</div>
+        <?php }?>  
+
           <div class="col-lg-8 d-flex align-items-strech">
             <div class="card w-100">
               <div class="card-body">

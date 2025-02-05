@@ -15,11 +15,8 @@ data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
           <ul id="sidebarnav" class="mb-4 pb-2">
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
-              <span class="hide-menu">Home</span>
-            </li>
-            <li class="sidebar-item">
+            
+          <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link primary-hover-bg"
                 href="<?php echo $base_url.'index.php?action=dashboard&page=dashboard';?>"
@@ -31,13 +28,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <span class="hide-menu ms-2 ps-1">Dashboard</span>
               </a>
             </li>
-
-
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
-              <span class="hide-menu">Booking & Report(s)</span>
-            </li>
-
+            
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link warning-hover-bg"
@@ -50,6 +41,20 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <span class="hide-menu ms-2 ps-1">Company Profile</span>
               </a>
             </li>
+
+            <?php 
+            //-- check profile status verified or not
+            if($_SEESION['status']=='1'){
+            ?>
+            
+
+
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
+              <span class="hide-menu">Booking & Report(s)</span>
+            </li>
+
+            
 
             <li class="sidebar-item">
               <a
@@ -102,8 +107,8 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <span class="hide-menu ms-2 ps-1">Payments</span>
               </a>
             </li>
-
-            <li class="sidebar-item">
+              <?php }?>
+            <!-- <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link primary-hover-bg"
                 href="<?php echo $base_url.'index.php?action=dashboard&page=agent_reports';?>"
@@ -114,17 +119,17 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 </span>
                 <span class="hide-menu ms-2 ps-1">Report(s)</span>
               </a>
-            </li>
+            </li> -->
 
            
             <li class="sidebar-item">
               <a
-                class="sidebar-link sidebar-link warning-hover-bg"
+                class="sidebar-link sidebar-link danger-hover-bg"
                 href="<?php echo $base_url.'logout.php';?>"
                 aria-expanded="false"
               >
-                <span class="aside-icon p-2 bg-light-warning rounded-3">
-                  <i class="ti ti-login fs-7 text-warning"></i>
+                <span class="aside-icon p-2 bg-light-danger rounded-3">
+                  <i class="ti ti-login fs-7 text-danger"></i>
                 </span>
                 <span class="hide-menu ms-2 ps-1">Logout</span>
               </a>

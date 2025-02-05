@@ -37,7 +37,9 @@
                 echo "<td> GSTIN : ".$row['gstin']."<br>"."PAN : ".$row['pan']."<br>"."Licence : ".$row['business_licence']."</td>";
                 echo "<td>";
                     if($status[0]['status']=='1'){echo "<span class='text-success'>Active</span>";}
-                    if($status[0]['status']=='0'){echo "<span class='text-danger'>Disabled / Un Verified</span>";}
+                    if($status[0]['status']=='3'){echo "<span class='text-info'>Document Verification Pending</span>";}
+                    if($status[0]['status']=='2'){echo "<span class='text-success'>Cancelled</span>";}
+                    if($status[0]['status']=='0'){echo "<span class='text-danger'>Disabled</span>";}
                 echo "</td>";
                 echo "<td>";
                 ?>
@@ -46,7 +48,10 @@
                     <a href="<?php echo $base_url.'index.php?action=dashboard&page=agent_bike_viewall&aid='.$row['id'];?>"><i class='ti ti-bike btn btn-warning btn-sm' data-toggle="modal" data-target="#exampleModal"></i></a>
                 <?php }if($status[0]['status']=='0'){?>
                     <a href="<?php echo $base_url.'index.php?action=dashboard&page=verify_agent&id='.$row['id'];?>"><i class="ti ti-check btn btn-info btn-sm"></i></a>
-                <?php }?>    
+                <?php }if($status[0]['status']=='3'){?>
+                    <a href="<?php echo $base_url.'index.php?action=dashboard&page=verify_agent&id='.$row['id'];?>"><i class="ti ti-pdf btn btn-secondary btn-sm"></i></a>
+                <?php }?> 
+
                     <i class='ti ti-trash btn btn-danger btn-sm' onclick="deleteme('<?php echo $row['id'];?>')"></i>
                 <?php
                 echo "</td>";

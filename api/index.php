@@ -73,7 +73,7 @@ case "api":
 
                     if($json['page']=='user_booking_add')
                     {
-                        $user->user_booking_add($json['bid'],$json['uid'],$json['aid'],$json['from_date'],$json['to_date'],$json['amount']);
+                        $user->user_booking_add($json['bid'],$json['uid'],$json['aid'],$json['from_date'],$json['to_date'],$json['amount'],$json['payment_mode']);
                     }
 
                     if($json['page']=='booking_cancel')

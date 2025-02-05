@@ -6,6 +6,8 @@
                 $user_details = $admin->getone_user($_SESSION['uid']);  
                 $agent_details = $agent->view_agent_one_byuid($_SESSION['uid']);
                ?>
+
+
     <div class="card-header">
         <h5 class="card-title">Edit Verification Form</h5>
                         <?php 
@@ -15,6 +17,13 @@
                         ?>
     </div>
     <?php include('alert.php');?>
+    
+<?php 
+if($_GET['status']=='3' && $_SESSION['status'])
+{
+  echo "<div class='alert alert-warning'>Your profile has been send for document verfication. Please call or email us for further details.</div>";
+}
+?>
     <div class="card-body content">
         <form name="add_agent" action="<?php echo $base_url.'index.php?action=agent&query=verify_agent_profile';?>" method="post" enctype="multipart/form-data">
         

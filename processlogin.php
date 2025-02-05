@@ -24,7 +24,7 @@ if ($upass == '' || $uname==''){ $error = "Something is missing";
 }
 else{
 //create some sql statement             
-        $sql = "SELECT * FROM  tbluser WHERE  status='1' AND uname =  '$uname' AND  upass =  '$upass'  ";
+        $sql = "SELECT * FROM  tbluser WHERE  uname =  '$uname' AND  upass =  '$upass'  ";
         $result = mysqli_query($conn, $sql);
 
         if ($result){
@@ -45,6 +45,7 @@ else{
                $_SESSION['utype'] = $found_user['utype'];
                $_SESSION['email'] = $found_user['uemail'];
                $_SESSION['phone'] = $found_user['ucontact'];
+               $_SESSION['status'] = $found_user['status'];
                
                //-- if utype = 2
                if($_SESSION['utype']=='2')
