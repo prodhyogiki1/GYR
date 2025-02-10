@@ -223,34 +223,55 @@ function user_booking_add($bid,$uid,$aid,$from_date,$to_date,$amount,$payment_mo
 {
 //--- to do check is there any another booking on from or to date 
     $data=array();
-    $insert="insert into user_booking(bid,uid,aid,booking_from,booking_to,amount,status,payment_mode)Values('$bid','$uid','$aid','$from_date','$to_date','$amount','1','$payment_mode')";
-    $insert=$this->db_handle->update($insert);
-    if($insert)
-    {
-        $returnObj = new stdClass();
-        $returnObj->msg = "Booking Confirmed";
-        array_push($data, $returnObj);
+  
+    
+        $insert="insert into user_booking(bid,uid,aid,booking_from,booking_to,amount,status,payment_mode)Values('$bid','$uid','$aid','$from_date','$to_date','$final_amt','1','$payment_mode')";
+        $insert=$this->db_handle->update($insert);
+        if($insert)
+        {
+            $returnObj = new stdClass();
+            $returnObj->msg = "Booking Confirmed";
+            array_push($data, $returnObj);
+            
+            $result1 = $this->successResponse($data);
+            echo json_encode($result1);
+
+            //-- change status of bike in agent_bikes table
+            $update="update agent_bikes SET available='1' where id='$bid'";
+            $update=$this->db_handle->update($update);
+        }
+        else
+        {
+            $returnObj = new stdClass();
+            $returnObj->msg = "Something Went Wrong !!!";
+            array_push($data, $returnObj);
+
+            $result1 = $this->errorResponse($data);
+            echo json_encode($result1);
+
         
-        $result1 = $this->successResponse($data);
-        echo json_encode($result1);
-
-        //-- change status of bike in agent_bikes table
-        $update="update agent_bikes SET available='1' where id='$bid'";
-        $update=$this->db_handle->update($update);
-    }
-    else
-    {
-        $returnObj = new stdClass();
-        $returnObj->msg = "Something Went Wrong !!!";
-        array_push($data, $returnObj);
-
-        $result1 = $this->errorResponse($data);
-        echo json_encode($result1);
-
-    }
+    }    
 }
            
+function calculate_amt($bid,$to_date,$from_date)
+{
+    $data=array();
+    
+    $amt = "select * from agent_bikes where id='$bid'";
+    $amt = $this->db_handle->runBaseQuery($amt);
+     $amt_oneday = $amt[0]['price_per_km']*$amt[0]['per_day_km'];
+     $days = strtotime($to_date) - strtotime($from_date);
+     $days =round($days / (60 * 60 * 24));
+     $final_amt = $days*$amt_oneday;
+     
+     
+     $returnObj = new stdClass();
+     $returnObj->amount = $final_amt;
+     array_push($data, $returnObj);
 
+     $result1 = $this->successResponse($data);
+     echo json_encode($result1);
+}
 function booking_cancel($booking_id)
 {
     $data=array();

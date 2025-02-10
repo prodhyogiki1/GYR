@@ -99,9 +99,14 @@
 								  <div class="col-md-4">
 									<div class="form-group">
 									  <label>State</label>
-									  <select class="form-control" name="state" id="state" onchange="get_details('state','city','<?php echo $base_url.'index.php?action=admin&query=get_details&type=city&id=';?>')" >
-                                        
-                                      </select>
+									  <?php 
+                    $state=$admin->get_states($agent_details[0]['country']);
+                    ?>
+									  <select class="form-control" name="state" id="state" onchange="get_details('state','city','<?php echo $base_url.'index.php?action=admin&query=get_details&type=city&id=';?>')" required>
+                      <?php foreach($state as $k1=>$v1){?>
+                      <option  value="<?php echo $state[$k1]['id'];?>" <?php if($agent_details[0]['state']==$state[$k1]['id']){echo "selected='selected'";}?>><?php echo $state[$k1]['name']; ?></option>
+                      <?php }?>
+                    </select>
 									  <span id="msgstate"></span> 
 									</div>
 								  </div>
@@ -109,8 +114,14 @@
 								  <div class="col-md-4">
 									<div class="form-g4oup">
 									  <label>City</label>
-									  <select class="form-control" name="city" id="city"></select>
-									  <span id="msgcity"></span> 
+									  <?php 
+                    $city=$admin->get_cities($agent_details[0]['state']);
+                    ?>
+									  <select class="form-control" name="city" id="city" required>
+                    <?php foreach($city as $k2=>$v2){?>
+                       <option selected="selected" value="<?php echo $city[$k2]['id'];?>" <?php if($agent_details[0]['city']==$city[$k2]['id']){echo "selected='selected'";}?>><?php echo $city[$k2]['name']; ?></option>
+                    <?php }?>
+                    </select>
 									</div>
 								  </div>
 
@@ -158,9 +169,12 @@
                     <label>Profile Status</label>
                         <select name="status" class="form-control" required>
                             <option  disabled="disable">-Select-</option>
-                            <option value="1" <?php if($user_details[0]['status']=='1'){?>selected="selected"<?php }?>>Verify Document</option>
-                            <option value="3" <?php if($user_details[0]['status']=='3'){?>selected="selected"<?php }?>>Verified Login</option>
+                            <option value="0" <?php if($user_details[0]['status']=='0'){?>selected="selected"<?php }?>>Pending Verification</option>
+                            <option value="1" <?php if($user_details[0]['status']=='1'){?>selected="selected"<?php }?>>Verify</option>
                             <option value="2" <?php if($user_details[0]['status']=='2'){?>selected="selected"<?php }?>>Not Verified</option>
+                            <option value="3" <?php if($user_details[0]['status']=='3'){?>selected="selected"<?php }?>>Verify Document</option>
+                            
+                            
                         </select>
                 </div>
 

@@ -41,7 +41,7 @@ function get_country()
 }
 function get_states($country_id)
 {
-  echo  $query = "select * from states where country_id='$country_id' Order by name ASC";
+    $query = "select * from states where country_id='$country_id' Order by name ASC";
     $result = $this->db_handle->runBaseQuery($query);
     return $result;
 }

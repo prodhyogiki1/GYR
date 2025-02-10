@@ -13,6 +13,7 @@
                         <?php 
                         if($user_details[0]['status']=='1'){echo "<span class='btn btn-success btn-sm'>Verified</span>";}
                         if($user_details[0]['status']=='2'){echo "<span class='btn btn-danger btn-sm'>Rejected</span>";}
+                        if($user_details[0]['status']=='3'){echo "<span class='btn btn-danger btn-sm'>Document Verification Pending</span>";}
                         if($user_details[0]['status']=='0'){echo "<span class='btn btn-warning btn-sm'>Not Verfified Yet</span>";}
                         ?>
     </div>
@@ -96,12 +97,12 @@ if($_GET['status']=='3' && $_SESSION['status'])
                   <div class="form-group">
                     <label>Country</label>
                     <select class="form-control" name="country" id="country" onchange="get_details('country','state','<?php echo $base_url.'index.php?action=admin&query=get_details&type=state&id=';?>')" required>
-                    <option disabled="disabled" selected="selected" >-- Select --</option>
+                    <option disabled="disabled">-- Select --</option>
                     <?php $country=$admin->get_country();
                     foreach($country as $r => $v)
                     {
                       echo "<option value='".$country[$r]['id'];
-                        if($agent_details[0]['country']==$country[$r]['id']){
+                        if($country[$r]['id']==$agent_details[0]['country']){
                           echo "selected='selected'";}
                       echo "'>".$country[$r]['name']."</option>";
                     }?>
@@ -112,7 +113,14 @@ if($_GET['status']=='3' && $_SESSION['status'])
 								  <div class="col-md-4">
 									<div class="form-group">
 									  <label>State</label>
-									  <select class="form-control" name="state" id="state" onchange="get_details('state','city','<?php echo $base_url.'index.php?action=admin&query=get_details&type=city&id=';?>')" required></select>
+                    <?php 
+                    $state=$admin->get_states($agent_details[0]['country']);
+                    ?>
+									  <select class="form-control" name="state" id="state" onchange="get_details('state','city','<?php echo $base_url.'index.php?action=admin&query=get_details&type=city&id=';?>')" required>
+                    <?php foreach($state as $k1=>$v1){?>
+                      <option  value="<?php echo $state[$k1]['id'];?>" <?php if($agent_details[0]['state']==$state[$k1]['id']){echo "selected='selected'";}?>><?php echo $state[$k1]['name']; ?></option>
+                      <?php }?>
+                    </select>
 									  <span id="msgstate"></span> 
 									</div>
 								  </div>
@@ -120,7 +128,12 @@ if($_GET['status']=='3' && $_SESSION['status'])
 								  <div class="col-md-4">
 									<div class="form-g4oup">
 									  <label>City</label>
-									  <select class="form-control" name="city" id="city" required></select>
+                    <?php 
+                    $city=$admin->get_cities($agent_details[0]['state']);
+                    ?>
+									  <select class="form-control" name="city" id="city" required>
+                    <option selected="selected" value="<?php echo $agent_details[0]['city'];?>"><?php echo $city[0]['name']; ?></option>
+                    </select>
 									  <span id="msgcity"></span> 
 									</div>
 								  </div>

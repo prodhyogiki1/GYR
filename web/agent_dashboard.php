@@ -5,8 +5,9 @@
     
     <!------ one --->
     <div class="row">
+      
       <?php if($_SESSION['status']=='3'){?>
-        <div class="alert alert-info">Your Profile is incomeplete. Please fill all the detail for activation.</div>
+        <div class="alert alert-info">Your profile is under document verification.</div>
         <?php }if($_SESSION['status']=='2'){?>
           <div class="alert alert-danger">Your Profile has been disabled / deactivated. Please call or email us for further help.</div>
         <?php }?>  
@@ -21,19 +22,27 @@
                 </div>
                 <?php 
                 //--check new bookings
-                $new_bookings=$agent->new_booking($_SESSION['uid']);
+                $new_bookings=$agent->new_booking($_SESSION['aid']);
                 if($new_bookings)
                 {
-                  echo "<ul>";
-                  foreach($new_bookings as $k=>$v){
-                    $bike_name=$bike->get_bike_name($new_bookings[$k]['bid']);
-                    echo "<li>";
-                      echo "<b>Customer Name : </b> ".$new_bookings[$k]['uid'];
-                      echo "<span>Date & Time : </span> ".$new_bookings[$k]['booking_date_time'];
-                      echo "<span>Bike : </span> ".$bike_name[0]['name'];                    
-                    echo "</li>";
+                  echo "<table class='table'>";
+                  echo "<tr><th>#</th>";
+                  echo "<th>Customer Name</th>";
+                  echo "<th>Date & Time</th>";
+                  echo "<th>Bike</th>";
+                  echo "</tr>";
+
+                  $counter=1;
+                  foreach($new_bookings as $k0=>$v){
+                    $bike_name=$admin->get_bike_one($new_bookings[$k0]['bid']);
+                    echo "<tr>";
+                    echo "<td>".$counter++."</td>";
+                      echo "<td>".$new_bookings[$k0]['uid']."</td>";
+                      echo "<td>.$new_bookings[$k0]['booking_date_time'].</td>";
+                      echo "<td>.$bike_name[0]['name']</td>";                    
+                    echo "</tr>";
                   }
-                  echo "</ul>";
+                  echo "</table>";
                 }
                 else
                 {

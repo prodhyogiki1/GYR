@@ -33,8 +33,9 @@ $bike=$admin->get_bike_one($bike_agent[0]['bid']);
         <th>Payment Mode</th>
         <td>
             <?php 
-            if($booking[0]['payment_mode']=='0'){echo "Pay at store";}
-            if($booking[0]['payment_mode']=='1'){echo "Online";}
+            if($booking[0]['payment_mode']=='0'){echo "Cash";}
+            if($booking[0]['payment_mode']=='1'){echo "Pay at store";}
+            if($booking[0]['payment_mode']=='2'){echo "Online";}
             ?>
         </td>
     </tr>
@@ -69,9 +70,9 @@ $bike=$admin->get_bike_one($bike_agent[0]['bid']);
                 <option value="1" <?php if($booking[0]['payment_mode']=='1'){echo "selected='selected'";}?>>Online</option>
             </select>
         </td>
-        <th>Amount Received</th>
+        <th>Amount</th>
         <td width="25%">
-            <input type="number" name="amount" value="" class="form-control">
+            <input type="number" name="amount" value="<?php echo $booking[0]['amount'];?>" class="form-control">
         </td>
     </tr>
     <tr>
@@ -88,6 +89,7 @@ $bike=$admin->get_bike_one($bike_agent[0]['bid']);
             <input type="number" name="km_covered_start" value="<?php echo $booking[0]['km_covered_start']; ?>" class="form-control">
         </td>
     </tr>
+    
     <?php if($booking[0]['status']=='1'){?>
     <tr>
        <td colspan="4">

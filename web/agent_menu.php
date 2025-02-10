@@ -44,7 +44,8 @@ data-sidebar-position="fixed" data-header-position="fixed">
 
             <?php 
             //-- check profile status verified or not
-            if($_SEESION['status']=='1'){
+            
+            if($_SESSION['status']=='1'){
             ?>
             
 

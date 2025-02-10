@@ -71,9 +71,16 @@ case "api":
                         $user->search($json['city']);
                     }
 
+                    if($json['page']=='calculate_amt')
+                    {
+                        $user->calculate_amt($json['bid'],$json['to_date'],$json['from_date']);
+                    }
+
                     if($json['page']=='user_booking_add')
                     {
-                        $user->user_booking_add($json['bid'],$json['uid'],$json['aid'],$json['from_date'],$json['to_date'],$json['amount'],$json['payment_mode']);
+                        $amt=$user->calculate_amt($json['bid']);
+                        //0 is cash 1 is at store and 2 is online payement
+                        $user->user_booking_add($json['bid'],$json['uid'],$json['aid'],$json['from_date'],$json['to_date'],$amt,$json['payment_mode']);
                     }
 
                     if($json['page']=='booking_cancel')

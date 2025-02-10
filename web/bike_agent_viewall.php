@@ -31,8 +31,8 @@
                       <!-- <th>Document(s)</th> -->
                       <th>From</th>
                       <th>To</th>
-                      <th>Per Day KM</th>
-                      <th>Price Per KM</th>
+                      <th>Per Day Limit (KM)</th>
+                      <th>Rate Per KM (INR)</th>
                       <th>Utility</th>                      
                     </tr>
                   <?php 
