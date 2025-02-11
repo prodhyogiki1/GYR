@@ -12,9 +12,9 @@
         <h5 class="card-title">Edit Verification Form</h5>
                         <?php 
                         if($user_details[0]['status']=='1'){echo "<span class='btn btn-success btn-sm'>Verified</span>";}
-                        if($user_details[0]['status']=='2'){echo "<span class='btn btn-danger btn-sm'>Rejected</span>";}
-                        if($user_details[0]['status']=='3'){echo "<span class='btn btn-danger btn-sm'>Document Verification Pending</span>";}
-                        if($user_details[0]['status']=='0'){echo "<span class='btn btn-warning btn-sm'>Not Verfified Yet</span>";}
+                        if($user_details[0]['status']=='2'){echo "<span class='btn btn-warning btn-sm'>Disabled</span>";}
+                        if($user_details[0]['status']=='3'){echo "<span class='btn btn-secondary btn-sm'>Document Verification Pending</span>";}
+                        if($user_details[0]['status']=='0'){echo "<span class='btn btn-warning btn-sm'>Rejected</span>";}
                         ?>
     </div>
     <?php include('alert.php');?>
