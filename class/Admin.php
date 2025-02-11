@@ -191,9 +191,9 @@ function read_alerts($uid)
 function create_user($uname,$upass,$utype,$email,$contact,$person_name)
 {
     
-    $query = "insert into tbluser(uname,upass,utype,uemail,ucontact,person_name)VALUES(?,?,?,?,?,?)";
-    $paramType = "ssssss";
-    $paramValue = array($uname,$upass,$utype,$email,$contact,$person_name);
+    $query = "insert into tbluser(uname,upass,utype,uemail,ucontact,person_name,status)VALUES(?,?,?,?,?,?,?)";
+    $paramType = "ssssssi";
+    $paramValue = array($uname,$upass,$utype,$email,$contact,$person_name,'2');
     $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
     return $insertId;    
 }

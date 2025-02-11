@@ -53,9 +53,9 @@ function signup($fname,$lname,$phone,$email,$pan,$gstin)
         $uid=$result[0]['id'];
 
         //-- create agent details in agent table
-        $query = "insert into agent(fname,lname,phone,email,pan,gstin,uid,status)VALUES(?,?,?,?,?,?,?,?)";
-        $paramType = "ssssssii";
-        $paramValue = array($fname,$lname,$phone,$email,$pan,$gstin,$uid,'2');
+        $query = "insert into agent(fname,lname,phone,email,pan,gstin,uid)VALUES(?,?,?,?,?,?,?)";
+        $paramType = "ssssssi";
+        $paramValue = array($fname,$lname,$phone,$email,$pan,$gstin,$uid);
         $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
         
         //-- send email to agent 
