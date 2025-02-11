@@ -53,13 +53,13 @@ function signup($fname,$lname,$phone,$email,$pan,$gstin)
         $uid=$result[0]['id'];
 
         //-- create agent details in agent table
-        $query = "insert into agent(fname,lname,phone,email,pan,gstin,uid)VALUES(?,?,?,?,?,?,?)";
-        $paramType = "ssssssi";
-        $paramValue = array($fname,$lname,$phone,$email,$pan,$gstin,$uid);
+        $query = "insert into agent(fname,lname,phone,email,pan,gstin,uid,status)VALUES(?,?,?,?,?,?,?,?)";
+        $paramType = "ssssssii";
+        $paramValue = array($fname,$lname,$phone,$email,$pan,$gstin,$uid,'2');
         $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
         
         //-- send email to agent 
-        $msg="Thankyou $fname $lname,<br>Please find your login crendentials below.<br><b>User Name:</b>$uname<br><b>Password:</b>$password<br><span style='color:red;'>Complete your profile and add all your documents. <br> After a final approval by our team, you will be able to use all our services.</span><b>Regards</b>,<br>Team Get Your Ride";
+        $msg="Thankyou<br> $fname $lname,<br>Please find your login crendentials below.<br><b>User Name:</b>$uname<br><b>Password:</b>$password<br><span style='color:red;'>Complete your profile and add all your documents. <br> After a final approval by our team, you will be able to use all our services.</span><b><br>Regards</br>,<br>Team Get Your Ride";
         
         $subject="Registered Successfully !!!";
         $reg_email = $this->admin->send_email($fname,$lname,$email,$msg,$subject);
