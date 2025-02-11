@@ -169,9 +169,9 @@
                     <label>Profile Status</label>
                         <select name="status" class="form-control" required>
                             <option  disabled="disable">-Select-</option>
-                            <option value="0" <?php if($user_details[0]['status']=='0'){?>selected="selected"<?php }?>>Pending Verification</option>
+                            <option value="0" <?php if($user_details[0]['status']=='0'){?>selected="selected"<?php }?>>Rejected</option>
                             <option value="1" <?php if($user_details[0]['status']=='1'){?>selected="selected"<?php }?>>Verify</option>
-                            <option value="2" <?php if($user_details[0]['status']=='2'){?>selected="selected"<?php }?>>Not Verified</option>
+                            <option value="2" <?php if($user_details[0]['status']=='2'){?>selected="selected"<?php }?>>Disabled / New</option>
                             <option value="3" <?php if($user_details[0]['status']=='3'){?>selected="selected"<?php }?>>Verify Document</option>
                             
                             

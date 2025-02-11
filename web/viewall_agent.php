@@ -37,16 +37,16 @@
                 echo "<td> GSTIN : ".$row['gstin']."<br>"."PAN : ".$row['pan']."<br>"."Licence : ".$row['business_licence']."</td>";
                 echo "<td>";
                     if($status[0]['status']=='1'){echo "<span class='text-success'>Active</span>";}
+                    if($status[0]['status']=='2'){echo "<span class='text-warning'>Disabled / New</span>";}
                     if($status[0]['status']=='3'){echo "<span class='text-info'>Document Verification Pending</span>";}
-                    if($status[0]['status']=='2'){echo "<span class='text-success'>Cancelled</span>";}
-                    if($status[0]['status']=='0'){echo "<span class='text-danger'>Disabled</span>";}
+                    if($status[0]['status']=='0'){echo "<span class='text-danger'>Rejected</span>";}
                 echo "</td>";
                 echo "<td>";
                 ?>
                 <?php if($status[0]['status']=='1'){?>
                     <a href="<?php echo $base_url.'index.php?action=dashboard&page=edit_agent&id='.$row['id'];?>"><i class='ti ti-pencil btn btn-info btn-sm'></i></a>
                     <a href="<?php echo $base_url.'index.php?action=dashboard&page=agent_bike_viewall&aid='.$row['id'];?>"><i class='ti ti-bike btn btn-warning btn-sm' data-toggle="modal" data-target="#exampleModal"></i></a>
-                <?php }if($status[0]['status']=='0'){?>
+                <?php }if($status[0]['status']=='2'){?>
                     <a href="<?php echo $base_url.'index.php?action=dashboard&page=verify_agent&id='.$row['id'];?>"><i class="ti ti-check btn btn-info btn-sm"></i></a>
                 <?php }if($status[0]['status']=='3'){?>
                     <a href="<?php echo $base_url.'index.php?action=dashboard&page=verify_agent&id='.$row['id'];?>"><i class="ti ti-pdf btn btn-secondary btn-sm"></i></a>

@@ -20,7 +20,7 @@
     <?php include('alert.php');?>
     
 <?php 
-if($_GET['status']=='3' && $_SESSION['status'])
+if($_GET['status']=='3' && $_SESSION['status']=='3' || $_SESSION['status']=='2')
 {
   echo "<div class='alert alert-warning'>Your profile has been send for document verfication. Please call or email us for further details.</div>";
 }
