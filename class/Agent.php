@@ -59,7 +59,7 @@ function signup($fname,$lname,$phone,$email,$pan,$gstin)
         $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
         
         //-- send email to agent 
-        $msg="Thankyou $fname $lname,<br>Your profile has been sent for verification. Our support team will check your details.<br>After a successfull verfication you will be able to login to your account by the password sent to you.<br>Regards,<br>Team Get Your Ride";
+        $msg="Thankyou $fname $lname,<br>Please find your login crendentials below.<br><b>User Name:</b>$uname<br><b>Password:</b>$password<br><span style='color:red;'>Complete your profile and add all your documents. <br> After a final approval by our team, you will be able to use all our services.</span><b>Regards</b>,<br>Team Get Your Ride";
         
         $subject="Registered Successfully !!!";
         $reg_email = $this->admin->send_email($fname,$lname,$email,$msg,$subject);
