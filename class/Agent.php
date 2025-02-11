@@ -87,8 +87,8 @@ function verify_agent_profile($fname,$lname,$phone,$email,$designation,$phone2,$
     //-- change status from 2 to 3 if it is 2
     if($_SESSION['status']=='2' && $gstin != '' && $pan != '' && $business_licence != '')
     {$status='3';
-        $query0 = "update tbluser set status='$status' where id='$_SESSION[id]' ";
-        $result=$this->db_handle->update($query);
+        $query0 = "update tbluser set status='$status' where id='".$_SESSION['uid']."' ";
+        $result=$this->db_handle->update($query0);
     }
     
 
