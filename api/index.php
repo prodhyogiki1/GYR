@@ -98,7 +98,10 @@ case "api":
                         $user->mybooking($json['uid']);
                     }
 
-
+                    if($json['page']=='slider')
+                    {
+                        $user->slider();
+                    }
                 
             }
     break;
