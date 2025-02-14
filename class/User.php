@@ -175,7 +175,7 @@ class User
             $cresult = $this->db_handle->runBaseQuery($city0);
 
             
-            $query = "SELECT * FROM agent  INNER JOIN agent_bikes ON agent.id=agent_bikes.aid AND  agent.city='".$cresult[0]['id']."'  AND agent_bikes.available='0' ";
+           echo $query = "SELECT * FROM agent  INNER JOIN agent_bikes ON agent.id=agent_bikes.aid AND  agent.city='".$cresult[0]['id']."'  AND agent_bikes.available='0' ";
             $result = $this->db_handle->runBaseQuery($query);
 
             if($result)
