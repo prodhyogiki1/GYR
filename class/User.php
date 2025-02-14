@@ -229,7 +229,7 @@ function user_booking_add($bid,$uid,$aid,$from_date,$to_date,$amount,$payment_mo
     $data=array();
   
     
-        $insert="insert into user_booking(bid,uid,aid,booking_from,booking_to,amount,status,payment_mode)Values('$bid','$uid','$aid','$from_date','$to_date','$final_amt','1','$payment_mode')";
+        $insert="insert into user_booking(bid,uid,aid,booking_from,booking_to,amount,status,payment_mode)Values('$bid','$uid','$aid','$from_date','$to_date','$amount','1','$payment_mode')";
         $insert=$this->db_handle->update($insert);
         if($insert)
         {
