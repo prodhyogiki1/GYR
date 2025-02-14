@@ -434,4 +434,25 @@ function update_booking_date($booking_id,$from_date,$to_date)
                             }
                        
            }
+
+           function user_details_save($uid,$name,$email)
+           {
+            $update="update user SET uname='$name', email='$email' where id='$uid'";
+            $result = $this->db_handle->update($update);
+            if($result)
+                        {
+                            $returnObj = new stdClass();
+                                $returnObj->msg = 'Saved Successfully';
+                                $result1 = $this->successResponse($returnObj);
+                                echo json_encode($result1);
+                        }  
+                        else
+                        {
+                            $returnObj = new stdClass();
+                            $returnObj->msg = "Something went wrong";
+                            $result1 = $this->errorResponse($returnObj);
+                            echo json_encode($result1);
+        
+                        }      
+           }
 }

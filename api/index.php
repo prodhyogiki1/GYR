@@ -105,6 +105,12 @@ case "api":
                     {
                         $user->slider();
                     }
+
+                    if($json['page']=='user_details_save')
+                    {
+                        $user->user_details_save($json['uid'],$json['name'],$json['email']);
+                    }
+
                 
             }
     break;
