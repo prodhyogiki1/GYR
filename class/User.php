@@ -1,6 +1,6 @@
 <?php
 require_once("DBController.php");
-
+require_once("Admin.php");
 class User
 {
     private $db_handle;
@@ -26,6 +26,7 @@ class User
     function __construct()
     {
         $this->db_handle = new DBController();
+        $this->admin = new Admin();
     }
 
     function register($mobile)
@@ -148,7 +149,7 @@ class User
                     foreach($result as $r=>$v)
                     {
                         //-- get city name 
-                        $city = $admin->get_city($result[$r]['city']);
+                        $city = $this->admin->get_city($result[$r]['city']);
 
                         $returnObj = new stdClass();
                      $returnObj->city = $city[0]['name'];
