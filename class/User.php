@@ -175,7 +175,7 @@ class User
             $cresult = $this->db_handle->runBaseQuery($city0);
 
             
-           echo $query = "SELECT * FROM agent  INNER JOIN agent_bikes ON agent.id=agent_bikes.aid AND  agent.city='".$cresult[0]['id']."'  AND agent_bikes.available='0' ";
+            $query = "SELECT * FROM agent  INNER JOIN agent_bikes ON agent.id=agent_bikes.aid AND  agent.city='".$cresult[0]['id']."'  AND agent_bikes.available='0' ";
             $result = $this->db_handle->runBaseQuery($query);
 
             if($result)
@@ -187,7 +187,7 @@ class User
                         //-- get bike info
                     $bike=$this->get_bike($result[$r]['bid']);
                     $returnObj = new stdClass();
-                    $returnObj->city = $result[$r]['city'];
+                    $returnObj->city = $city;
                     $returnObj->agent = $result[$r]['aid'];
                     //-- to do change solution for agent.bikes.id
                     $returnObj->bid = $result[$r]['id'];
