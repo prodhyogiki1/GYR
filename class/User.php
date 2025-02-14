@@ -147,8 +147,11 @@ class User
                     
                     foreach($result as $r=>$v)
                     {
+                        //-- get city name 
+                        $city = $admin->get_city($result[$r]['city']);
+
                         $returnObj = new stdClass();
-                     $returnObj->city = $result[$r]['city'];
+                     $returnObj->city = $city[0]['name'];
                     array_push($data, $returnObj);
                     }
                     
