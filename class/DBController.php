@@ -17,9 +17,6 @@
     private $database = "u667746222_gyk";
     private $conn;
 
-
-    
-
 	
 
    function __construct() {
@@ -27,7 +24,7 @@
 
         $this->conn = $this->connectDB();
          
-     error_reporting(0);
+     //error_reporting(0);
     }   
     
     function default_timezone()
