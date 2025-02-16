@@ -271,9 +271,8 @@ function calculate_amt($bid,$to_date,$from_date)
      
      $returnObj = new stdClass();
      $returnObj->amount = $final_amt;
-     array_push($data, $returnObj);
-
-     $result1 = $this->successResponse($data);
+     
+     $result1 = $this->successResponse($returnObj);
      echo json_encode($result1);
 }
 function booking_cancel($booking_id)
