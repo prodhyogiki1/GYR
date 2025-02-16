@@ -408,6 +408,7 @@ function update_booking_date($booking_id,$from_date,$to_date)
 
            function slider()
            {
+            $data=array();
              $query = "select * from website_config where ctype='slider'";
             $result = $this->db_handle->runBaseQuery($query);
             if($result)
@@ -418,9 +419,10 @@ function update_booking_date($booking_id,$from_date,$to_date)
                                 $returnObj = new stdClass();
                                 $returnObj->image_url = 'theme/assets/images/'.$result[$r]['value1'];
                                 $returnObj->content = $result[$r]['value2'];
-                                $result1 = $this->successResponse($returnObj);
-                                echo json_encode($result1);
+                                array_push($data, $returnObj);
                             }
+                            $result1 = $this->successResponse($data);
+                                echo json_encode($result1);
                         }
                             else
                             {
