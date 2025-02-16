@@ -200,8 +200,8 @@ class User
                     $returnObj->bike_name = $bike[0]['name'];
                     $returnObj->bike_brand = $bike[0]['brand'];
                     $returnObj->bike_power = $bike[0]['max power'];
-                    $returnObj->color = $bike[0]['max power'];    
-                    $returnObj->kms_run = $result[$r]['color'];
+                    $returnObj->color = $result[$r]['color'];  
+                    $returnObj->kms_run = '';
                     $returnObj->rate_per_km = $result[$r]['price_per_km'];
                     $returnObj->km_per_day = $result[$r]['per_day_km'];
                     $returnObj->availble = $result[$r]['available'];
