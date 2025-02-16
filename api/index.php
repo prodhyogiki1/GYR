@@ -76,10 +76,7 @@ case "api":
                         $user->calculate_amt($json['bid'],$json['to_date'],$json['from_date']);
                     }
 
-                    if($json['page']=='calculate_amt')
-                    {
-                        $amt=$user->calculate_amt($json['bid'],$json['to_date'],$json['from_date']);
-                    }
+                    
                     if($json['page']=='user_booking_add')
                     {                       
                         //0 is cash 1 is at store and 2 is online payement
