@@ -456,4 +456,30 @@ function update_booking_date($booking_id,$from_date,$to_date)
         
                         }      
            }
+
+           function user_profile($mobile)
+           {
+                $profile="select * from user where phone='$mobile'";
+                $result = $this->db_handle->runBaseQuery($profile);
+                if($result)
+                        {
+                                $returnObj = new stdClass();
+                                $returnObj->name = $result[0]['uname'];
+                                $returnObj->mobile = $result[0]['phone'];
+                                $returnObj->email = $result[0]['email'];
+                                $returnObj->licence = $result[0]['licence'];
+                                $returnObj->adhar = $result[0]['adhar'];
+
+                                $result1 = $this->successResponse($returnObj);
+                                echo json_encode($result1);
+                        }  
+                        else
+                        {
+                            $returnObj = new stdClass();
+                            $returnObj->msg = "Something went wrong";
+                            $result1 = $this->errorResponse($returnObj);
+                            echo json_encode($result1);
+        
+                        }
+           }
 }

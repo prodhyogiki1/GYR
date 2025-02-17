@@ -108,6 +108,11 @@ case "api":
                         $user->user_details_save($json['uid'],$json['name'],$json['email']);
                     }
 
+                    if($json['page']=='profile')
+                    {
+                        $user->user_profile($json['mobile']);
+                    }
+
                 
             }
     break;
