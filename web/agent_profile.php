@@ -101,7 +101,7 @@ if($_GET['status']=='3' && $_SESSION['status']=='3')
                     <?php $country=$admin->get_country();
                     foreach($country as $r => $v)
                     {
-                      echo "<option value='".$country[$r]['id'];
+                      echo "<option value='".$country[$r]['id']."'";
                         if($country[$r]['id']==$agent_details[0]['country']){
                           ?>
                           selected='selected'
