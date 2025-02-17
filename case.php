@@ -69,7 +69,7 @@ case "agent":
 			{
 				//--get upassword from table user
 				$user_details = $admin->getone_user($_POST['uid']);
-				$msg="Dear ".$_POST['fname'].",<br>Your application as an agent has been approved by our support team. Please login through these credentials and complete your profile;<br><b>User Name:</b>".$_POST['fname']."_".$_POST['lname']."<br><b>Password :</b>$user_details[upass]<br><b>Regards,</b><br>Team Get Your Ride"; $subject="Application Approved for Agent";}
+				$msg="Dear ".$_POST['fname'].",<br>Your application as an agent has been approved by our support team. Please login through these credentials and complete your profile;<br><b>User Name:</b>".$user_details[0]['uname']."<br><b>Password :</b>".$user_details[0]['upass']."<br><b>Regards,</b><br>Team Get Your Ride"; $subject="Application Approved for Agent";}
 
 			else{$msg="Dear ".$_POST['fname'].",<br>We regret to inform you that your profile has been dis approved by our support team. For information please call or drop us an email at support@getyouride.in.<br><b>Regards,</b><br>Team Get Your Ride"; $subject="Application Declined for Agent";}
 			
@@ -112,10 +112,37 @@ case "agent":
 		if($_GET['query']=='booking_accept')
 		{
 			$rate=$agent->booking_accept($_POST['mode_of_payment'],$_POST['amount'],$_POST['status'],$_POST['bookingid'],$_POST['km_covered_start']);
-			if($rate)
-			{echo "<div class='text-success'>Booking Confirmed !!!</div>";}
+			
+
+			//--get user details from booking id
+			$booking_details = $agent->view_booking_agent_one($_POST['bookingid']);
+			$user_details = $user->get_one_user($booking_details[0]['uid']);
+			$agent_details = $agent->view_agent_one($booking_details[0]['aid']);
+			$subject="GYR".$_POST['bookingid']." Booking Status Update";
+
+			
+				$status=$_POST['status'];
+				if($status=='3'){$reason='Successfully Completed';   }
+				if($status=='4'){$reason='Cancelled By Agent';}
+				if($status=='5'){$reason='Cancelled By Customer';}
+				
+				//-- send email to user
+				$user_msg="Dear".$user_details[0]['uname'].",<br>Your booking has been ".$reason.".<br><b>Regards,</b><br>Team Get Your Ride<br>For any help, Please drop us an email call us.<br>Team Get Your Ride"; $subject="Booking Status Update";
+				$admin->send_email($user_details[0]['uname'],'',$user_details[0]['email'],$user_msg,$subject);
+
+				//-- send email to agent 
+				$agent_msg="Dear".$agent_details[0]['fname'].",<br>Your booking has been ".$reason.".<br><b>Regards,</b><br>Team Get Your Ride<br>For any help, Please drop us an email call us.<br>Team Get Your Ride"; $subject="Booking Status Update";
+				$admin->send_email($agent_details[0]['fname'],$agent_details[0]['lname'],$user_dagent_detailsetails[0]['email'],$user_msg,$subject);
+
+				//-- change status to 0 for available bikes
+				$agent->change_bike_status($booking_details[0]['bid'],'0');
+
+
+				if($rate)
+			{echo "<div class='text-success'>Booking Updated !!!</div>";}
 			else
 			{echo "<div class='text-danger'>Something Went Wrong !!!</div>";}
+
 		}
 	}
 	break;

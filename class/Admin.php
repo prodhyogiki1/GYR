@@ -152,7 +152,7 @@ $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
     mail($to, $subject, $message, $headers);
     
 } catch (Exception $e) {
-    //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     
 }
 } 
@@ -270,7 +270,12 @@ function update_user_status($uid,$status)
     return $result;	
 }
 
-
+function get_bikes_color()
+{
+    $query="select * from color";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
 
 
 

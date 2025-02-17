@@ -93,7 +93,7 @@ function verify_agent_profile($fname,$lname,$phone,$email,$designation,$phone2,$
     }
     
 
-    $query = "update agent set fname='$fname',lname='$lname',phone='$phone',email='$email',designation='$designation',phone2='$phone2',bname='$bname',baddress='$baddress',landmark='$landmark',country='$country',state='$state',city='$city',google_business_link='$google_business_link',gstin='$gstin',pan='$pan',business_licence='$business_licence',pan_file='$pan_file',gstin_file='$gstin_file',business_licence_file='$business_licence_file', where id='$id' ";
+    $query = "update agent set fname='$fname',lname='$lname',phone='$phone',email='$email',designation='$designation',phone2='$phone2',bname='$bname',baddress='$baddress',landmark='$landmark',country='$country',state='$state',city='$city',google_business_link='$google_business_link',gstin='$gstin',pan='$pan',business_licence='$business_licence',pan_file='$pan_file',gstin_file='$gstin_file',business_licence_file='$business_licence_file' where id='$id' ";
     $result=$this->db_handle->update($query);
     return $result;
 }
@@ -250,6 +250,13 @@ function get_transaction($aid)
 {
      $query = "SELECT * FROM user_booking INNER JOIN user_booking_transaction ON user_booking.id=user_booking_transaction.bookingid AND user_booking.aid='$aid' ";
     $result=$this->db_handle->runBaseQuery($query);  
+    return $result;
+}
+
+function change_bike_status($id,$status)
+{
+    $query="update agent_bikes SET available='$status' where id='$id'";
+    $result=$this->db_handle->update($query);
     return $result;
 }
 

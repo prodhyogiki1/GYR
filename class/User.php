@@ -29,6 +29,12 @@ class User
         $this->admin = new Admin();
     }
 
+    function get_one_user($id)
+    {
+        $query = "select * from user where id='$id'";
+        $result = $this->db_handle->runBaseQuery($query);
+        return $result; 
+    }
     function register($mobile)
     {$data=array();
 
@@ -179,7 +185,8 @@ class User
             $cresult = $this->db_handle->runBaseQuery($city0);
 
             
-            $query = "SELECT * FROM agent  INNER JOIN agent_bikes ON agent.id=agent_bikes.aid AND  agent.city='".$cresult[0]['id']."'  AND agent_bikes.available='0' ";
+            //$query = "SELECT * FROM agent  INNER JOIN agent_bikes ON agent.id=agent_bikes.aid AND  agent.city='".$cresult[0]['id']."'  AND agent_bikes.available='0' ";
+            $query = "SELECT * FROM agent  INNER JOIN agent_bikes ON agent.city='".$cresult[0]['id']."'  AND agent_bikes.available='0' ";
             $result = $this->db_handle->runBaseQuery($query);
 
             if($result)

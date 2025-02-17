@@ -101,10 +101,12 @@ if($_GET['status']=='3' && $_SESSION['status']=='3')
                     <?php $country=$admin->get_country();
                     foreach($country as $r => $v)
                     {
-                      echo "<option value='".$country[$r]['id'];
+                      echo "<option value='".$country[$r]['id']."'";
                         if($country[$r]['id']==$agent_details[0]['country']){
-                          echo "selected='selected'";}
-                      echo "'>".$country[$r]['name']."</option>";
+                          ?>
+                          selected='selected'
+                          <?php }
+                      echo ">".$country[$r]['name']."</option>";
                     }?>
                     </select>
                   </div>
@@ -129,7 +131,7 @@ if($_GET['status']=='3' && $_SESSION['status']=='3')
 									<div class="form-g4oup">
 									  <label>City</label>
                     <?php 
-                    $city=$admin->get_cities($agent_details[0]['state']);
+                    $city=$admin->get_city($agent_details[0]['city']);
                     ?>
 									  <select class="form-control" name="city" id="city" required>
                     <option selected="selected" value="<?php echo $agent_details[0]['city'];?>"><?php echo $city[0]['name']; ?></option>

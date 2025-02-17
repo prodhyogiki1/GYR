@@ -78,9 +78,13 @@
                     <div class="form-group">
                         <label for="email">Color <span class='text-danger'>*</span></label>
                         <select name="color"  class="form-control" required>
-                            <option value="red">Red</option>
-                            <option value="yellow">Yellow</option>
-                            <option value="green">Green</option>
+                            <option selected="selected" disabled="disable">-Select-</option>
+                            <?php 
+                            $color=$admin->get_bikes_color();
+                            foreach($color as $k=>$v){
+                            ?>
+                            <option value="<?php echo $color[$k]['color_name'];?>" style="background-color: <?php echo $color[$k]['code'];?>"><?php echo $color[$k]['color_name'];?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
