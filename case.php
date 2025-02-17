@@ -117,7 +117,7 @@ case "agent":
 			//--get user details from booking id
 			$booking_details = $agent->view_booking_agent_one($_POST['bookingid']);
 			$user_details = $user->get_one_user($booking_details[0]['uid']);
-			$agent_details = $user->view_agent_one($booking_details[0]['aid']);
+			$agent_details = $agent->view_agent_one($booking_details[0]['aid']);
 			$subject="GYR".$_POST['bookingid']." Booking Status Update";
 
 			
@@ -139,7 +139,7 @@ case "agent":
 
 
 				if($rate)
-			{echo "<div class='text-success'>Booking Updated !!!</div>";}
+			{echo "<div class='text-success'>Booking Updated !!!</div>";}P
 			else
 			{echo "<div class='text-danger'>Something Went Wrong !!!</div>";}
 
