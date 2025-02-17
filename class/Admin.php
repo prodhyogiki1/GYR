@@ -270,7 +270,12 @@ function update_user_status($uid,$status)
     return $result;	
 }
 
-
+function get_bikes_color()
+{
+    $query="select * from bikes_color";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
 
 
 
