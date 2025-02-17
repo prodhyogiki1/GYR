@@ -1,6 +1,6 @@
 <?php
 require_once("DBController.php");
-
+require_once("Admin.php");
 class User
 {
     private $db_handle;
@@ -26,6 +26,7 @@ class User
     function __construct()
     {
         $this->db_handle = new DBController();
+        $this->admin = new Admin();
     }
 
     function register($mobile)
@@ -147,8 +148,11 @@ class User
                     
                     foreach($result as $r=>$v)
                     {
+                        //-- get city name 
+                        $city = $this->admin->get_city($result[$r]['city']);
+
                         $returnObj = new stdClass();
-                     $returnObj->city = $result[$r]['city'];
+                     $returnObj->city = $city[0]['name'];
                     array_push($data, $returnObj);
                     }
                     
@@ -187,7 +191,7 @@ class User
                         //-- get bike info
                     $bike=$this->get_bike($result[$r]['bid']);
                     $returnObj = new stdClass();
-                    $returnObj->city = $result[$r]['city'];
+                    $returnObj->city = $city;
                     $returnObj->agent = $result[$r]['aid'];
                     //-- to do change solution for agent.bikes.id
                     $returnObj->bid = $result[$r]['id'];
@@ -196,7 +200,7 @@ class User
                     $returnObj->bike_name = $bike[0]['name'];
                     $returnObj->bike_brand = $bike[0]['brand'];
                     $returnObj->bike_power = $bike[0]['max power'];
-
+                    $returnObj->color = $result[$r]['color'];  
                     $returnObj->kms_run = '';
                     $returnObj->rate_per_km = $result[$r]['price_per_km'];
                     $returnObj->km_per_day = $result[$r]['per_day_km'];
@@ -225,7 +229,7 @@ function user_booking_add($bid,$uid,$aid,$from_date,$to_date,$amount,$payment_mo
     $data=array();
   
     
-        $insert="insert into user_booking(bid,uid,aid,booking_from,booking_to,amount,status,payment_mode)Values('$bid','$uid','$aid','$from_date','$to_date','$final_amt','1','$payment_mode')";
+        $insert="insert into user_booking(bid,uid,aid,booking_from,booking_to,amount,status,payment_mode)Values('$bid','$uid','$aid','$from_date','$to_date','$amount','1','$payment_mode')";
         $insert=$this->db_handle->update($insert);
         if($insert)
         {
@@ -267,10 +271,9 @@ function calculate_amt($bid,$to_date,$from_date)
      
      $returnObj = new stdClass();
      $returnObj->amount = $final_amt;
-     array_push($data, $returnObj);
-
-     $result1 = $this->successResponse($data);
-     echo json_encode($result1);
+     
+     $result1 = $this->successResponse($returnObj);
+     echo json_encode($result1); 
 }
 function booking_cancel($booking_id)
 {
@@ -400,5 +403,57 @@ function update_booking_date($booking_id,$from_date,$to_date)
             $query = "select * from bikes where id='$bid' ";
             $result = $this->db_handle->runBaseQuery($query);
             return $result;
+           }
+
+           function slider()
+           {
+            $data=array();
+             $query = "select * from website_config where ctype='slider'";
+            $result = $this->db_handle->runBaseQuery($query);
+            if($result)
+                        {
+                            
+                            foreach($result as $r=>$v)
+                            {
+                                $returnObj = new stdClass();
+                                $returnObj->image_url = 'theme/assets/images/'.$result[$r]['value1'];
+                                $returnObj->content = $result[$r]['value2'];
+                                array_push($data, $returnObj);
+                            }
+                            $result1 = $this->successResponse($data);
+                                echo json_encode($result1);
+                        }
+                            else
+                            {
+                                $returnObj = new stdClass();
+                                $returnObj->msg = "No City Found";
+                                array_push($data, $returnObj);
+            
+                                $result1 = $this->errorResponse($data);
+                                echo json_encode($result1);
+            
+                            }
+                       
+           }
+
+           function user_details_save($uid,$name,$email)
+           {
+            $update="update user SET uname='$name', email='$email' where id='$uid'";
+            $result = $this->db_handle->update($update);
+            if($result)
+                        {
+                            $returnObj = new stdClass();
+                                $returnObj->msg = 'Saved Successfully';
+                                $result1 = $this->successResponse($returnObj);
+                                echo json_encode($result1);
+                        }  
+                        else
+                        {
+                            $returnObj = new stdClass();
+                            $returnObj->msg = "Something went wrong";
+                            $result1 = $this->errorResponse($returnObj);
+                            echo json_encode($result1);
+        
+                        }      
            }
 }

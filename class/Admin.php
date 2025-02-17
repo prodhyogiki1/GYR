@@ -52,6 +52,12 @@ function get_cities($state_id)
     return $result;
 }
 
+function get_city($id)
+{
+    $query = "select * from cities where id='$id'";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
 
 //---------- bikes
 function get_all_bikes()

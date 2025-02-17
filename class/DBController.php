@@ -13,12 +13,9 @@
     //-- online
     private $host = "localhost";
     private $user = "u667746222_gyk_user";
-    private $password = "Gyk@#0291";
+    private $password = "Gyr@#0291";
     private $database = "u667746222_gyk";
     private $conn;
-
-
-    
 
 	
 
@@ -27,7 +24,7 @@
 
         $this->conn = $this->connectDB();
          
-    //  error_reporting(0);
+     error_reporting(0);
     }   
     
     function default_timezone()

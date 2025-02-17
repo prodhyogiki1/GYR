@@ -76,11 +76,11 @@ case "api":
                         $user->calculate_amt($json['bid'],$json['to_date'],$json['from_date']);
                     }
 
+                    
                     if($json['page']=='user_booking_add')
-                    {
-                        $amt=$user->calculate_amt($json['bid']);
+                    {                       
                         //0 is cash 1 is at store and 2 is online payement
-                        $user->user_booking_add($json['bid'],$json['uid'],$json['aid'],$json['from_date'],$json['to_date'],$amt,$json['payment_mode']);
+                        $user->user_booking_add($json['bid'],$json['uid'],$json['aid'],$json['from_date'],$json['to_date'],$json['amount'],$json['payment_mode']);
                     }
 
                     if($json['page']=='booking_cancel')
@@ -98,6 +98,15 @@ case "api":
                         $user->mybooking($json['uid']);
                     }
 
+                    if($json['page']=='slider')
+                    {
+                        $user->slider();
+                    }
+
+                    if($json['page']=='user_details_save')
+                    {
+                        $user->user_details_save($json['uid'],$json['name'],$json['email']);
+                    }
 
                 
             }

@@ -65,7 +65,7 @@ case "agent":
 			// -- update the status and send email to agent
 			$status = $admin->update_user_status($_POST['uid'],$_POST['status']);
 			//-- send email
-			if($_POST['status']=='3')
+			if($_POST['status']=='1')
 			{
 				//--get upassword from table user
 				$user_details = $admin->getone_user($_POST['uid']);

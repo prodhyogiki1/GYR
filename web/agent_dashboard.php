@@ -9,7 +9,7 @@
       <?php if($_SESSION['status']=='3'){?>
         <div class="alert alert-info">Your profile is under document verification.</div>
         <?php }if($_SESSION['status']=='2'){?>
-          <div class="alert alert-danger">Your Profile has been disabled / deactivated. Please call or email us for further help. Please complete your profile if not done.</div>
+          <div class="alert alert-danger">Your Profile has been disabled / deactivated. Please call or email us for further help.<br>Please complete your profile if not done.</div>
         <?php }?>  
 
           <div class="col-lg-8 d-flex align-items-strech">
