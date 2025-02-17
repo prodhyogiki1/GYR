@@ -29,6 +29,12 @@ class User
         $this->admin = new Admin();
     }
 
+    function get_one_user($id)
+    {
+        $query = "select * from user where id='$id'";
+        $result = $this->db_handle->runBaseQuery($query);
+        return $result; 
+    }
     function register($mobile)
     {$data=array();
 

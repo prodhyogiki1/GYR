@@ -253,6 +253,13 @@ function get_transaction($aid)
     return $result;
 }
 
+function change_bike_status($id,$status)
+{
+    $query="update agent_bikes SET available='$status' where id='$id'";
+    $result=$this->db_handle->update($query);
+    return $result;
+}
+
 function add_booking_agent(){}
 function edit_booking_agent(){}
 function view_booking_agent(){}
