@@ -105,7 +105,7 @@ case "api":
 
                     if($json['page']=='user_details_save')
                     {
-                        $user->user_details_save($json['uid'],$json['name'],$json['email']);
+                        $user->user_details_save($json['uid'],$json['name'],$json['email'],$json['licence'],$json['adhar']);
                     }
 
                     if($json['page']=='profile')

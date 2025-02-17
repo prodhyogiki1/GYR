@@ -481,9 +481,9 @@ function update_booking_date($booking_id,$from_date,$to_date)
                        
            }
 
-           function user_details_save($uid,$name,$email)
+           function user_details_save($uid,$name,$email,$licence,$adhar)
            {
-            $update="update user SET uname='$name', email='$email' where id='$uid'";
+            $update="update user SET uname='$name', email='$email', licence='$licence', adhar='$adhar' where id='$uid'";
             $result = $this->db_handle->update($update);
             if($result)
                         {
