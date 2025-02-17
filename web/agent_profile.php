@@ -103,7 +103,7 @@ if($_GET['status']=='3' && $_SESSION['status']=='3')
                     {
                       echo "<option value='".$country[$r]['id'];
                         if($country[$r]['id']==$agent_details[0]['country']){
-                          echo "selected='selected'";}
+                          echo " selected='selected'";}
                       echo "'>".$country[$r]['name']."</option>";
                     }?>
                     </select>
