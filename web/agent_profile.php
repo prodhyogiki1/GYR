@@ -131,7 +131,7 @@ if($_GET['status']=='3' && $_SESSION['status']=='3')
 									<div class="form-g4oup">
 									  <label>City</label>
                     <?php 
-                    $city=$admin->get_cities($agent_details[0]['city']);
+                    $city=$admin->get_city($agent_details[0]['city']);
                     ?>
 									  <select class="form-control" name="city" id="city" required>
                     <option selected="selected" value="<?php echo $agent_details[0]['city'];?>"><?php echo $city[0]['name']; ?></option>
