@@ -112,10 +112,7 @@ case "agent":
 		if($_GET['query']=='booking_accept')
 		{
 			$rate=$agent->booking_accept($_POST['mode_of_payment'],$_POST['amount'],$_POST['status'],$_POST['bookingid'],$_POST['km_covered_start']);
-			if($rate)
-			{echo "<div class='text-success'>Booking Updated !!!</div>";}
-			else
-			{echo "<div class='text-danger'>Something Went Wrong !!!</div>";}
+			
 
 			//--get user details from booking id
 			$booking_details = $agent->view_booking_agent_one($_POST['bookingid']);
@@ -139,6 +136,12 @@ case "agent":
 
 				//-- change status to 0 for available bikes
 				$agent->change_bike_status($booking_details[0]['bid'],'0');
+
+
+				if($rate)
+			{echo "<div class='text-success'>Booking Updated !!!</div>";}
+			else
+			{echo "<div class='text-danger'>Something Went Wrong !!!</div>";}
 
 		}
 	}
