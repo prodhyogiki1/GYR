@@ -139,7 +139,7 @@ case "agent":
 
 
 				if($rate)
-			{echo "<div class='text-success'>Booking Updated !!!</div>";}P
+			{echo "<div class='text-success'>Booking Updated !!!</div>";}
 			else
 			{echo "<div class='text-danger'>Something Went Wrong !!!</div>";}
 
