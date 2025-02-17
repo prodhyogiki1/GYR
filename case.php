@@ -130,7 +130,7 @@ case "agent":
 				if($status=='5'){$reason='Cancelled By Customer';}
 				
 				//-- send email to user
-				$user_msg="Your booking has been ".$reason.".<br><b>Regards,</b><br>Team Get Your Ride<br>For any help, Please drop us an email call us.<br>Team Get Your Ride"; $subject="Booking Status Update";
+			echo	$user_msg="Your booking has been ".$reason.".<br><b>Regards,</b><br>Team Get Your Ride<br>For any help, Please drop us an email call us.<br>Team Get Your Ride"; $subject="Booking Status Update";
 				$admin->send_email($user_details[0]['uname'],'',$user_details[0]['email'],$user_msg,$subject);
 
 				//-- send email to agent 
