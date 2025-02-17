@@ -69,7 +69,7 @@ case "agent":
 			{
 				//--get upassword from table user
 				$user_details = $admin->getone_user($_POST['uid']);
-				$msg="Dear ".$_POST['fname'].",<br>Your application as an agent has been approved by our support team. Please login through these credentials and complete your profile;<br><b>User Name:</b>".$_POST['fname']."_".$_POST['lname']."<br><b>Password :</b>".$user_details[0]['upass']."<br><b>Regards,</b><br>Team Get Your Ride"; $subject="Application Approved for Agent";}
+				$msg="Dear ".$_POST['fname'].",<br>Your application as an agent has been approved by our support team. Please login through these credentials and complete your profile;<br><b>User Name:</b>".$user_details[0]['uname']."<br><b>Password :</b>".$user_details[0]['upass']."<br><b>Regards,</b><br>Team Get Your Ride"; $subject="Application Approved for Agent";}
 
 			else{$msg="Dear ".$_POST['fname'].",<br>We regret to inform you that your profile has been dis approved by our support team. For information please call or drop us an email at support@getyouride.in.<br><b>Regards,</b><br>Team Get Your Ride"; $subject="Application Declined for Agent";}
 			
