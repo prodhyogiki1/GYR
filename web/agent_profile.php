@@ -106,7 +106,7 @@ if($_GET['status']=='3' && $_SESSION['status']=='3')
                           ?>
                           selected='selected'
                           <?php }
-                      echo "'>".$country[$r]['name']."</option>";
+                      echo ">".$country[$r]['name']."</option>";
                     }?>
                     </select>
                   </div>
