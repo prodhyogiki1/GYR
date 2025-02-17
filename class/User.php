@@ -29,6 +29,44 @@ class User
         $this->admin = new Admin();
     }
 
+    function get_company()
+    {
+        $data = array();
+        $query = "select * from company_details where id='1'";
+        $result = $this->db_handle->runBaseQuery($query);
+        if($result)
+                {
+                    
+                    $returnObj = new stdClass();
+                    $returnObj->cname = $result[0]['cname'];
+                    $returnObj->email = $result[0]['email'];
+                    $returnObj->phone = $result[0]['phone'];
+                    $returnObj->reg_type = $result[0]['reg_type'];
+                    $returnObj->regnu = $result[0]['regnu'];
+                    $returnObj->website = $result[0]['website'];
+                    $returnObj->pan = $result[0]['pan'];
+                    $returnObj->acnu = $result[0]['acnu'];
+                    $returnObj->acbank = $result[0]['acbank'];
+                    $returnObj->ifsc = $result[0]['ifsc'];
+                    $returnObj->state = $result[0]['state'];
+                    $returnObj->country = $result[0]['country'];
+                    array_push($data, $returnObj);                    
+                    
+                    $result1 = $this->successResponse($data);
+                    echo json_encode($result1);
+                }
+                else
+                {
+                    $returnObj = new stdClass();
+                    $returnObj->msg = "No data Found";
+                    array_push($data, $returnObj);
+
+                    $result1 = $this->errorResponse($data);
+                    echo json_encode($result1);
+
+                }
+    }
+
     function get_one_user($id)
     {
         $query = "select * from user where id='$id'";

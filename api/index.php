@@ -43,7 +43,7 @@ case "api":
             {
                     if($json['page']=='app_config')
                     {
-                        $admin->app_config();
+                        $user->get_company();
                     }
     
                     if($json['page']=='userlogin')
@@ -112,6 +112,8 @@ case "api":
                     {
                         $user->user_profile($json['mobile']);
                     }
+
+                    
 
                 
             }
