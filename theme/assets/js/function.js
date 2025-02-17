@@ -1,4 +1,4 @@
-var loading_img='../../images/loading.gif';
+var loading_img='../../theme/assets/images/loading.gif';
 
 function get_details(inputid,outputid,url)
 {
