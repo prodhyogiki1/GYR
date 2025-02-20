@@ -390,13 +390,15 @@ function update_booking_date($booking_id,$from_date,$to_date)
                     
                     foreach($result as $r=>$v)
                     {
-                        //-- get bike info
-                    $bike=$this->get_bike($result[$r]['bid']);
+                        //-- get agent bike info
+                    $agent_bike=$this->agent_get_bike($result[$r]['bid']);
+                        //-- get bike details
+                    $bike=$this->get_bike($agent_bike[0]['bid']);
+
                     $returnObj = new stdClass();
                        //-- agent details
                     $agent=$this->get_agent($result[$r]['aid']);   
-                    //-- get bike
-                    $bike=$this->get_bike($result[$r]['bid']);
+                    
                     //--status
                     if($result[$r]['status']=='1'){$status='On Going';}
                     if($result[$r]['status']=='2'){$status='Cancelled';}
@@ -405,10 +407,14 @@ function update_booking_date($booking_id,$from_date,$to_date)
 
                     $returnObj->from_date = $result[$r]['from_date'];
                     $returnObj->to_date = $result[$r]['to_date'];
-                    $returnObj->bike = $bike[0]['name'];
                     $returnObj->store = $agent[0]['aname'];
                     $returnObj->amount = $result[$r]['amount'];
                     $returnObj->status = $status;
+                    //=== bike details
+                    $returnObj->bike = $bike[0]['name'];
+                    $returnObj->bimage = 'theme/assets/images/'.$agent_bike[0]['front'];
+                    $returnObj->price_per_km = $agent_bike[0]['price_per_km'];
+                    
                     $returnObj->booking_date_time = $result[$r]['booking_date_time'];
                     array_push($data, $returnObj);
                     }
@@ -446,6 +452,13 @@ function update_booking_date($booking_id,$from_date,$to_date)
            function get_bike($bid)
            {
             $query = "select * from bikes where id='$bid' ";
+            $result = $this->db_handle->runBaseQuery($query);
+            return $result;
+           }
+
+           function agent_get_bike($bid)
+           {
+            $query = "select * from agent_bikes where id='$bid' ";
             $result = $this->db_handle->runBaseQuery($query);
             return $result;
            }
