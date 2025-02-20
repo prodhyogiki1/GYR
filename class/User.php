@@ -483,11 +483,12 @@ function update_booking_date($booking_id,$from_date,$to_date)
 
            function user_details_save($uid,$name,$email,$licence,$adhar)
            {
+            $data=array();
             $update="update user SET uname='$name', email='$email', licence='$licence', adhar='$adhar' where id='$uid'";
             $result = $this->db_handle->update($update);
-            if($result)
+            if($result) 
                         {
-                            $returnObj = new stdClass();
+                                $returnObj = new stdClass();
                                 $returnObj->msg = 'Saved Successfully';
                                 $result1 = $this->successResponse($returnObj);
                                 echo json_encode($result1);
@@ -527,4 +528,49 @@ function update_booking_date($booking_id,$from_date,$to_date)
         
                         }
            }
+
+           function bike_details($bid)
+           {
+                $bike="select * from agent_bikes where id='$bid'";
+                $result = $this->db_handle->runBaseQuery($bike);
+                if($result)
+                        {
+                                $returnObj = new stdClass();
+                                
+                                $returnObj->year_manufecturing = $result[0]['year_manufecturing'];
+                                $returnObj->color = $result[0]['color'];
+                                $returnObj->fuel = $result[0]['fuel'];
+                                $returnObj->insurence_till = date("d-m-Y", strtotime($result[0]['insurence']));
+                                $result[0]['insurence'];
+                                $returnObj->top = 'theme/assets/images/'.$result[0]['top'];
+                                $returnObj->front = 'theme/assets/images/'.$result[0]['front'];
+                                $returnObj->rear = 'theme/assets/images/'.$result[0]['rear'];
+                                $returnObj->back = 'theme/assets/images/'.$result[0]['back'];
+                                $returnObj->price_per_km = $result[0]['price_per_km'];
+                                $returnObj->per_day_km_limit = $result[0]['per_day_km'];
+                                //-- bike details from bikes table
+                                $bike_details="select * from bikes where id='".$result[0]['bid']."' ";
+                                $result1 = $this->db_handle->runBaseQuery($bike_details);
+                                $returnObj->brand = $result1[0]['brand'];
+                                $returnObj->brand = $result1[0]['brand'];
+                                $returnObj->name = $result1[0]['name'];
+                                $returnObj->transmission = $result1[0]['transmission'];
+                                $returnObj->maxpower = $result1[0]['max power'];
+                                $returnObj->mileage = $result1[0]['mileage - arai'];
+                                $returnObj->braking = $result1[0]['braking system'];
+                                $returnObj->wheeltype = $result1[0]['wheel type'];
+
+
+                                $result1 = $this->successResponse($returnObj);
+                                echo json_encode($result1);
+                        }
+                        else
+                        {
+                            $returnObj = new stdClass();
+                            $returnObj->msg = "No Details Found";
+                            $result1 = $this->errorResponse($returnObj);
+                            echo json_encode($result1);
+        
+                        }
+                    }                  
 }

@@ -71,6 +71,11 @@ case "api":
                         $user->search($json['city']);
                     }
 
+                    if($json['page']=='bike_details')
+                    {
+                        $user->bike_details($json['bid']);
+                    }
+
                     if($json['page']=='calculate_amt')
                     {
                         $user->calculate_amt($json['bid'],$json['to_date'],$json['from_date']);
