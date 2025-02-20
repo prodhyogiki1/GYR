@@ -320,11 +320,13 @@ function calculate_amt($bid,$to_date,$from_date)
      $result1 = $this->successResponse($returnObj);
      echo json_encode($result1); 
 }
-function booking_cancel($booking_id)
+function booking_cancel($booking_id,$reason)
 {
     $data=array();
-    //-- 1 is active, 2 is canclled, 3 is completed
-    $update="update user_booking SET status='2' where id='$booking_id'";
+    
+
+    //-- 5 = cancelled by customer
+    $update="update user_booking SET status='5', cancel_reason='$reason' where id='$booking_id'";
     $update=$this->db_handle->update($update);
     if($update)
     {
@@ -334,6 +336,10 @@ function booking_cancel($booking_id)
         
         $result1 = $this->successResponse($data);
         echo json_encode($result1);
+
+        //--- set bike available now for booking
+        $update="update agent_bikes SET available='0' where id=(select bid from user_booking where id='$booking_id')";
+        $update=$this->db_handle->update($update);
     }
     else
     {
@@ -585,5 +591,6 @@ function update_booking_date($booking_id,$from_date,$to_date)
                             echo json_encode($result1);
         
                         }
-                    }                  
+                    }   
+                    
 }

@@ -90,7 +90,7 @@ case "api":
 
                     if($json['page']=='booking_cancel')
                     {
-                        $user->booking_cancel($json['id']);
+                        $user->booking_cancel($json['id'],$json['reason']);
                     }
 
                     if($json['page']=='update_booking_date')
