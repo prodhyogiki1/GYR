@@ -1,3 +1,8 @@
+<?php 
+$agent_details = $agent->view_agent_one_byuid($_SESSION['uid']);
+$nu_bikes = $agent->viewall_agent_bike($_SESSION['aid']);
+if($nu_bikes){$cbike=count($nu_bikes);}else{$cbike=0;}
+?>
 <div class="container-fluid">
         <div class="container-fluid">
           <div class="card">
@@ -5,10 +10,20 @@
                
     <div class="card-header">
         <h5 class="card-title">Add Bike (Agent) </h5>
-        
+        <span class="text-danger">You can add only <?php echo $agent_details[0]['nu_bikes'];?> bikes</span><br>
+        <span class="text-info">Total <?php echo $cbike;?> has been added</span>
     </div>
-    <?php include('alert.php'); ?>
+    
     <div class="card-body content">
+    <?php include('alert.php'); 
+        if($agent_details[0]['nu_bikes'] == $cbike)
+        {
+            echo "<div class='alert alert-danger'>You can't add more bikes now, your limit has been reached</div>";
+        }
+        else
+        {
+    ?>
+
         <form action="<?php echo $base_url.'index.php?action=agent&query=add_bike';?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                 <div class="col-md-3">
@@ -155,7 +170,10 @@
                 <div class="col-md-3"><br>
                     <input type="submit" class="btn btn-primary" value="Submit">
                 </div>
-            </div>    
+            </div>  
+            
+        </form>
+        <?php }?>    
     </div>
 
         </div>

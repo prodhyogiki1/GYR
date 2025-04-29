@@ -94,7 +94,7 @@ case "agent":
 			else{$business_licence_file=$_POST['business_licence_default'];}
 
 
-			$signup=$agent->verify_agent_profile($_POST['fname'],$_POST['lname'],$_POST['phone'],$_POST['email'],$_POST['designation'],$_POST['phone2'],$_POST['bname'],$_POST['baddress'],$_POST['landmark'],$_POST['country'],$_POST['state'],$_POST['city'],$_POST['google_business_link'],$_POST['gstin'],$_POST['pan'],$_POST['business_licence'],$pan_file,$gstin_file,$business_licence_file,$_POST['id']);
+			$signup=$agent->verify_agent_profile($_POST['fname'],$_POST['lname'],$_POST['phone'],$_POST['email'],$_POST['designation'],$_POST['phone2'],$_POST['bname'],$_POST['baddress'],$_POST['landmark'],$_POST['country'],$_POST['state'],$_POST['city'],$_POST['google_business_link'],$_POST['gstin'],$_POST['pan'],$_POST['business_licence'],$pan_file,$gstin_file,$business_licence_file,$_POST['secondary_name'],$_POST['secondary_phone'],$_POST['nu_bikes'],$_POST['id']);
 
 				
 			echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_profile&id=".$_POST['id']."&status=3';</script>";
@@ -143,6 +143,28 @@ case "agent":
 			else
 			{echo "<div class='text-danger'>Something Went Wrong !!!</div>";}
 
+		}
+
+		if($_GET['query']=='change_password')
+		{
+			if($_POST['current_password'] == $_POST['new_password']) {
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_profile&id=".$_POST['id']."&status=7';</script>";
+			} elseif($_POST['new_password'] != $_POST['confirm_password']) {
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_profile&id=".$_POST['id']."&status=8';</script>";
+			} else {
+			  $update_password = $agent->update_password($_SESSION['uid'], $_POST['current_password'], $_POST['new_password']);
+			  if($update_password) {
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_profile&id=".$_POST['id']."&status=3';</script>";
+			  } else {
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_profile&id=".$_POST['id']."&status=2';</script>";
+			  }
+			}
+		}
+
+		if($_GET['query']=='bank_details')
+		{
+			$bank_details=$agent->bank_details($_POST['acc_name'],$_POST['acc_nu'],$_POST['ifsc'],$_POST['bank_name'],$_SESSION['uid']);
+			echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_profile&id=".$_POST['id']."&status=3';</script>";
 		}
 	}
 	break;

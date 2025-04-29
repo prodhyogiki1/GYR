@@ -277,6 +277,13 @@ function get_bikes_color()
     return $result;
 }
 
+function get_all_policy()
+{
+    $query="select * from policy";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
 
 
 

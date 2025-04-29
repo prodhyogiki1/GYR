@@ -163,9 +163,12 @@
                   $counter=1;
                   
                   foreach($abikes as $k1 => $v){
+                    //-- get bike details
+                    $bike=$admin->get_bike_one($abikes[$k1]['bid']);
+
                       echo "<tr>"; 
                         echo "<th>".$counter++."</th>";
-                        echo "<td>".$abikes[0]['bid']."</td>";
+                        echo "<td>".$bike[0]['name']."</td>";
                         echo "<td>".$abikes[$k1]['year_manufecturing']."</td>";
                         echo "<td>".$abikes[$k1]['color']."</td>";
                         echo "<td>".$abikes[$k1]['price_per_km']."</td>";

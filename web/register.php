@@ -25,7 +25,7 @@ include('../class/DBController.php');
                     {
                     include('../class/Agent.php');
                     $agent=new Agent();
-                    $signup=$agent->signup($_POST['fname'],$_POST['lname'],$_POST['phone'],$_POST['email'],$_POST['pan'],$_POST['gstin']);
+                    $signup=$agent->signup($_POST['fname'],$_POST['lname'],$_POST['phone'],$_POST['email']);
                     if(!$signup)
                     {echo "<a href='web/login.php'>Login</a>";}
                     }
@@ -55,7 +55,7 @@ include('../class/DBController.php');
                     </div>
                   </div>
                   
-                  <div class="mb-4 row">
+                  <!-- <div class="mb-4 row">
                     <div class="col-sm-6">
                       <label for="exampleInputPassword1" class="form-label">GSTIN</label>
                       <input type="text" class="form-control" name="gstin" value="<?php if(isset($_POST['gstin'])){echo $_POST['gstin'];}; ?>" style="text-transform:uppercase" required>
@@ -65,7 +65,7 @@ include('../class/DBController.php');
                       <label for="exampleInputPassword1" class="form-label">PAN Number</label>
                       <input type="text" class="form-control" name="pan" value="<?php if(isset($_POST['pan'])){echo $_POST['pan'];}; ?>" style="text-transform:uppercase" required  >
                     </div>
-                  </div>
+                  </div> -->
                   
                   <div class="mb-4 row">
                     

@@ -184,7 +184,7 @@
                       class="dropdown-menu dropdown-menu-end"
                       aria-labelledby="dropdownMenuButton1"
                     >
-                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">View All Agent</a></li>
                       <li>
                         <a class="dropdown-item" href="#">Another action</a>
                       </li>

@@ -27,12 +27,13 @@
                       <th>Year</th>
                       <th>Color</th>
                       
-                      <th>Availablility</th>
+                      
                       <!-- <th>Document(s)</th> -->
                       <th>From</th>
                       <th>To</th>
+                      <th>Availablility</th>
                       <th>Per Day Limit (KM)</th>
-                      <th>Rate Per KM (INR)</th>
+                      <th>Rate Per Day (INR)</th>
                       <th>Utility</th>                      
                     </tr>
                   <?php 
@@ -59,19 +60,20 @@
                         echo "<td>".$bike[0]['name']."</td>";
                         echo "<td>".$abikes[$k1]['year_manufecturing']."</td>";
                         echo "<td>".$abikes[$k1]['color']."</td>";
-                        echo "<td>"
+                       
                         ?>
-                            <select class="form-control-sm" name="available">
-                                <option value='0' <?php if($abikes[$k1]['available']=='0'){?>selected="selected"<?php }?>>Available</option>
-                                <option value="1" <?php if($abikes[$k1]['available']=='1'){?>selected="selected"<?php }?>>Booked</option>
-                                <option value="2" <?php if($abikes[$k1]['available']=='2'){?>selected="selected"<?php }?>>Discontinued</option>
-                        <?Php 
-                        echo "</td>";
-                        ?>
+                           
                         <!-- <td><span class="btn btn-xs btn-primary btn-sm">All Document(s)</span></td> -->
                        
                         <td><input type="date" name="from_date" class="form-control-sm" value='<?php echo $abikes[$k1]['from_date'];?>'></td>
                         <td><input type="date" name="to_date" class="form-control-sm" value='<?php echo $abikes[$k1]['to_date'];?>'></td>
+                        <td>
+                            <select class="form-control-sm" name="available">
+                                <option value='0' <?php if($abikes[$k1]['available']=='0'){?>selected="selected"<?php }?>>Available</option>
+                                <option value="1" <?php if($abikes[$k1]['available']=='1'){?>selected="selected"<?php }?>>Booked</option>
+                                <option value="2" <?php if($abikes[$k1]['available']=='2'){?>selected="selected"<?php }?>>Discontinued</option>
+                            </select>    
+                            </td>
                         <td><input type="number" name="per_day_km" class="form-control-sm" style='width:100%;' value='<?php echo $abikes[$k1]['per_day_km'];?>'></td>
                         <td>
                             <input type="hidden" name="id" value='<?php echo $abikes[$k1]['id'];?>'>

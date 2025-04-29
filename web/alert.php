@@ -29,7 +29,22 @@ if(isset($_GET['status']))
     if($_GET['status']=='6')
     {
         echo "<div class='alert alert-secondary'>This Item Has Been Already Added</div>";
-    }    
+    }   
+    
+    if($_GET['status']=='7')
+    {
+        echo "<div class='alert alert-warning'>Current and New Password Can Not Be same!!!</div>";
+    }
+
+    if($_GET['status']=='8')
+    {
+        echo "<div class='alert alert-warning'>Confirm and New Password Should Be same!!!</div>";
+    }
+
+    if($_GET['status']=='9')
+    {
+        echo "<div class='alert alert-info'>Wrong Password !!!</div>";
+    }
 }
 ?>
 

@@ -31,10 +31,10 @@ class Agent
     }
 
 
-function signup($fname,$lname,$phone,$email,$pan,$gstin)
+function signup($fname,$lname,$phone,$email)
 {
     //--check with same gstin
-    $query="select * from agent where gstin='$gstin' OR phone='$phone' OR email='$email' OR pan='$pan'";
+    $query="select * from agent where  phone='$phone' OR email='$email' ";
     $result=$this->db_handle->runBaseQuery($query);
     
     if(!$query)
@@ -53,9 +53,9 @@ function signup($fname,$lname,$phone,$email,$pan,$gstin)
         $uid=$result[0]['id'];
 
         //-- create agent details in agent table
-        $query = "insert into agent(fname,lname,phone,email,pan,gstin,uid)VALUES(?,?,?,?,?,?,?)";
-        $paramType = "ssssssi";
-        $paramValue = array($fname,$lname,$phone,$email,$pan,$gstin,$uid);
+        $query = "insert into agent(fname,lname,phone,email,uid)VALUES(?,?,?,?,?)";
+        $paramType = "ssssi";
+        $paramValue = array($fname,$lname,$phone,$email,$uid);
         $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
         
         //-- send email to agent 
@@ -82,7 +82,7 @@ function verify_agent($fname,$lname,$phone,$email,$designation,$phone2,$bname,$b
     return $result;
 }
 
-function verify_agent_profile($fname,$lname,$phone,$email,$designation,$phone2,$bname,$baddress,$landmark,$country,$state,$city,$google_business_link,$gstin,$pan,$business_licence,$pan_file,$gstin_file,$business_licence_file,$id)
+function verify_agent_profile($fname,$lname,$phone,$email,$designation,$phone2,$bname,$baddress,$landmark,$country,$state,$city,$google_business_link,$gstin,$pan,$business_licence,$pan_file,$gstin_file,$business_licence_file,$secondary_name,$secondary_phone,$nu_bikes,$id)
 {
     //-- change status from 2 to 3 if it is 2
     if($_SESSION['status']=='2' && $gstin != '' && $pan != '' && $business_licence != '')
@@ -93,7 +93,7 @@ function verify_agent_profile($fname,$lname,$phone,$email,$designation,$phone2,$
     }
     
 
-    $query = "update agent set fname='$fname',lname='$lname',phone='$phone',email='$email',designation='$designation',phone2='$phone2',bname='$bname',baddress='$baddress',landmark='$landmark',country='$country',state='$state',city='$city',google_business_link='$google_business_link',gstin='$gstin',pan='$pan',business_licence='$business_licence',pan_file='$pan_file',gstin_file='$gstin_file',business_licence_file='$business_licence_file' where id='$id' ";
+    $query = "update agent set fname='$fname',lname='$lname',phone='$phone',email='$email',designation='$designation',phone2='$phone2',bname='$bname',baddress='$baddress',landmark='$landmark',country='$country',state='$state',city='$city',google_business_link='$google_business_link',gstin='$gstin',pan='$pan',business_licence='$business_licence',pan_file='$pan_file',gstin_file='$gstin_file',business_licence_file='$business_licence_file',secondary_name='$secondary_name',secondary_phone='$secondary_phone',nu_bikes='$nu_bikes' where id='$id' ";
     $result=$this->db_handle->update($query);
     return $result;
 }
@@ -266,5 +266,31 @@ function view_booking_agent(){}
 
 function view_agent_review(){}
 
+function update_password($id,$oldpassword,$password)
+{
+    $query="select * from tbluser where upass='$oldpassword' and id='$id'";
+    $result=$this->db_handle->runBaseQuery($query);
+    if($result)
+    {
+        $query="update tbluser SET upass='$password' where id='$id'";
+        $result=$this->db_handle->update($query);
+        return $result;
+        echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_profile&status=3';</script>";
+    }
+    else
+    {
+        echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_profile&status=9';</script>";
+    }
+
+    
+}
+
+function bank_details($acc_name,$acc_nu,$ifsc,$bank_name,$id)
+{
+    $query="update agent SET acc_name='$acc_name',acc_nu='$acc_nu',ifsc='$ifsc',bank_name='$bank_name' where uid='".$id."' ";
+    $result=$this->db_handle->update($query);
+    return $result;
+    
+}
 
 }

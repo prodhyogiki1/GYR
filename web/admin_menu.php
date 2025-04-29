@@ -125,6 +125,18 @@ data-sidebar-position="fixed" data-header-position="fixed">
             </li>
             <li class="sidebar-item">
               <a
+                class="sidebar-link sidebar-link danger-hover-bg"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=policy';?>"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-danger rounded-3">
+                  <i class="ti ti-typography fs-7 text-danger"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">Policy(s)</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
                 class="sidebar-link sidebar-link warning-hover-bg"
                 href="<?php echo $base_url.'logout.php';?>"
                 aria-expanded="false"

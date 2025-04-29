@@ -66,7 +66,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <span class="aside-icon p-2 bg-light-success rounded-3">
                   <i class="ti ti-bike fs-7 text-success"></i>
                 </span>
-                <span class="hide-menu ms-2 ps-1">Add New Bikes</span>
+                <span class="hide-menu ms-2 ps-1">Add Your Bike(s)</span>
               </a>
             </li>
 
@@ -79,7 +79,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <span class="aside-icon p-2 bg-light-primary rounded-3">
                   <i class="ti ti-bike fs-7 text-primary"></i>
                 </span>
-                <span class="hide-menu ms-2 ps-1">Bike(s) & Price(s)</span>
+                <span class="hide-menu ms-2 ps-1">Inventory and Prices</span>
               </a>
             </li>
 
