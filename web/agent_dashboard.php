@@ -22,7 +22,7 @@
                 </div>
                 <?php 
                 //--check new bookings
-                $new_bookings=$agent->new_booking($_SESSION['aid']);
+                $new_bookings=$agent->new_booking_dash($_SESSION['aid']);
                 if($new_bookings)
                 {
                   echo "<table class='table'>";
@@ -30,18 +30,33 @@
                   echo "<th>Customer Name</th>";
                   echo "<th>Date & Time</th>";
                   echo "<th>Bike</th>";
+                  echo "<th>Status</th>";
                   echo "</tr>";
 
                   $counter=1;
-                  foreach($new_bookings as $k0=>$v){
+                  foreach($new_bookings as $k0=>$v)
+                  {
                     $bike_name=$admin->get_bike_one($new_bookings[$k0]['bid']);
+                    $user1 = $user->get_one_user($new_bookings[$k0]['uid']);
                     echo "<tr>";
                     echo "<td>".$counter++."</td>";
-                      echo "<td>".$new_bookings[$k0]['uid']."</td>";
-                      echo "<td>.$new_bookings[$k0]['booking_date_time'].</td>";
-                      echo "<td>.$bike_name[0]['name']</td>";                    
+                      echo "<td>".$user1[0]['uname']."</td>";
+                      echo "<td>".$new_bookings[$k0]['booking_date_time']."</td>";
+                      echo "<td>".$bike_name[0]['name']."</td>";                    
+                      echo "<td>";
+                      
+                          $status = $new_bookings[$k0]['status'];
+                          if($status=='1'){$reason='On Going';}
+                          if($status=='2'){$reason='Cancelled';}
+                          if($status=='3'){$reason='Successfully Completed';}
+                          if($status=='4'){$reason='Cancelled By Agent';}
+                          if($status=='5'){$reason='Cancelled By Customer';}
+                          echo $reason;
+
+                      echo "</td>";
                     echo "</tr>";
                   }
+                  echo "<tr><td colspan='4'><a href='".$base_url."index.php?action=dashboard&page=agent_bookings' class='btn btn-primary'>View All</a></td></tr>";
                   echo "</table>";
                 }
                 else
@@ -104,35 +119,73 @@
                 </div>
               </div>
               <div class="col-lg-12 col-sm-6">
-                <!-- Monthly Earnings -->
+                <!-- bikes -->
                 <div class="card">
                   <div class="card-body">
                     <div class="row alig n-items-start">
                       <div class="col-8">
-                        <h5 class="card-title mb-10 fw-semibold"> Bike Sales</h5>
-                        <h4 class="fw-semibold mb-3">$6,820</h4>
+                        <h5 class="card-title mb-10 fw-semibold"> Bike(s)</h5>
+                        <h4 class="fw-semibold mb-3">Listed :- <?php echo count($agent->viewall_agent_bike($_SESSION['aid']));?></h4>
                         <div class="d-flex align-items-center pb-1">
+                          <?php 
+                          $bikegrp=$agent->agent_bike_group($_SESSION['aid']);
+                          foreach($bikegrp as $k => $v)
+                          {                           
+                          ?>
                           <span
                             class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-arrow-down-right text-danger"></i>
+                            <i class="ti ti-arrow-up-right text-danger"></i>
                           </span>
-                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                          <p class="fs-3 mb-0">last year</p>
+                          <p class="text-dark me-1 fs-3 mb-0"><?php if($bikegrp[$k]['available']=='1')
+                          {echo "Booked";}
+                          else
+                          {echo "Available";}
+                          ?> : 
+                          </p>
+                          <p class="fs-3 mb-0"><?php echo $bikegrp[$k]['total'];?></p>
+                          <?php }?>
                         </div>
                       </div>
                       <div class="col-4">
                         <div class="d-flex justify-content-end">
                           <div
                             class="text-white bg-danger rounded-circle p-7 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-currency-ruppee fs-6">INR</i>
+                            <i class="ti ti-bike fs-7"></i>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div id="earning"></div>
                 </div>
               </div>
+
+              <div class="col-lg-12 col-sm-6">
+                <!-- Monthly Earnings -->
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row alig n-items-start">
+                      <div class="col-8">
+                        <h5 class="card-title mb-10 fw-semibold"> Total Earning(s)</h5>
+                        <h4 class="fw-semibold mb-3">INR :- <?php $sum=$agent->total_amount($_SESSION['aid'],'3'); echo $sum[0]['amount'];?></h4>
+                        <div class="d-flex align-items-center pb-1">
+                          
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="d-flex justify-content-end">
+                          <div
+                            class="text-white bg-success rounded-circle p-7 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-currency fs-7"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div id="earning"></div> -->
+                </div>
+              </div>
+
+
             </div>
           </div>
         </div>

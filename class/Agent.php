@@ -190,6 +190,18 @@ function viewall_agent_bike_limit($aid)
 
 
 //--- booking
+function new_booking_dash($aid){
+    $query="select * from user_booking where aid='$aid' ORDER by id DESC LIMIT 10";
+    $result=$this->db_handle->runBaseQuery($query);
+    return $result; 
+}
+
+function agent_bike_group($aid){
+    $query="SELECT COUNT(id) AS total,available FROM agent_bikes WHERE aid='$aid' GROUP BY available;";
+    $result=$this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
 function new_booking($aid){
     $query="select * from user_booking where aid='$aid'";
     $result=$this->db_handle->runBaseQuery($query);
@@ -211,9 +223,9 @@ function rate_update($available,$from_date,$to_date,$price_per_km,$per_day_km,$i
 }
 
 function disable_agent(){}
-function mybooking($aid)
+function mybooking($aid,$status)
 {
-    $query="select * from user_booking where aid='$aid'";
+    $query="select * from user_booking where aid='$aid' AND status='$status' ";
     $result=$this->db_handle->runBaseQuery($query);
     return $result; 
 }
@@ -232,6 +244,12 @@ function view_booking_agent_one($id)
     return $result; 
 }
 
+function total_amount($aid,$status)
+{
+    $query="select SUM(amount) AS amount from user_booking where aid='$aid' AND status='$status' ";
+    $result=$this->db_handle->runBaseQuery($query);
+    return $result;
+}
 function booking_accept($mode_of_payment,$amount,$status,$bookingid,$km_covered_start)
 {
     $update="update user_booking SET status='$status',km_covered_start='$km_covered_start' where id='$bookingid'";
@@ -291,6 +309,13 @@ function bank_details($acc_name,$acc_nu,$ifsc,$bank_name,$id)
     $result=$this->db_handle->update($query);
     return $result;
     
+}
+
+function viewall_agent_review($aid)
+{
+    $query="select * from feedback JOIN user_booking where user_booking.aid='$aid' AND user_booking.id=feedback.bid";
+    $result=$this->db_handle->runBaseQuery($query);
+    return $result;   
 }
 
 }

@@ -108,6 +108,19 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <span class="hide-menu ms-2 ps-1">Payments</span>
               </a>
             </li>
+
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link warning-hover-bg"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=agent_review';?>"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-warning rounded-3">
+                  <i class="ti ti-star fs-7 text-warning"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">Review(s)</span>
+              </a>
+            </li>
               <?php }?>
             <!-- <li class="sidebar-item">
               <a
@@ -135,6 +148,8 @@ data-sidebar-position="fixed" data-header-position="fixed">
                 <span class="hide-menu ms-2 ps-1">Logout</span>
               </a>
             </li>
+
+            
             
             
            

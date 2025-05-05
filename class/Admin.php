@@ -183,7 +183,7 @@ function latest_alerts($uid)
 
 function read_alerts($uid)
 {
-    $query = "select * from notification where to_uid='$uid' AND status='1' ORDER BY id DESC";
+    $query = "select * from notification where to_uid='$uid' AND  ORDER BY id DESC";
     $result = $this->db_handle->runBaseQuery($query);
     return $result;
 }
