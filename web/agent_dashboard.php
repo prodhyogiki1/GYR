@@ -125,7 +125,12 @@
                     <div class="row alig n-items-start">
                       <div class="col-8">
                         <h5 class="card-title mb-10 fw-semibold"> Bike(s)</h5>
-                        <h4 class="fw-semibold mb-3">Listed :- <?php echo count($agent->viewall_agent_bike($_SESSION['aid']));?></h4>
+                        <h4 class="fw-semibold mb-3">Listed :- <?php $list=$agent->viewall_agent_bike($_SESSION['aid']);
+                        if($list)
+                        {echo count($list);}
+                        else
+                        {echo "0";}
+                        ?></h4>
                         <div class="d-flex align-items-center pb-1">
                           <?php 
                           $bikegrp=$agent->agent_bike_group($_SESSION['aid']);
