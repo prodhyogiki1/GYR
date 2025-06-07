@@ -6,7 +6,10 @@ include_once('../class/Agent.php');
 //declare db classes
 session_start();
 
-$base_url="http://localhost/gyr/";
+//-- local 
+//$base_url="https://localhost/gyr/mypartner/"; 
+//-- online
+$base_url="https://mypartner.getyourride.in/"; 
 $db_handle=new DBController();
 $admin = new Admin();
 $agent = new Agent();
