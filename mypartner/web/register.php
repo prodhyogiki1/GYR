@@ -1,6 +1,6 @@
 <?php 
-$base_url="http://localhost/gyr/";
-//$base_url="https://getyourride.in/"; 
+//$base_url="http://localhost/gyr/";
+$base_url="https://mypartner.getyourride.in/"; 
 
 include('header.php');
 include('../class/DBController.php');
