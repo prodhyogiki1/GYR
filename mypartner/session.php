@@ -5,8 +5,8 @@
 	*/
 	//
 	
-	$base_url="http://localhost/gyr/mypartner/";
-	//$base_url="https://mypartner.getyourride.in/"; 
+	//$base_url="http://localhost/gyr/mypartner/";
+	$base_url="https://mypartner.getyourride.in/"; 
 
 	session_start();
 	//create a new function to check if the session variable member_id is on set
