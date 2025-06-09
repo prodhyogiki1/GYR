@@ -1,8 +1,8 @@
 <?php 
 //-- offline
-//$web_url = "http://localhost/gyr/website/";
+$web_url = "http://localhost/gyr/website/";
 //-- online
-$web_url = "https://getyourride.in/website/";
+//$web_url = "https://getyourride.in/website/";
 include('mypartner/session.php');
 include('mypartner/class/Admin.php');
 $admin = new Admin();
@@ -41,7 +41,7 @@ $company = $admin->get_company();
 	<!-- Mouse Cursor Css File -->
 	<link rel="stylesheet" href="<?php echo $web_url;?>css/mousecursor.css">
 	<!-- Main Custom Css -->
-	<link href="<?php echo $web_url;?>css/custom.css" rel="stylesheet" media="screen">
+	<link href="<?php echo $web_url;?>css/custom.css?ver=<?php echo rand(0,999);?>" rel="stylesheet" media="screen">
 </head>
 <body>
 
@@ -61,7 +61,7 @@ $company = $admin->get_company();
 				<div class="container">
 					<!-- Logo Start -->
 					<a class="navbar-brand" href="<?php echo $web_url;?>./">
-						<img src="<?php echo $base_url.'theme/assets/images/'.$company[0]['logo'];?>" style="height:45px; width:auto;" alt="Logo">
+						<img src="<?php echo $base_url.'theme/assets/images/'.$company[0]['logo'];?>" style="height:45px; width:auto;" >
 					</a>
 					<!-- Logo End -->
 
@@ -69,8 +69,8 @@ $company = $admin->get_company();
 					<div class="collapse navbar-collapse main-menu">
                         <div class="nav-menu-wrapper">
                             <ul class="navbar-nav mr-auto" id="menu">
-                                <li class="nav-item submenu"><a class="nav-link" href="<?php echo $web_url;?>./">Home</a>
-                                    <ul>
+                                <li class="nav-item"><a class="nav-link" href="<?php echo $web_url;?>./">Home</a>
+                                    <!-- <ul>
                                         <li class="nav-item submenu"><a class="nav-link" href="<?php echo $web_url;?>index.html">Home - Light</a>
                                             <ul>    
                                                 <li class="nav-item"><a class="nav-link" href="<?php echo $web_url;?>index.html">Home - Background Image</a></li>
@@ -85,11 +85,11 @@ $company = $admin->get_company();
                                                 <li class="nav-item"><a class="nav-link" href="<?php echo $web_url;?>../dark/index-3.html">Home - Background Slider</a></li>
                                             </ul>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="<?php echo $web_url;?>about.html">About Us</a></li>
-                                <li class="nav-item"><a class="nav-link" href="<?php echo $web_url;?>service.html">Services</a></li>
-                                <li class="nav-item submenu"><a class="nav-link" href="<?php echo $web_url;?>#">Cars</a>
+                                <li class="nav-item"><a class="nav-link" href="#about-us">About Us</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                                <!-- <li class="nav-item submenu"><a class="nav-link" href="<?php echo $web_url;?>#">Cars</a>
                                     <ul>
                                         <li class="nav-item"><a class="nav-link" href="<?php echo $web_url;?>cars.html">Car Lists</a></li>
                                         <li class="nav-item"><a class="nav-link" href="<?php echo $web_url;?>car-single.html">Car Details</a></li>
@@ -110,13 +110,13 @@ $company = $admin->get_company();
                                         <li class="nav-item"><a class="nav-link" href="<?php echo $web_url;?>faqs.html">FAQ's</a></li>                                        
                                         <li class="nav-item"><a class="nav-link" href="<?php echo $web_url;?>404.html">404</a></li>
                                     </ul>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="<?php echo $web_url;?>contact.html">Contact Us</a></li>
+                                </li> -->
+                                <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
                             </ul>
                         </div>
                         <!-- Let’s Start Button Start -->
-                        <div class="header-btn d-inline-flex">
-                            <a href="<?php echo $web_url;?>#" class="btn-default">book a rental</a>
+                        <div class="header-btn">
+                            <a href="#" class="btn-default">+91 82335 57776</a>
                         </div>
                         <!-- Let’s Start Button End -->
 					</div>
@@ -131,21 +131,21 @@ $company = $admin->get_company();
 
     <!-- Hero Section Start -->
 	<div class="hero">
-		<div class="hero-section bg-section parallaxie">
+		<div class="hero-section bg-section parallaxie"> 
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-12">
                         <!-- Hero Content Start -->
                         <div class="hero-content">
                             <div class="section-title">
-                                <h3 class="wow fadeInUp">welcome to car rent</h3>
-                                <h1 class="text-anime-style-3" data-cursor="-opaque">Looking to save more on your rental car?</h1>
+                                <h3 class="wow fadeInUp">welcome to Get Your Ride</h3>
+                                <h1 class="text-anime-style-3" data-cursor="-opaque">Looking to save more on your rental bike?</h1>
                                 <p class="wow fadeInUp" data-wow-delay="0.25s">Whether you're planning a weekend getaway, a business trip, or just need a reliable ride for the day, we offers a wide range of vehicles to suit your needs.</p>
                             </div>
     
                             <div class="hero-content-body wow fadeInUp" data-wow-delay="0.5s">
-                                <a href="<?php echo $web_url;?>#" class="btn-default">book a rental</a>
-                                <a href="<?php echo $web_url;?>#" class="btn-default btn-highlighted">learn more</a>
+                                <a href="<?php echo $web_url;?>#" class="btn-default">Download Our App</a>
+                                
                             </div>
                         </div>
                         <!-- Hero Content End -->                    
@@ -155,15 +155,13 @@ $company = $admin->get_company();
         </div>
 
         <!-- Rent Details Section Start -->
-        <div class="rent-details wow fadeInUp" data-wow-delay="0.75s">
+        <!-- <div class="rent-details wow fadeInUp" data-wow-delay="0.75s">
             <div class="container">
-                <!-- Filter Form Start -->
 				<form action="#" method="get">
                     <div class="row no-gutters align-items-center">
                         <div class="col-md-12">
                             <div class="rent-details-box">
                                 <div class="rent-details-form">
-                                    <!-- Rent Details Item Start -->
                                     <div class="rent-details-item">
                                         <div class="icon-box">
                                             <img src="<?php echo $web_url;?>images/icon-rent-details-1.svg" alt="">
@@ -181,9 +179,6 @@ $company = $admin->get_company();
                                             </select>
                                         </div>
                                     </div>
-                                    <!-- Rent Details Item End -->
-
-                                    <!-- Rent Details Item Start -->
                                     <div class="rent-details-item">
                                         <div class="icon-box">
                                             <img src="<?php echo $web_url;?>images/icon-rent-details-2.svg" alt="">
@@ -199,9 +194,6 @@ $company = $admin->get_company();
                                             </select>
                                         </div>
                                     </div>
-                                    <!-- Rent Details Item End -->
-
-                                    <!-- Rent Details Item Start -->
                                     <div class="rent-details-item">
                                         <div class="icon-box">
                                             <img src="<?php echo $web_url;?>images/icon-rent-details-3.svg" alt="">
@@ -211,9 +203,6 @@ $company = $admin->get_company();
                                             <p><input type="text" name="date" placeholder="mm/dd/yyyy" class="rent-details-form datepicker" required></p>
                                         </div>
                                     </div>
-                                    <!-- Rent Details Item End -->
-
-                                    <!-- Rent Details Item Start -->
                                     <div class="rent-details-item">
                                         <div class="icon-box">
                                             <img src="<?php echo $web_url;?>images/icon-rent-details-4.svg" alt="">
@@ -228,9 +217,6 @@ $company = $admin->get_company();
                                             </select>
                                         </div>
                                     </div>
-                                    <!-- Rent Details Item End -->
-
-                                    <!-- Rent Details Item Start -->
                                     <div class="rent-details-item">
                                         <div class="icon-box">
                                             <img src="<?php echo $web_url;?>images/icon-rent-details-5.svg" alt="">
@@ -240,7 +226,6 @@ $company = $admin->get_company();
                                             <p><input type="text" name="date" placeholder="mm/dd/yyyy" class="rent-details-form datepicker" required></p>
                                         </div>
                                     </div>
-                                    <!-- Rent Details Item End -->
                                      
                                     <div class="rent-details-item rent-details-search">
                                         <a href="<?php echo $web_url;?>#"><i class="fa-solid fa-magnifying-glass"></i></a>
@@ -250,16 +235,15 @@ $company = $admin->get_company();
                             </div>                               
                         </div>
                     </div>
-                </form>
-                <!-- Filter Form End -->              
+                </form> 
             </div>
-        </div>
+        </div> -->
         <!-- Rent Details Section End -->
 	</div>
 	<!-- Hero Section End -->
 
     <!-- About Us Section Start -->
-    <div class="about-us">
+    <div class="about-us" id="about-us">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
@@ -268,7 +252,7 @@ $company = $admin->get_company();
                         <!-- About Image Start -->
                         <div class="about-img-1">
                             <figure class="reveal">
-                                <img src="<?php echo $web_url;?>images/about-img-1.jpg" alt="">
+                                <img src="<?php echo $web_url;?>images/10868.jpg" alt="">
                             </figure>
                         </div>
                         <!-- About Image End -->
@@ -276,7 +260,7 @@ $company = $admin->get_company();
                         <!-- About Image Start -->
                         <div class="about-img-2">
                             <figure class="reveal">
-                                <img src="<?php echo $web_url;?>images/about-img-2.jpg" alt="">
+                                <img src="<?php echo $web_url;?>images/banner2.jpg" alt="">
                             </figure>
                         </div>
                         <!-- About Image End -->
@@ -290,8 +274,8 @@ $company = $admin->get_company();
                         <!-- Section Title Start -->
                         <div class="section-title">
                             <h3 class="wow fadeInUp">about us</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">Your trusted partner in reliable car rental</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.25s">Aqestic Optio Amet A Ququam Saepe Aliquid Voluate Dicta Fuga Dolor Saerror Sed Earum A Magni Soluta Quam Minus Dolor Dolor</p>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Your trusted partner in reliable bike rental</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.25s">Founded by passionate riders and local enthusiasts, our mission is to provide an unparalleled bike rental experience. We offer a diverse fleet of well-maintained bikes, from nimble scooters perfect for city cruising to sturdy motorcycles ready for desert excursions. Whether you're a solo traveler seeking a thrilling adventure, a couple on a romantic getaway, or a group of friends eager to discover Jodhpur's charm, we have the perfect ride for you.</p>
                         </div>
                         <!-- Section Title End -->
 
@@ -300,7 +284,7 @@ $company = $admin->get_company();
                             <!-- About Trusted Booking Start -->
                             <div class="about-trusted-booking wow fadeInUp" data-wow-delay="0.5s">
                                 <div class="icon-box">
-                                    <img src="<?php echo $web_url;?>images/icon-about-trusted-1.svg" alt="">
+                                    <img src="<?php echo $web_url;?>images/icons8-trust-48.png" alt="">
                                 </div>
                                 <div class="trusted-booking-content">
                                     <h3>easy booking process</h3>
@@ -312,7 +296,7 @@ $company = $admin->get_company();
                             <!-- About Trusted Booking Start -->
                             <div class="about-trusted-booking wow fadeInUp" data-wow-delay="0.75s">
                                 <div class="icon-box">
-                                    <img src="<?php echo $web_url;?>images/icon-about-trusted-2.svg" alt="">
+                                    <img src="<?php echo $web_url;?>images/icons8-easy-48.png" alt="">
                                 </div>
                                 <div class="trusted-booking-content">
                                     <h3>convenient pick-up & return process</h3>
@@ -337,7 +321,7 @@ $company = $admin->get_company();
     <!-- About Us Section End -->
 
     <!-- Our Services Section Start -->
-    <div class="our-services bg-section">
+    <div class="our-services bg-section" id="services">
         <div class="container">
             <div class="row section-row">
                 <div class="col-lg-12">
@@ -355,14 +339,14 @@ $company = $admin->get_company();
                     <!-- Service Item Start -->
                     <div class="service-item wow fadeInUp">
                         <div class="icon-box">
-                            <img src="<?php echo $web_url;?>images/icon-service-1.svg" alt="">
+                            <img src="<?php echo $web_url;?>images/service1.png" alt="">
                         </div>
                         <div class="service-content">
-                            <h3>car rental with driver</h3>
-                            <p>Enhance your rental experience with additional options.</p>
+                            <h3>Scooters for City Exploration</h3>
+                            <p>Navigate City's vibrant streets with ease.</p>
                         </div>
                         <div class="service-footer">
-                            <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
+                            <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.png" alt=""></a>
                         </div>
                     </div>
                     <!-- Service Item End -->
@@ -372,14 +356,14 @@ $company = $admin->get_company();
                     <!-- Service Item Start -->
                     <div class="service-item wow fadeInUp" data-wow-delay="0.25s">
                         <div class="icon-box">
-                            <img src="<?php echo $web_url;?>images/icon-service-2.svg" alt="">
+                            <img src="<?php echo $web_url;?>images/service2.png" alt="">
                         </div>
                         <div class="service-content">
-                            <h3>business car rental</h3>
-                            <p>Enhance your rental experience with additional options.</p>
+                            <h3>Geared Bikes for Longer Journeys</h3>
+                            <p>Perfect for exploring beyond the city limits.</p>
                         </div>
                         <div class="service-footer">
-                            <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
+                            <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.png" alt=""></a>
                         </div>
                     </div>
                     <!-- Service Item End -->
@@ -389,14 +373,14 @@ $company = $admin->get_company();
                     <!-- Service Item Start -->
                     <div class="service-item wow fadeInUp" data-wow-delay="0.5s">
                         <div class="icon-box">
-                            <img src="<?php echo $web_url;?>images/icon-service-3.svg" alt="">
+                            <img src="<?php echo $web_url;?>images/service3.png" alt="">
                         </div>
                         <div class="service-content">
-                            <h3>airport transfer</h3>
-                            <p>Enhance your rental experience with additional options.</p>
+                            <h3>Hourly, Daily, and Weekly Rentals</h3>
+                            <p>Flexibility to match your itinerary.</p>
                         </div>
                         <div class="service-footer">
-                            <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
+                            <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.png" alt=""></a>
                         </div>
                     </div>
                     <!-- Service Item End -->
@@ -406,14 +390,14 @@ $company = $admin->get_company();
                     <!-- Service Item Start -->
                     <div class="service-item wow fadeInUp" data-wow-delay="0.75s">
                         <div class="icon-box">
-                            <img src="<?php echo $web_url;?>images/icon-service-4.svg" alt="">
+                            <img src="<?php echo $web_url;?>images/service4.png" alt="">
                         </div>
                         <div class="service-content">
-                            <h3>chauffeur services</h3>
-                            <p>Enhance your rental experience with additional options.</p>
+                            <h3>Transparent Pricing</h3>
+                            <p>No hidden charges, just clear, affordable rates.</p>
                         </div>
                         <div class="service-footer">
-                            <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
+                            <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.png" alt=""></a>
                         </div>
                     </div>
                     <!-- Service Item End -->
@@ -422,8 +406,11 @@ $company = $admin->get_company();
                 <div class="col-lg-12">
                     <!-- Service Box Footer Start -->
                     <div class="services-box-footer wow fadeInUp" data-wow-delay="1s">
-                        <p>Discover our range of car rental services designed to meet all your travel needs. From a diverse fleet of vehicles to flexible rental plans.</p>
-                        <a href="<?php echo $web_url;?>#" class="btn-default">view all service</a>
+                        <p>We believe every journey is unique, and so should be your ride. That's why we offer a diverse fleet and flexible rental options to suit every traveler and every adventure.</p>
+<?php
+// our fleets
+?>
+
                     </div>
                     <!-- Service Box Footer End -->
                 </div>
@@ -432,519 +419,7 @@ $company = $admin->get_company();
     </div>
     <!-- Our Services Section End -->
 
-    <!-- Perfect Fleets Section Start -->
-    <div class="perfect-fleet bg-section">
-        <div class="container-fluid">
-            <div class="row section-row">
-                <div class="col-lg-12">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp">our fleets</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Explore our perfect and extensive fleet</h2>
-                    </div>
-                    <!-- Section Title End -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Testimonial Slider Start -->
-                    <div class="car-details-slider">
-                        <div class="swiper">
-                            <div class="swiper-wrapper" data-cursor-text="Drag">
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <!-- Perfect Fleets Item Start -->
-                                    <div class="perfect-fleet-item">
-                                        <!-- Image Box Start -->
-                                        <div class="image-box">
-                                            <img src="<?php echo $web_url;?>images/perfect-fleet-img-1.png" alt="">
-                                        </div>
-                                        <!-- Image Box End -->
-
-                                        <!-- Perfect Fleets Content Start -->
-                                        <div class="perfect-fleet-content">
-                                            <!-- Perfect Fleets Title Start -->
-                                            <div class="perfect-fleet-title">
-                                                <h3>luxury car</h3>
-                                                <h2>BMW M2 Car 2017</h2>
-                                            </div>
-                                            <!-- Perfect Fleets Content End -->
-
-                                            <!-- Perfect Fleets Body Start -->
-                                            <div class="perfect-fleet-body">
-                                                <ul>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-1.svg" alt="">4 passenger</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-2.svg" alt="">4 door</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-3.svg" alt="">bags</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-4.svg" alt="">auto</li>
-                                                </ul>
-                                            </div>
-                                            <!-- Perfect Fleets Body End -->
-
-                                            <!-- Perfect Fleets Footer Start -->
-                                            <div class="perfect-fleet-footer">
-                                                <!-- Perfect Fleets Pricing Start -->
-                                                <div class="perfect-fleet-pricing">
-                                                    <h2>$280<span>/day</span></h2>
-                                                </div>
-                                                <!-- Perfect Fleets Pricing End -->
-
-                                                <!-- Perfect Fleets Btn Start -->
-                                                <div class="perfect-fleet-btn">
-                                                    <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
-                                                </div>
-                                                <!-- Perfect Fleets Btn End -->
-                                            </div>
-                                            <!-- Perfect Fleets Footer End -->
-                                        </div>
-                                        <!-- Perfect Fleets Content End -->
-                                    </div>
-                                    <!-- Perfect Fleets Item End -->                                    
-                                </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <!-- Perfect Fleets Item Start -->
-                                    <div class="perfect-fleet-item">
-                                        <!-- Image Box Start -->
-                                        <div class="image-box">
-                                            <img src="<?php echo $web_url;?>images/perfect-fleet-img-2.png" alt="">
-                                        </div>
-                                        <!-- Image Box End -->
-
-                                        <!-- Perfect Fleets Content Start -->
-                                        <div class="perfect-fleet-content">
-                                            <!-- Perfect Fleets Title Start -->
-                                            <div class="perfect-fleet-title">
-                                                <h3>luxury car</h3>
-                                                <h2>Audi RS7 Car 2016</h2>
-                                            </div>
-                                            <!-- Perfect Fleets Content End -->
-
-                                            <!-- Perfect Fleets Body Start -->
-                                            <div class="perfect-fleet-body">
-                                                <ul>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-1.svg" alt="">4 passenger</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-2.svg" alt="">4 door</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-3.svg" alt="">bags</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-4.svg" alt="">auto</li>
-                                                </ul>
-                                            </div>
-                                            <!-- Perfect Fleets Body End -->
-
-                                            <!-- Perfect Fleets Footer Start -->
-                                            <div class="perfect-fleet-footer">
-                                                <!-- Perfect Fleets Pricing Start -->
-                                                <div class="perfect-fleet-pricing">
-                                                    <h2>$320<span>/day</span></h2>
-                                                </div>
-                                                <!-- Perfect Fleets Pricing End -->
-
-                                                <!-- Perfect Fleets Btn Start -->
-                                                <div class="perfect-fleet-btn">
-                                                    <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
-                                                </div>
-                                                <!-- Perfect Fleets Btn End -->
-                                            </div>
-                                            <!-- Perfect Fleets Footer End -->
-                                        </div>
-                                        <!-- Perfect Fleets Content End -->
-                                    </div>
-                                    <!-- Perfect Fleets Item End -->                                    
-                                </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <!-- Perfect Fleets Item Start -->
-                                    <div class="perfect-fleet-item">
-                                        <!-- Image Box Start -->
-                                        <div class="image-box">
-                                            <img src="<?php echo $web_url;?>images/perfect-fleet-img-3.png" alt="">
-                                        </div>
-                                        <!-- Image Box End -->
-
-                                        <!-- Perfect Fleets Content Start -->
-                                        <div class="perfect-fleet-content">
-                                            <!-- Perfect Fleets Title Start -->
-                                            <div class="perfect-fleet-title">
-                                                <h3>luxury car</h3>
-                                                <h2>Ferrari F12 Car 2022</h2>
-                                            </div>
-                                            <!-- Perfect Fleets Content End -->
-
-                                            <!-- Perfect Fleets Body Start -->
-                                            <div class="perfect-fleet-body">
-                                                <ul>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-1.svg" alt="">4 passenger</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-2.svg" alt="">4 door</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-3.svg" alt="">bags</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-4.svg" alt="">auto</li>
-                                                </ul>
-                                            </div>
-                                            <!-- Perfect Fleets Body End -->
-
-                                            <!-- Perfect Fleets Footer Start -->
-                                            <div class="perfect-fleet-footer">
-                                                <!-- Perfect Fleets Pricing Start -->
-                                                <div class="perfect-fleet-pricing">
-                                                    <h2>$450<span>/day</span></h2>
-                                                </div>
-                                                <!-- Perfect Fleets Pricing End -->
-
-                                                <!-- Perfect Fleets Btn Start -->
-                                                <div class="perfect-fleet-btn">
-                                                    <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
-                                                </div>
-                                                <!-- Perfect Fleets Btn End -->
-                                            </div>
-                                            <!-- Perfect Fleets Footer End -->
-                                        </div>
-                                        <!-- Perfect Fleets Content End -->
-                                    </div>
-                                    <!-- Perfect Fleets Item End -->                                    
-                                </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <!-- Perfect Fleets Item Start -->
-                                    <div class="perfect-fleet-item">
-                                        <!-- Image Box Start -->
-                                        <div class="image-box">
-                                            <img src="<?php echo $web_url;?>images/perfect-fleet-img-4.png" alt="">
-                                        </div>
-                                        <!-- Image Box End -->
-
-                                        <!-- Perfect Fleets Content Start -->
-                                        <div class="perfect-fleet-content">
-                                            <!-- Perfect Fleets Title Start -->
-                                            <div class="perfect-fleet-title">
-                                                <h3>luxury car</h3>
-                                                <h2>Toyota Yaris 2017</h2>
-                                            </div>
-                                            <!-- Perfect Fleets Content End -->
-
-                                            <!-- Perfect Fleets Body Start -->
-                                            <div class="perfect-fleet-body">
-                                                <ul>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-1.svg" alt="">4 passenger</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-2.svg" alt="">4 door</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-3.svg" alt="">bags</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-4.svg" alt="">auto</li>
-                                                </ul>
-                                            </div>
-                                            <!-- Perfect Fleets Body End -->
-
-                                            <!-- Perfect Fleets Footer Start -->
-                                            <div class="perfect-fleet-footer">
-                                                <!-- Perfect Fleets Pricing Start -->
-                                                <div class="perfect-fleet-pricing">
-                                                    <h2>$220<span>/day</span></h2>
-                                                </div>
-                                                <!-- Perfect Fleets Pricing End -->
-
-                                                <!-- Perfect Fleets Btn Start -->
-                                                <div class="perfect-fleet-btn">
-                                                    <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
-                                                </div>
-                                                <!-- Perfect Fleets Btn End -->
-                                            </div>
-                                            <!-- Perfect Fleets Footer End -->
-                                        </div>
-                                        <!-- Perfect Fleets Content End -->
-                                    </div>
-                                    <!-- Perfect Fleets Item End -->                                    
-                                </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <!-- Perfect Fleets Item Start -->
-                                    <div class="perfect-fleet-item">
-                                        <!-- Image Box Start -->
-                                        <div class="image-box">
-                                            <img src="<?php echo $web_url;?>images/perfect-fleet-img-2.png" alt="">
-                                        </div>
-                                        <!-- Image Box End -->
-
-                                        <!-- Perfect Fleets Content Start -->
-                                        <div class="perfect-fleet-content">
-                                            <!-- Perfect Fleets Title Start -->
-                                            <div class="perfect-fleet-title">
-                                                <h3>luxury car</h3>
-                                                <h2>Audi RS7 Car 2016</h2>
-                                            </div>
-                                            <!-- Perfect Fleets Content End -->
-
-                                            <!-- Perfect Fleets Body Start -->
-                                            <div class="perfect-fleet-body">
-                                                <ul>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-1.svg" alt="">4 passenger</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-2.svg" alt="">4 door</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-3.svg" alt="">bags</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-4.svg" alt="">auto</li>
-                                                </ul>
-                                            </div>
-                                            <!-- Perfect Fleets Body End -->
-
-                                            <!-- Perfect Fleets Footer Start -->
-                                            <div class="perfect-fleet-footer">
-                                                <!-- Perfect Fleets Pricing Start -->
-                                                <div class="perfect-fleet-pricing">
-                                                    <h2>$320<span>/day</span></h2>
-                                                </div>
-                                                <!-- Perfect Fleets Pricing End -->
-
-                                                <!-- Perfect Fleets Btn Start -->
-                                                <div class="perfect-fleet-btn">
-                                                    <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
-                                                </div>
-                                                <!-- Perfect Fleets Btn End -->
-                                            </div>
-                                            <!-- Perfect Fleets Footer End -->
-                                        </div>
-                                        <!-- Perfect Fleets Content End -->
-                                    </div>
-                                    <!-- Perfect Fleets Item End -->                                    
-                                </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <!-- Perfect Fleets Item Start -->
-                                    <div class="perfect-fleet-item">
-                                        <!-- Image Box Start -->
-                                        <div class="image-box">
-                                            <img src="<?php echo $web_url;?>images/perfect-fleet-img-3.png" alt="">
-                                        </div>
-                                        <!-- Image Box End -->
-
-                                        <!-- Perfect Fleets Content Start -->
-                                        <div class="perfect-fleet-content">
-                                            <!-- Perfect Fleets Title Start -->
-                                            <div class="perfect-fleet-title">
-                                                <h3>luxury car</h3>
-                                                <h2>Ferrari F12 Car 2022</h2>
-                                            </div>
-                                            <!-- Perfect Fleets Content End -->
-
-                                            <!-- Perfect Fleets Body Start -->
-                                            <div class="perfect-fleet-body">
-                                                <ul>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-1.svg" alt="">4 passenger</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-2.svg" alt="">4 door</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-3.svg" alt="">bags</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-4.svg" alt="">auto</li>
-                                                </ul>
-                                            </div>
-                                            <!-- Perfect Fleets Body End -->
-
-                                            <!-- Perfect Fleets Footer Start -->
-                                            <div class="perfect-fleet-footer">
-                                                <!-- Perfect Fleets Pricing Start -->
-                                                <div class="perfect-fleet-pricing">
-                                                    <h2>$450<span>/day</span></h2>
-                                                </div>
-                                                <!-- Perfect Fleets Pricing End -->
-
-                                                <!-- Perfect Fleets Btn Start -->
-                                                <div class="perfect-fleet-btn">
-                                                    <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
-                                                </div>
-                                                <!-- Perfect Fleets Btn End -->
-                                            </div>
-                                            <!-- Perfect Fleets Footer End -->
-                                        </div>
-                                        <!-- Perfect Fleets Content End -->
-                                    </div>
-                                    <!-- Perfect Fleets Item End -->                                    
-                                </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <!-- Perfect Fleets Item Start -->
-                                    <div class="perfect-fleet-item">
-                                        <!-- Image Box Start -->
-                                        <div class="image-box">
-                                            <img src="<?php echo $web_url;?>images/perfect-fleet-img-4.png" alt="">
-                                        </div>
-                                        <!-- Image Box End -->
-
-                                        <!-- Perfect Fleets Content Start -->
-                                        <div class="perfect-fleet-content">
-                                            <!-- Perfect Fleets Title Start -->
-                                            <div class="perfect-fleet-title">
-                                                <h3>luxury car</h3>
-                                                <h2>Toyota Yaris 2017</h2>
-                                            </div>
-                                            <!-- Perfect Fleets Content End -->
-
-                                            <!-- Perfect Fleets Body Start -->
-                                            <div class="perfect-fleet-body">
-                                                <ul>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-1.svg" alt="">4 passenger</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-2.svg" alt="">4 door</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-3.svg" alt="">bags</li>
-                                                    <li><img src="<?php echo $web_url;?>images/icon-fleet-list-4.svg" alt="">auto</li>
-                                                </ul>
-                                            </div>
-                                            <!-- Perfect Fleets Body End -->
-
-                                            <!-- Perfect Fleets Footer Start -->
-                                            <div class="perfect-fleet-footer">
-                                                <!-- Perfect Fleets Pricing Start -->
-                                                <div class="perfect-fleet-pricing">
-                                                    <h2>$220<span>/day</span></h2>
-                                                </div>
-                                                <!-- Perfect Fleets Pricing End -->
-
-                                                <!-- Perfect Fleets Btn Start -->
-                                                <div class="perfect-fleet-btn">
-                                                    <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
-                                                </div>
-                                                <!-- Perfect Fleets Btn End -->
-                                            </div>
-                                            <!-- Perfect Fleets Footer End -->
-                                        </div>
-                                        <!-- Perfect Fleets Content End -->
-                                    </div>
-                                    <!-- Perfect Fleets Item End -->                                    
-                                </div>
-                                <!-- Testimonial Slide End -->
-                            </div>
-                            <div class="car-details-btn">
-                                <div class="car-button-prev"></div>
-				                <div class="car-button-next"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Testimonial Slider End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Perfect Fleets Section End -->
-
-    <!-- Luxury Collection Section Start -->
-    <div class="luxury-collection">
-        <div class="container-fluid">
-            <div class="row no-gutters">
-                <div class="col-lg-12">
-                    <div class="luxury-collection-box">
-                        <!-- Luxury Collection Item Start -->
-                        <div class="luxury-collection-item wow fadeInUp">
-                            <!-- Luxury Collection Image Start -->
-                            <div class="luxury-collection-image" data-cursor-text="View">
-                                <a href="<?php echo $web_url;?>#">
-                                    <figure>
-                                        <img src="<?php echo $web_url;?>images/luxury-collection-img-1.jpg" alt="">
-                                    </figure>
-                                </a>
-                            </div>
-                            <!-- Luxury Collection Image End -->
-
-                            <!-- Luxury Collection Title Start -->
-                            <div class="luxury-collection-title">
-                                <h2>sport car</h2>
-                            </div>
-                            <!-- Luxury Collection Title End -->
-                            
-                            <!-- Luxury Collection Btn Start -->
-                            <div class="luxury-collection-btn">
-                                <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
-                            </div>
-                            <!-- Luxury Collection Btn End -->
-                        </div>
-                        <!-- Luxury Collection Item End -->
-
-                        <!-- Luxury Collection Item Start -->
-                        <div class="luxury-collection-item wow fadeInUp" data-wow-delay="0.25s">
-                            <!-- Luxury Collection Image Start -->
-                            <div class="luxury-collection-image" data-cursor-text="View">
-                                <a href="<?php echo $web_url;?>#">
-                                    <figure>
-                                        <img src="<?php echo $web_url;?>images/luxury-collection-img-2.jpg" alt="">
-                                    </figure>
-                                </a>
-                            </div>
-                            <!-- Luxury Collection Image End -->
-
-                            <!-- Luxury Collection Title Start -->
-                            <div class="luxury-collection-title">
-                                <h2>convertible car</h2>
-                            </div>
-                            <!-- Luxury Collection Title End -->
-                            
-                            <!-- Luxury Collection Footer Start -->
-                            <div class="luxury-collection-btn">
-                                <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
-                            </div>
-                            <!-- Luxury Collection Footer End -->
-                        </div>
-                        <!-- Luxury Collection Item End -->
-
-                        <!-- Luxury Collection Item Start -->
-                        <div class="luxury-collection-item wow fadeInUp" data-wow-delay="0.5s">
-                            <!-- Luxury Collection Image Start -->
-                            <div class="luxury-collection-image" data-cursor-text="View">
-                                <a href="<?php echo $web_url;?>#">
-                                    <figure>
-                                        <img src="<?php echo $web_url;?>images/luxury-collection-img-3.jpg" alt="">
-                                    </figure>
-                                </a>
-                            </div>
-                            <!-- Luxury Collection Image End -->
-
-                            <!-- Luxury Collection Title Start -->
-                            <div class="luxury-collection-title">
-                                <h2>sedan car</h2>
-                            </div>
-                            <!-- Luxury Collection Title End -->
-                            
-                            <!-- Luxury Collection Footer Start -->
-                            <div class="luxury-collection-btn">
-                                <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
-                            </div>
-                            <!-- Luxury Collection Footer End -->
-                        </div>
-                        <!-- Luxury Collection Item End -->
-
-                        <!-- Luxury Collection Item Start -->
-                        <div class="luxury-collection-item wow fadeInUp" data-wow-delay="0.75s">
-                            <!-- Luxury Collection Image Start -->
-                            <div class="luxury-collection-image" data-cursor-text="View">
-                                <a href="<?php echo $web_url;?>#">
-                                    <figure>
-                                        <img src="<?php echo $web_url;?>images/luxury-collection-img-4.jpg" alt="">
-                                    </figure>
-                                </a>
-                            </div>
-                            <!-- Luxury Collection Image End -->
-
-                            <!-- Luxury Collection Title Start -->
-                            <div class="luxury-collection-title">
-                                <h2>luxury car</h2>
-                            </div>
-                            <!-- Luxury Collection Title End -->
-                            
-                            <!-- Luxury Collection Footer Start -->
-                            <div class="luxury-collection-btn">
-                                <a href="<?php echo $web_url;?>#" class="section-icon-btn"><img src="<?php echo $web_url;?>images/arrow-white.svg" alt=""></a>
-                            </div>
-                            <!-- Luxury Collection Footer End -->
-                        </div>
-                        <!-- Luxury Collection Item End -->
-                    </div>                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Luxury Collection Section End -->
-
+    
     <!-- How It Work Section Start -->
     <div class="how-it-work">
         <div class="container">
@@ -965,7 +440,7 @@ $company = $admin->get_company();
                             <!-- FAQ Item Start -->
                             <div class="accordion-item wow fadeInUp" data-wow-delay="0.5s">
                                 <div class="icon-box">
-                                    <img src="<?php echo $web_url;?>images/icon-how-it-work-1.svg" alt="">
+                                    <img src="<?php echo $web_url;?>images/icons8-search-100.png" alt="">
                                 </div>
                                 <h2 class="accordion-header" id="workheading1">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -976,7 +451,7 @@ $company = $admin->get_company();
                                 <div id="workcollapse1" class="accordion-collapse collapse show" aria-labelledby="workheading1"
                                     data-bs-parent="#workaccordion">
                                     <div class="accordion-body">
-                                        <p>Explore our diverse selection of high-end vehicles, choose your preferred pickup and return dates, and select a location that best fits your needs.</p>
+                                        <p>Ready to ride? Explore our fleet online, compare bikes, and select the perfect one for your Jodhpur adventure in just a few clicks. Your journey starts here!</p>
                                     </div>
                                 </div>
                             </div>
@@ -985,7 +460,7 @@ $company = $admin->get_company();
                             <!-- FAQ Item Start -->
                             <div class="accordion-item wow fadeInUp" data-wow-delay="0.75s">
                                 <div class="icon-box">
-                                    <img src="<?php echo $web_url;?>images/icon-how-it-work-2.svg" alt="">
+                                    <img src="<?php echo $web_url;?>images/icons8-confirm-64.png" alt="">
                                 </div>
                                 <h2 class="accordion-header" id="workheading2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -996,7 +471,7 @@ $company = $admin->get_company();
                                 <div id="workcollapse2" class="accordion-collapse collapse" aria-labelledby="workheading2"
                                     data-bs-parent="#workaccordion">
                                     <div class="accordion-body">
-                                        <p>Explore our diverse selection of high-end vehicles, choose your preferred pickup and return dates, and select a location that best fits your needs.</p>
+                                        <p>Secure your perfect ride with ease. Our simple process lets you book your bike instantly and receive confirmation, giving you peace of mind before your Jodhpur exploration begins.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1005,7 +480,7 @@ $company = $admin->get_company();
                             <!-- FAQ Item Start -->
                             <div class="accordion-item wow fadeInUp" data-wow-delay="1s">
                                 <div class="icon-box">
-                                    <img src="<?php echo $web_url;?>images/icon-how-it-work-3.svg" alt="">
+                                    <img src="<?php echo $web_url;?>images/icons8-happy-64.png" alt="">
                                 </div>
                                 <h2 class="accordion-header" id="workheading3">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -1016,7 +491,7 @@ $company = $admin->get_company();
                                 <div id="workcollapse3" class="accordion-collapse collapse" aria-labelledby="workheading3"
                                     data-bs-parent="#workaccordion">
                                     <div class="accordion-body">
-                                        <p>Explore our diverse selection of high-end vehicles, choose your preferred pickup and return dates, and select a location that best fits your needs.</p>
+                                        <p>Book your bike effortlessly and instantly start enjoying the magic of Jodhpur. Your personalized journey begins with us!</p>
                                     </div>
                                 </div>
                             </div>
@@ -1033,7 +508,7 @@ $company = $admin->get_company();
                         <!-- How Work Image Start -->
                         <div class="how-work-img">
                             <figure class="reveal">
-                                <img src="<?php echo $web_url;?>images/about-img-1.jpg" alt="">
+                                <img src="<?php echo $web_url;?>images/banner3.jpg" alt="">
                             </figure>
                         </div>
                         <!-- How Work Image End -->
@@ -1077,7 +552,7 @@ $company = $admin->get_company();
                         <!-- Video Play Button Start -->
                         <div class="video-play-button">
                             <a href="<?php echo $web_url;?>https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
-                                <i class="fa-solid fa-play"></i>
+                                <img src="<?php echo $web_url;?>images/icons8-play-button-48.png" alt="">
                             </a>
                         </div>
                         <!-- Video Play Button End -->
@@ -1525,14 +1000,14 @@ $company = $admin->get_company();
     <!-- CTA Box Section End -->
 
     <!-- Our Latest Article Start -->
-    <div class="latest-article">
+    <div class="latest-article" id="contact">
         <div class="container">
             <div class="row section-row">
                 <div class="col-lg-12">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        <h3 class="wow fadeInUp">latest articles</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Stay informed and inspired for your next journey</h2>
+                        <h3 class="wow fadeInUp">need any help ?</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Get in touch with our friendly team</h2>
                     </div>
                     <!-- Section Title End -->
                 </div>
@@ -1546,7 +1021,7 @@ $company = $admin->get_company();
                         <div class="highlighted-article-featured-img">
                             <figure>
                                 <a href="<?php echo $web_url;?>#" class="image-anime" data-cursor-text="View">
-                                    <img src="<?php echo $web_url;?>images/post-1.jpg" alt="">
+                                    <img src="<?php echo $web_url;?>images/contact.jpg" alt="">
                                 </a>
                             </figure>
                         </div>
@@ -1557,17 +1032,15 @@ $company = $admin->get_company();
                             <!-- Article Meta Start -->
                             <div class="article-meta">
                                 <ul>
-                                    <li><a href="<?php echo $web_url;?>#"><i class="fa-solid fa-calendar-days"></i> sep 19, 2024</a></li>
+                                    <li>Get In Touch With Our Expert Team</li>
                                 </ul>
                             </div>
                             <!-- Article Meta End -->
 
                             <!-- Highlighted Article Content Start -->
                             <div class="highlighted-article-content">
-                                <h3><a href="<?php echo $web_url;?>#">Road Trip Essentials: What to Pack for a Smooth Journey</a></h3>
-                                <a href="<?php echo $web_url;?>#" class="section-icon-btn">
-                                    <img src="<?php echo $web_url;?>images/arrow-white.svg" alt="">
-                                </a>
+                                <h3>info@getyourride.in</h3>
+                                <h4 style="color:#FFF;">call us: 82335 57776</h4>
                             </div>
                             <!-- Highlighted Article Content End -->
                         </div>
@@ -1578,83 +1051,7 @@ $company = $admin->get_company();
                 <div class="col-lg-6">
                     <!-- Article Post Start -->
                     <div class="article-post wow fadeInUp">
-                        <div class="article-featured-img">
-                            <figure>
-                                <a href="<?php echo $web_url;?>#" class="image-anime" data-cursor-text="View">
-                                    <img src="<?php echo $web_url;?>images/post-2.jpg" alt="">
-                                </a>
-                            </figure>
-                        </div>
-
-                        <div class="article-post-body">
-                            <!-- Article Meta Start -->
-                            <div class="article-meta">
-                                <ul>
-                                    <li><a href="<?php echo $web_url;?>#"><i class="fa-solid fa-calendar-days"></i> sep 20, 2024</a></li>
-                                </ul>
-                            </div>
-                            <!-- Article Meta End -->
-
-                            <div class="article-post-content">
-                                <h3><a href="<?php echo $web_url;?>#">Exploring the City: Best Urban Destinations for a Weekend Getaway</a></h3>
-                                <a href="<?php echo $web_url;?>#" class="read-story-btn">read story</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Article Post End -->
-
-                    <!-- Article Post Start -->
-                    <div class="article-post wow fadeInUp" data-wow-delay="0.25s">
-                        <div class="article-featured-img">
-                            <figure>
-                                <a href="<?php echo $web_url;?>#" class="image-anime" data-cursor-text="View">
-                                    <img src="<?php echo $web_url;?>images/post-3.jpg" alt="">
-                                </a>
-                            </figure>
-                        </div>
-
-                        <div class="article-post-body">
-                            <!-- Article Meta Start -->
-                            <div class="article-meta">
-                                <ul>
-                                    <li><a href="<?php echo $web_url;?>#"><i class="fa-solid fa-calendar-days"></i> sep 21, 2024</a></li>
-                                </ul>
-                            </div>
-                            <!-- Article Meta End -->
-
-                            <div class="article-post-content">
-                                <h3><a href="<?php echo $web_url;?>#">Exploring the City: Best Urban Destinations for a Weekend Getaway</a></h3>
-                                <a href="<?php echo $web_url;?>#" class="read-story-btn">read story</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Article Post End -->
-
-                    <!-- Article Post Start -->
-                    <div class="article-post wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="article-featured-img">
-                            <figure>
-                                <a href="<?php echo $web_url;?>#" class="image-anime" data-cursor-text="View">
-                                    <img src="<?php echo $web_url;?>images/post-4.jpg" alt="">
-                                </a>
-                            </figure>
-                        </div>
-
-                        <div class="article-post-body">
-                            <!-- Article Meta Start -->
-                            <div class="article-meta">
-                                <ul>
-                                    <li><a href="<?php echo $web_url;?>#"><i class="fa-solid fa-calendar-days"></i> sep 22, 2024</a></li>
-                                </ul>
-                            </div>
-                            <!-- Article Meta End -->
-
-                            <div class="article-post-content">
-                                <h3><a href="<?php echo $web_url;?>#">Exploring the City: Best Urban Destinations for a Weekend Getaway</a></h3>
-                                <a href="<?php echo $web_url;?>#" class="read-story-btn">read story</a>
-                            </div>
-                        </div>
-                    </div>
+                                            </div>
                     <!-- Article Post End -->
                 </div>
             </div>

@@ -4,9 +4,14 @@
     ini_set('session.gc_probability', 1);
 	*/
 	//
-	
-	//$base_url="http://localhost/gyr/mypartner/";
-	$base_url="https://mypartner.getyourride.in/"; 
+//-- offline
+//$web_url = "http://localhost/gyr/website/";
+//$base_url="https://mypartner.getyourride.in/";
+
+
+//-- online
+$web_url = "https://getyourride.in/website/";
+$base_url="http://localhost/gyr/mypartner/"; 
 
 	session_start();
 	//create a new function to check if the session variable member_id is on set
