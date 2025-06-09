@@ -2,7 +2,7 @@
 //-- offline
 //$web_url = "http://localhost/gyr/website/";
 //-- online
-$web_url = "https://getyourride.in/";
+$web_url = "https://getyourride.in/website/";
 include('mypartner/session.php');
 include('mypartner/class/Admin.php');
 $admin = new Admin();
