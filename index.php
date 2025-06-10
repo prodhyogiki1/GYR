@@ -1131,7 +1131,7 @@ $company = $admin->get_company();
                     <div class="col-lg-6 col-md-7">
                         <!-- Footer Copyright Start -->
                         <div class="footer-copyright-text">
-                            <p>© 2024 Novaride. All rights reserved.</p>
+                            <p>© 2024 Get Your Ride. All rights reserved.</p>
                         </div>
                         <!-- Footer Copyright End -->
                     </div>
@@ -1189,6 +1189,6 @@ $company = $admin->get_company();
     <script src="<?php echo $web_url;?>js/wow.js"></script>
     <!-- Main Custom js file -->
     <script src="<?php echo $web_url;?>js/function.js"></script>
-	<script src="https://demo.awaikenthemes.com/assets/js/theme-panel.js"></script>
+	<script src="<?php echo $web_url;?>js/theme-panel2.js"></script>
 </body>
 </html>
