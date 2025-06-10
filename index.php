@@ -146,9 +146,9 @@ $company = $admin->get_company();
                                 <p class="wow fadeInUp" data-wow-delay="0.25s">Whether you're planning a weekend getaway, a business trip, or just need a reliable ride for the day, we offers a wide range of vehicles to suit your needs.</p>
                             </div>
     
-                            <div class="hero-content-body wow fadeInUp" data-wow-delay="0.5s">
-                                <a href="<?php echo $web_url;?>#" class="btn-default">Download Our App</a>
-                                
+                            <div class="cta-box-btn wow fadeInUp" data-wow-delay="0.5s">
+                            <a href="#" class="btn-default"><i class="fa-brands fa-android"></i> Download Now</a>
+                            <a href="#" class="btn-default"><i class="fa-brands fa-apple"></i> Download Now</a>
                             </div>
                         </div>
                         <!-- Hero Content End -->                    
@@ -728,26 +728,26 @@ $company = $admin->get_company();
     <!-- Our FAQs Section End -->
 
     <!-- Our Testiminial Start -->
-    <div class="our-testimonial">
+    <!-- <div class="our-testimonial">
         <div class="container">
             <div class="row section-row">
                 <div class="col-lg-12">
-                    <!-- Section Title Start -->
+                   
                     <div class="section-title">
                         <h3 class="wow fadeInUp">testimonials</h3>
                         <h2 class="text-anime-style-3" data-cursor="-opaque">What our customers are saying about us</h2>
                     </div>
-                    <!-- Section Title End -->
+                 
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <!-- Testimonial Slider Start -->
+                  
                     <div class="testimonial-slider">
                         <div class="swiper">
                             <div class="swiper-wrapper" data-cursor-text="Drag">
-                                <!-- Testimonial Slide Start -->
+                                
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
                                         <div class="testimonial-header">
@@ -775,9 +775,7 @@ $company = $admin->get_company();
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Testimonial Slide End -->
-                                 
-                                <!-- Testimonial Slide Start -->
+                              
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
                                         <div class="testimonial-header">
@@ -805,9 +803,7 @@ $company = $admin->get_company();
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
+                               
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
                                         <div class="testimonial-header">
@@ -835,9 +831,7 @@ $company = $admin->get_company();
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Testimonial Slide End -->
-
-                                <!-- Testimonial Slide Start -->
+                                
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
                                         <div class="testimonial-header">
@@ -865,7 +859,7 @@ $company = $admin->get_company();
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Testimonial Slide End -->
+                               
                             </div>
                             <div class="testimonial-btn">
                                 <div class="testimonial-button-prev"></div>
@@ -873,11 +867,11 @@ $company = $admin->get_company();
                             </div>
                         </div>
                     </div>
-                    <!-- Testimonial Slider End -->
+                   
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Our Testiminial End -->
      
     <!-- CTA Box Section Start -->
