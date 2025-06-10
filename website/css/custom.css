@@ -692,7 +692,7 @@ header.main-header .header-sticky.active{
 
 .hero-section.bg-section{
 	position: relative;
-	background: url('../images/hero-bg.jpg') no-repeat;
+	background: url('../images/banner1.jpg') no-repeat;
 	background-position: center center;
 	background-size: cover;
 	overflow: hidden;
@@ -1711,7 +1711,7 @@ header.main-header .header-sticky.active{
 
 .intro-video{
 	position: relative;
-	background: url('../images/intro-video-bg.jpg') no-repeat;
+	background: url('../images/banner4.jpg') no-repeat;
 	background-position: center center;
 	background-size: cover;
 	padding: 100px 0;
