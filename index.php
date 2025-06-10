@@ -910,12 +910,7 @@ $company = $admin->get_company();
                         <figure>
                             <img src="<?php echo $web_url;?>images/app (2).jpeg" alt="">
                         </figure>
-                        <figure>
-                            <img src="<?php echo $web_url;?>images/app (1).jpeg" alt="">
-                        </figure>
-                        <figure>
-                            <img src="<?php echo $web_url;?>images/app (3).jpeg" alt="">
-                        </figure>
+                      
                     </div>
                     <!-- Cta Box Image End -->
                 </div>
