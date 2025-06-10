@@ -37,8 +37,14 @@ $company = $admin->get_company();
 	<link rel="stylesheet" href="<?php echo $web_url;?>css/magnific-popup.css">
 	<!-- Mouse Cursor Css File -->
 	<link rel="stylesheet" href="<?php echo $web_url;?>css/mousecursor.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="<?php echo $web_url;?>css/fontawesome-672/css/fontawesome.min.css">
+    <link rel="stylesheet" href="<?php echo $web_url;?>css/fontawesome-672/css/brands.css">
 	<!-- Main Custom Css -->
 	<link href="<?php echo $web_url;?>css/custom.css?ver=<?php echo rand(0,999);?>" rel="stylesheet" media="screen">
+    <!-- Main untouched Css -->
+	<link href="<?php echo $web_url;?>css/untouched.css?ver=<?php echo rand(0,999);?>" rel="stylesheet" media="screen">
+    
 </head>
 <body>
 
@@ -113,7 +119,7 @@ $company = $admin->get_company();
                         </div>
                         <!-- Let’s Start Button Start -->
                         <div class="header-btn">
-                            <a href="#" class="btn-default">+91 82335 57776</a>
+                            <a href="#" class="btn-default"><?php echo $company[0]['phone'];?></a>
                         </div>
                         <!-- Let’s Start Button End -->
 					</div>
@@ -633,84 +639,7 @@ $company = $admin->get_company();
     </div>
     <!-- Intro Video Section End -->
 
-    <!-- Why Choose Us Section Start -->
-    <div class="why-choose-us">
-        <div class="container">
-            <div class="row section-row">
-                <div class="col-lg-12">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp">why choose us</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Unmatched quality and service for your needs</h2>
-                    </div>
-                    <!-- Section Title End -->
-                </div>
-            </div>
-
-            <div class="row align-items-center">
-                <div class="col-lg-4 col-md-6 order-lg-1 order-md-1 order-1">
-                    <!-- Why Choose Item Start -->
-                    <div class="why-choose-item wow fadeInUp">
-                        <div class="icon-box">
-                            <img src="<?php echo $web_url;?>images/icon-why-choose-1.svg" alt="">
-                        </div>
-                        <div class="why-choose-content">
-                            <h3>extensive fleet options</h3>
-                            <p>Quisque Sollicitudin Feugiat Risus, Eu Posuere Ex Euismod Eu. Phasellus Hendrerit, Massa</p>
-                        </div>
-                    </div>
-                    <!-- Why Choose Item End -->
-
-                    <!-- Why Choose Item Start -->
-                    <div class="why-choose-item wow fadeInUp" data-wow-delay="0.25s">
-                        <div class="icon-box">
-                            <img src="<?php echo $web_url;?>images/icon-why-choose-2.svg" alt="">
-                        </div>
-                        <div class="why-choose-content">
-                            <h3>exceptional customer service</h3>
-                            <p>Quisque Sollicitudin Feugiat Risus, Eu Posuere Ex Euismod Eu. Phasellus Hendrerit, Massa</p>
-                        </div>
-                    </div>
-                    <!-- Why Choose Item End -->
-                </div>
-
-                <div class="col-lg-4 col-md-12 order-lg-2 order-md-3 order-2">
-                    <div class="why-choose-image">
-                        <figure class="reveal">
-                            <img src="<?php echo $web_url;?>images/why-choose-img.jpg" alt="">
-                        </figure>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 order-lg-3 order-md-2 order-3">
-                    <!-- Why Choose Item Start -->
-                    <div class="why-choose-item wow fadeInUp">
-                        <div class="icon-box">
-                            <img src="<?php echo $web_url;?>images/icon-why-choose-3.svg" alt="">
-                        </div>
-                        <div class="why-choose-content">
-                            <h3>convenient locations</h3>
-                            <p>Quisque Sollicitudin Feugiat Risus, Eu Posuere Ex Euismod Eu. Phasellus Hendrerit, Massa</p>
-                        </div>
-                    </div>
-                    <!-- Why Choose Item End -->
-
-                    <!-- Why Choose Item Start -->
-                    <div class="why-choose-item wow fadeInUp" data-wow-delay="0.25s">
-                        <div class="icon-box">
-                            <img src="<?php echo $web_url;?>images/icon-why-choose-4.svg" alt="">
-                        </div>
-                        <div class="why-choose-content">
-                            <h3>reliability and safety</h3>
-                            <p>Quisque Sollicitudin Feugiat Risus, Eu Posuere Ex Euismod Eu. Phasellus Hendrerit, Massa</p>
-                        </div>
-                    </div>
-                    <!-- Why Choose Item End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Why Choose Us Section End -->
+  
 
     <!-- Our FAQs Section Start -->
     <div class="our-faqs bg-section">
@@ -719,17 +648,9 @@ $company = $admin->get_company();
                 <div class="col-lg-6 order-lg-1 order-md-2 order-2">
                     <!-- Our Faqs Image Start -->
                     <div class="our-faqs-image">
-                        <div class="faqs-img-1">
-                            <figure class="image-anime">
-                                <img src="<?php echo $web_url;?>images/our-faqs-img-1.jpg" alt="">
-                            </figure>
-                        </div>
-
-                        <div class="faqs-img-2">
-                            <figure class="image-anime">
-                                <img src="<?php echo $web_url;?>images/our-faqs-img-2.jpg" alt="">
-                            </figure>
-                        </div>
+                                <img src="<?php echo $web_url;?>images/faq.png" alt="">
+                            
+                        
                     </div>
                     <!-- Our Faqs Image End -->
                 </div>
@@ -751,13 +672,13 @@ $company = $admin->get_company();
                                 <h2 class="accordion-header" id="faqheading1">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faqcollapse1" aria-expanded="true" aria-controls="faqcollapse1">
-                                        What do I need to rent a car?
+                                       What documents do I need to rent a bike?
                                     </button>
                                 </h2>
                                 <div id="faqcollapse1" class="accordion-collapse collapse show" aria-labelledby="faqheading1"
                                     data-bs-parent="#faqsaccordion">
                                     <div class="accordion-body">
-                                        <p>Explore our diverse selection of high-end vehicles, choose your preferred pickup and return dates, and select a location that best fits your needs.</p>
+                                        <p>You'll need a valid Driving License (for geared vehicles), an Aadhaar Card, and a second valid ID (e.g., Passport, Voter ID) for verification. Please carry the originals for pickup.</p>
                                     </div>
                                 </div>
                             </div>
@@ -768,13 +689,13 @@ $company = $admin->get_company();
                                 <h2 class="accordion-header" id="faqheading2">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faqcollapse2" aria-expanded="false" aria-controls="faqcollapse2">
-                                        How old do I need to be to rent a car?
+                                         Is there a security deposit required?
                                     </button>
                                 </h2>
                                 <div id="faqcollapse2" class="accordion-collapse collapse" aria-labelledby="faqheading2"
                                     data-bs-parent="#faqsaccordion">
                                     <div class="accordion-body">
-                                        <p>Explore our diverse selection of high-end vehicles, choose your preferred pickup and return dates, and select a location that best fits your needs.</p>
+                                        <p>Yes, a refundable security deposit is required, which varies depending on the bike model. This deposit will be fully refunded upon the safe return of the bike and after inspection for any damages or traffic violations.</p>
                                     </div>
                                 </div>
                             </div>
@@ -785,13 +706,13 @@ $company = $admin->get_company();
                                 <h2 class="accordion-header" id="faqheading3">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faqcollapse3" aria-expanded="false" aria-controls="faqcollapse3">
-                                        Can I rent a car with a debit card?
+                                        Is fuel included in the rental price?
                                     </button>
                                 </h2>
                                 <div id="faqcollapse3" class="accordion-collapse collapse" aria-labelledby="faqheading3"
                                     data-bs-parent="#faqsaccordion">
                                     <div class="accordion-body">
-                                        <p>Explore our diverse selection of high-end vehicles, choose your preferred pickup and return dates, and select a location that best fits your needs.</p>
+                                        <p>No, fuel is not included in the rental price. We provide the bike with sufficient fuel to reach the nearest petrol pump, and you are responsible for refueling during your rental period. Please return the bike with a similar fuel level as received.</p>
                                     </div>
                                 </div>
                             </div>
@@ -968,14 +889,15 @@ $company = $admin->get_company();
                     <div class="cta-box-content">
                         <!-- Section Title Start -->
                         <div class="section-title">
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">Ready to hit the road? Book your car today !</h2>
-                            <p class="wow fadeInUp">Our friendly customer service team is here to help. Contact us anytime for support and inquiries.</p>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Ready to hit the road? Book your bike today !</h2>
+                            <p class="wow fadeInUp">Download our App now. And Get assured discount on your first ride !!!</p>
                         </div>
                         <!-- Section Title End -->
 
                         <!-- Cta Box Btn Start -->
                         <div class="cta-box-btn wow fadeInUp" data-wow-delay="0.5s">
-                            <a href="<?php echo $web_url;?>#" class="btn-default">contact us</a>
+                            <a href="#" class="btn-default"><i class="fa-brands fa-android"></i> Download Now</a>
+                            <a href="#" class="btn-default"><i class="fa-brands fa-apple"></i> Download Now</a>
                         </div>
                         <!-- Cta Box Btn End -->
                     </div>
@@ -986,7 +908,13 @@ $company = $admin->get_company();
                     <!-- Cta Box Image Start -->
                     <div class="cat-box-image">
                         <figure>
-                            <img src="<?php echo $web_url;?>images/cta-car-img.png" alt="">
+                            <img src="<?php echo $web_url;?>images/app (2).jpeg" alt="">
+                        </figure>
+                        <figure>
+                            <img src="<?php echo $web_url;?>images/app (1).jpeg" alt="">
+                        </figure>
+                        <figure>
+                            <img src="<?php echo $web_url;?>images/app (3).jpeg" alt="">
                         </figure>
                     </div>
                     <!-- Cta Box Image End -->
@@ -998,58 +926,126 @@ $company = $admin->get_company();
 
     <!-- Our Latest Article Start -->
     <div class="latest-article" id="contact">
-        <div class="container">
-            <div class="row section-row">
-                <div class="col-lg-12">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp">need any help ?</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Get in touch with our friendly team</h2>
-                    </div>
-                    <!-- Section Title End -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <!-- Highlighted Article Post Start -->
-                    <div class="highlighted-article-post wow fadeInUp">
-                        <!-- Highlighted Article Featured Image Start -->
-                        <div class="highlighted-article-featured-img">
-                            <figure>
-                                <a href="<?php echo $web_url;?>#" class="image-anime" data-cursor-text="View">
-                                    <img src="<?php echo $web_url;?>images/contact.jpg" alt="">
-                                </a>
-                            </figure>
-                        </div>
-                        <!-- Highlighted Article Featured Image End -->
-
-                        <!-- Highlighted Article Body Start -->
-                        <div class="highlighted-article-body">
-                            <!-- Article Meta Start -->
-                            <div class="article-meta">
+        <div class="contact-info-form">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- Contact Information Start -->
+                        <div class="contact-information">
+                           
+    
+                            <!-- Contact Information List Start -->
+                            <div class="contact-info-list">
+                                <!-- Contact Info Item Start -->
+                                <div class="contact-info-item wow fadeInUp" data-wow-delay="0.25s" style="visibility: visible; animation-delay: 0.25s; animation-name: fadeInUp;">
+                                    <!-- Icon Box Start -->
+                                    <div class="icon-box">
+                                        <img src="images/icon-phone.svg" alt="">
+                                    </div>
+                                    <!-- Icon Box End -->
+    
+                                    <!-- Contact Info Content Start -->
+                                    <div class="contact-info-content">
+                                        <p><?php echo $company[0]['phone'];?></p>
+                                    </div>
+                                    <!-- Contact Info Content End -->
+                                </div>
+                                <!-- Contact Info Item End -->
+    
+                                <!-- Contact Info Item Start -->
+                                <div class="contact-info-item wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                                    <!-- Icon Box Start -->
+                                    <div class="icon-box">
+                                        <img src="images/icon-mail.svg" alt="">
+                                    </div>
+                                    <!-- Icon Box End -->
+    
+                                    <!-- Contact Info Content Start -->
+                                    <div class="contact-info-content">
+                                        <p><?php echo $company[0]['email'];?></p>
+                                    </div>
+                                    <!-- Contact Info Content End -->
+                                </div>
+                                <!-- Contact Info Item End -->
+    
+                                <!-- Contact Info Item Start -->
+                                <div class="contact-info-item wow fadeInUp" data-wow-delay="0.75s" style="visibility: visible; animation-delay: 0.75s; animation-name: fadeInUp;">
+                                    <!-- Icon Box Start -->
+                                    <div class="icon-box">
+                                        <img src="images/icon-location.svg" alt="">
+                                    </div>
+                                    <!-- Icon Box End -->
+    
+                                    <!-- Contact Info Content Start -->
+                                    <div class="contact-info-content">
+                                        <p><?php echo $company[0]['address'];?></p>
+                                    </div>
+                                    <!-- Contact Info Content End -->
+                                </div>
+                                <!-- Contact Info Item End -->
+                            </div>
+                            <!-- Contact Information List End -->
+    
+                            <!-- Contact Information Social Start -->
+                            <div class="contact-info-social wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
                                 <ul>
-                                    <li>Get In Touch With Our Expert Team</li>
+                                    <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>                                                                
                                 </ul>
                             </div>
-                            <!-- Article Meta End -->
-
-                            <!-- Highlighted Article Content Start -->
-                            <div class="highlighted-article-content">
-                                <h3>info@getyourride.in</h3>
-                                <h4 style="color:#FFF;">call us: 82335 57776</h4>
-                            </div>
-                            <!-- Highlighted Article Content End -->
+                            <!-- Contact Information Social End -->
                         </div>
-                        <!-- Highlighted Article Body End -->
+                        <!-- Contact Information End -->
                     </div>
-                    <!-- Highlighted Article Post End -->
-                </div>
-                <div class="col-lg-6">
-                    <!-- Article Post Start -->
-                    <div class="article-post wow fadeInUp">
-                                            </div>
-                    <!-- Article Post End -->
+    
+                    <div class="col-lg-6">
+                        <!-- Contact Form Start -->
+                        <div class="contact-us-form">
+                            <form id="contactForm" action="#" method="POST" data-toggle="validator" class="wow fadeInUp" data-wow-delay="0.5s" novalidate="true" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                                <div class="row">
+                                    <div class="form-group col-md-6 mb-4">
+                                        <label>first name</label>
+                                        <input type="text" name="name" class="form-control" id="fname" placeholder="Enter Your Name" required="">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+    
+                                    <div class="form-group col-md-6 mb-4">
+                                        <label>last name</label>
+                                        <input type="text" name="name" class="form-control" id="lname" placeholder="Enter Your Name" required="">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+    
+                                    <div class="form-group col-md-6 mb-4">
+                                        <label>email</label>
+                                        <input type="email" name="email" class="form-control" id="email" placeholder="Enter Your Email" required="">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+    
+                                    <div class="form-group col-md-6 mb-4">
+                                        <label>phone</label>
+                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter Your Number" required="">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+    
+                                    <div class="form-group col-md-12 mb-4">
+                                        <label>message</label>
+                                        <textarea name="msg" class="form-control" id="msg" rows="4" placeholder="Write Your Message" required=""></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+    
+                                    <div class="col-lg-12">
+                                        <div class="contact-form-btn">
+                                            <button type="submit" class="btn-default disabled">send message</button>
+                                            <div id="msgSubmit" class="h3 hidden"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Contact Form End -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -1065,13 +1061,13 @@ $company = $admin->get_company();
                      <div class="about-footer">
                         <!-- Footer Logo Start -->
                         <div class="footer-logo">
-                            <img src="<?php echo $web_url;?>images/footer-logo.svg" alt="">
+                            <img src="<?php echo $base_url.'theme/assets/images/'.$company[0]['logo'];?>" alt="">
                         </div>
                         <!-- Footer Logo End -->
 
                         <!-- About Footer Content Start -->
                          <div class="about-footer-content">
-                            <p>Experience the ease and convenience of renting a car with Novaride. </p>
+                            <p>Experience the ease and convenience of renting a bike with GetYourRide. </p>
                          </div>
                         <!-- About Footer Content End -->
                      </div>
@@ -1083,10 +1079,10 @@ $company = $admin->get_company();
                     <div class="footer-links footer-quick-links">
                         <h3>legal policy</h3>
                         <ul>                            
-                            <li><a href="<?php echo $web_url;?>#">term & condition</a></li>
-                            <li><a href="<?php echo $web_url;?>#">privacy policy</a></li>
-                            <li><a href="<?php echo $web_url;?>#">legal notice</a></li>
-                            <li><a href="<?php echo $web_url;?>#">accessibility</a></li>
+                            <li><a href="#">term & condition</a></li>
+                            <li><a href="#">privacy policy</a></li>
+                            <li><a href="#">legal notice</a></li>
+                            <li><a href="#">accessibility</a></li>
                         </ul>
                     </div>
                     <!-- Footer Quick Links End -->
@@ -1131,7 +1127,7 @@ $company = $admin->get_company();
                     <div class="col-lg-6 col-md-7">
                         <!-- Footer Copyright Start -->
                         <div class="footer-copyright-text">
-                            <p>© 2024 Get Your Ride. All rights reserved.</p>
+                            <p>© <?php echo date('Y');?> Get Your Ride. All rights reserved.</p>
                         </div>
                         <!-- Footer Copyright End -->
                     </div>
@@ -1189,6 +1185,6 @@ $company = $admin->get_company();
     <script src="<?php echo $web_url;?>js/wow.js"></script>
     <!-- Main Custom js file -->
     <script src="<?php echo $web_url;?>js/function.js"></script>
-	<script src="<?php echo $web_url;?>js/theme-panel2.js"></script>
+	
 </body>
 </html>
