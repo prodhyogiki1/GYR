@@ -64,7 +64,7 @@ $company = $admin->get_company();
 				<div class="container">
 					<!-- Logo Start -->
 					<a class="navbar-brand" href="<?php echo $web_url;?>./">
-						<img src="<?php echo $base_url.'theme/assets/images/'.$company[0]['logo'];?>" style="height:45px; width:auto;" >
+						<img src="https://mypartner.getyourride.in/theme/assets/images/logos/logo.jpeg" style="height:45px; width:auto;" >
 					</a>
 					<!-- Logo End -->
 
