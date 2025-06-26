@@ -16,8 +16,12 @@ include('header.php');?>
                 </a>
 
                 <?php if(isset($_GET['status'])){?>
-			<p class="auth-msg alert alert-danger">Wrong credentials</p>
-			<?php }?>
+                <p class="auth-msg alert alert-danger">Wrong credentials</p>
+                <?php }if(isset($_GET['logout'])){?>
+                  <p class="auth-msg alert alert-info">Logout Successfully</p>
+                  <?php }?>
+
+
                 <form name="login" action="../processlogin.php" method="post">
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Username</label>

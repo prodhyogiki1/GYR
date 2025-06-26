@@ -10,6 +10,6 @@ unset($_SESSION['ucompany']);
 
 ?>
 <script type="text/javascript">
-    alert("Successfully logout!") ;
-    window.location = "index.php";
+    //alert("Successfully logout!") ;
+    window.location = "index.php?logout=0";
 </script>
