@@ -6,12 +6,12 @@
 	//
 //-- offline
 //$web_url = "http://localhost/gyr/website/";
-//$base_url="https://mypartner.getyourride.in/";
+//$base_url="http://localhost/gyr/mypartner/";
 
 
 //-- online
 $web_url = "https://getyourride.in/website/";
-$base_url="http://localhost/gyr/mypartner/"; 
+$base_url="https://mypartner.getyourride.in/"; 
 
 	session_start();
 	//create a new function to check if the session variable member_id is on set
