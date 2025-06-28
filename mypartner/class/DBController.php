@@ -4,25 +4,25 @@
 
 
     //-- offline
-    // private $host = "localhost";
-    // private $user = "root";
-    // private $password = "";
-    // private $database = "gyr";
-    // private $conn;
+    private $host = "localhost";
+    private $user = "root";
+    private $password = "";
+    private $database = "gyr";
+    private $conn;
 
     //-- online
-    private $host = "localhost";
-    private $user = "u667746222_gyk_user";
-    private $password = "Gyr@#0291";
-    private $database = "u667746222_gyk";
-    private $conn;
+    // private $host = "localhost";
+    // private $user = "u667746222_gyk_user";
+    // private $password = "Gyr@#0291";
+    // private $database = "u667746222_gyk";
+    // private $conn;
 
 	
 
    function __construct() {
         //$conn = $this->connectDB($database,$uri,$driverOptions);
         $this->conn = $this->connectDB();
-        error_reporting(0);
+      //  error_reporting(0);
     }   
     
     function default_timezone()
