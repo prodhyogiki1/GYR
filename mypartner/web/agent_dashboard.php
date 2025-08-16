@@ -231,8 +231,15 @@
                         echo "<td>".$abikes[$k1]['color']."</td>";
                         echo "<td>".$abikes[$k1]['price_per_km']."</td>";
                         echo "<td>".$abikes[$k1]['per_day_km']."</td>";
-                        echo "<td>".$abikes[$k1]['available']."</td>";
-                        echo "<td></td>";
+                        echo "<td>";
+                        
+                          $status = $abikes[$k1]['available'];
+                          if($status=='1'){$reason='Booked';}
+                          if($status=='0'){$reason='Available';}
+                           echo $reason;
+
+                        echo "</td>";
+                        
                       echo "</tr>";
                   }
                   echo "<tr><td colspan='6'><a href='$base_url/index.php?action=dashboard&page=bike_agent_viewall'>View All</a></td></tr>";

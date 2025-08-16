@@ -73,7 +73,7 @@
                     <div class="row alig n-items-start">
                       <div class="col-8">
                         <h5 class="card-title mb-10 fw-semibold"> Product Sales</h5>
-                        <h4 class="fw-semibold mb-3">$6,820</h4>
+                        <h4 class="fw-semibold mb-3">₹<?php echo number_format($admin->get_total_sales_inr()); ?></h4>
                         <div class="d-flex align-items-center pb-1">
                           <span
                             class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
@@ -87,13 +87,79 @@
                         <div class="d-flex justify-content-end">
                           <div
                             class="text-white bg-danger rounded-circle p-7 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-currency-dollar fs-6"></i>
+                            <i class="ti ti-currency-rupee fs-6"></i>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div id="earning"></div>
+                  <script>
+                    $(document).ready(function() {
+                        // Get monthly sales data from PHP
+                        var monthlyData = <?php 
+                            $monthly_sales = $admin->get_monthly_sales_data();
+                            echo json_encode(array_values($monthly_sales));
+                        ?>;
+                        
+                        // Chart configuration for monthly sales
+                        var earningChartOptions = {
+                            series: [{
+                                name: 'Sales',
+                                data: monthlyData
+                            }],
+                            chart: {
+                                type: 'area',
+                                height: 100,
+                                toolbar: {
+                                    show: false
+                                }
+                            },
+                            dataLabels: {
+                                enabled: false
+                            },
+                            stroke: {
+                                curve: 'smooth',
+                                width: 2
+                            },
+                            colors: ['#ff6b6b'],
+                            fill: {
+                                type: 'gradient',
+                                gradient: {
+                                    shadeIntensity: 1,
+                                    opacityFrom: 0.7,
+                                    opacityTo: 0.2,
+                                    stops: [0, 90, 100]
+                                }
+                            },
+                            xaxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                labels: {
+                                    show: false
+                                }
+                            },
+                            yaxis: {
+                                labels: {
+                                    show: false
+                                }
+                            },
+                            grid: {
+                                show: false
+                            },
+                            tooltip: {
+                                y: {
+                                    formatter: function (val) {
+                                        return '₹' + val.toLocaleString('en-IN');
+                                    }
+                                }
+                            }
+                        };
+                        
+                        // Initialize the chart
+                        var earningChart = new ApexCharts(document.querySelector("#earning"), earningChartOptions);
+                        earningChart.render();
+                    });
+                  </script>
                 </div>
               </div>
             </div>
@@ -106,59 +172,102 @@
                 <div class="mb-4">
                   <h5 class="card-title fw-semibold">Upcoming Schedules</h5>
                 </div>
-                <ul class="timeline-widget mb-0 position-relative mb-n5">
+                <style>
+                  .timeline-widget {
+                    padding-left: 0;
+                  }
+                  .timeline-item {
+                    margin-bottom: 22px;
+                    min-height: 60px;
+                    align-items: flex-start !important;
+                  }
+                  .timeline-badge-wrap {
+                    margin-right: 8px;
+                  }
+                  .timeline-desc {
+                    padding-left: 24px;
+                    word-break: break-word;
+                    width: 100%;
+                    display: block;
+                  }
+                  .timeline-desc .fw-semibold,
+                  .timeline-desc .text-muted,
+                  .timeline-desc .text-primary {
+                    display: block;
+                    width: 100%;
+                  }
+                </style>
+                <ul class="timeline-widget mb-0 position-relative mb-n5" style="max-height: 400px; overflow-y: auto;">
+                  <?php 
+                    $recent_bookings = $admin->get_recent_bookings();
+                    if($recent_bookings) {
+                      foreach($recent_bookings as $booking) {
+                        // Determine status color and text
+                        $status_color = 'primary';
+                        $status_text = 'Pending';
+                        
+                        if($booking['status'] == '1') {
+                          $status_color = 'warning';
+                          $status_text = 'Pending';
+                        } elseif($booking['status'] == '2') {
+                          $status_color = 'success';
+                          $status_text = 'Ongoing';
+                        } elseif($booking['status'] == '3') {
+                          $status_color = 'info';
+                          $status_text = 'Completed';
+                        } elseif($booking['status'] == '4') {
+                          $status_color = 'danger';
+                          $status_text = 'Cancelled by Agent';
+                        } elseif($booking['status'] == '5') {
+                          $status_color = 'danger';
+                          $status_text = 'Cancelled by Customer';
+                        }
+                        
+                        // Format booking date
+                        $booking_date = date('d M H:i', strtotime($booking['booking_date_time']));
+                        $booking_period = date('d M', strtotime($booking['booking_from'])) . ' - ' . date('d M', strtotime($booking['booking_to']));
+                        
+                        // Agent name
+                        $agent_name = $booking['agent_fname'] . ' ' . $booking['agent_lname'];
+                        if(empty($agent_name) || $agent_name == ' ') {
+                          $agent_name = 'Agent ID: ' . $booking['aid'];
+                        }
+                  ?>
                   <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30</div>
+                    <div class="timeline-time text-dark flex-shrink-0 text-end"><?php echo $booking_date; ?></div>
                     <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-2"></span>
+                      <span class="timeline-badge border-2 border border-<?php echo $status_color; ?> flex-shrink-0 my-2"></span>
                       <span class="timeline-badge-border d-block flex-shrink-0"></span>
                     </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment received from John Doe of $385.90</div>
+                    <div class="timeline-desc fs-3 text-dark mt-n1">
+                      <div class="fw-semibold">
+                        Booking #GYR<?php echo $booking['id']; ?> - <?php echo $status_text; ?>
+                      </div>
+                      <div class="text-muted fs-2">
+                        Customer: <?php echo $booking['customer_name'] ?: 'N/A'; ?> (<?php echo $booking['customer_phone']; ?>)
+                      </div>
+                      <div class="text-muted fs-2">
+                        Period: <?php echo $booking_period; ?> | Amount: ₹<?php echo number_format($booking['amount']); ?>
+                      </div>
+                      <div class="text-primary fs-2 fw-semibold">
+                        Agent: <?php echo $agent_name; ?>
+                      </div>
+                    </div>
                   </li>
+                  <?php 
+                      }
+                    } else {
+                  ?>
                   <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">10:00 am</div>
+                    <div class="timeline-time text-dark flex-shrink-0 text-end">--</div>
                     <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-info flex-shrink-0 my-2"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                      <span class="timeline-badge border-2 border border-secondary flex-shrink-0 my-2"></span>
                     </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a
-                        href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
+                    <div class="timeline-desc fs-3 text-dark mt-n1">
+                      <div class="text-muted">No bookings found</div>
                     </div>
                   </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-success flex-shrink-0 my-2"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment was made of $64.95 to Michael</div>
-                  </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-warning flex-shrink-0 my-2"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a
-                        href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
-                    </div>
-                  </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-danger flex-shrink-0 my-2"></span>
-                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New arrival recorded 
-                    </div>
-                  </li>
-                  <li class="timeline-item d-flex position-relative overflow-hidden">
-                    <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
-                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                      <span class="timeline-badge border-2 border border-success flex-shrink-0 my-2"></span>
-                    </div>
-                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment Done</div>
-                  </li>
+                  <?php } ?>
                 </ul>
               </div>
             </div>
@@ -169,7 +278,7 @@
                 <div
                   class="d-flex mb-4 justify-content-between align-items-center"
                 >
-                  <h5 class="mb-0 fw-bold">Top Paying Clients</h5>
+                  <h5 class="mb-0 fw-bold">Top Performing Agents</h5>
 
                   <div class="dropdown">
                     <button
@@ -185,14 +294,6 @@
                       aria-labelledby="dropdownMenuButton1"
                     >
                       <li><a class="dropdown-item" href="#">View All Agent</a></li>
-                      <li>
-                        <a class="dropdown-item" href="#">Another action</a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#"
-                          >Something else here</a
-                        >
-                      </li>
                     </ul>
                   </div>
                 </div>
@@ -203,148 +304,33 @@
                   >
                     <thead>
                       <tr>
-                        <th scope="col">Profile</th>
-                        <th scope="col">Hour Rate</th>
-                        <th scope="col">Extra classes</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">S.No.</th>
+                        <th scope="col">Agent Name</th>
+                        <th scope="col">Nu of Booking</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">City</th>
                       </tr>
                     </thead>
                     <tbody>
+                      <?php 
+                        $top_agents = $admin->get_top_performing_agents();
+                        if($top_agents) {
+                          $sno = 1;
+                          foreach($top_agents as $agent) {
+                      ?>
                       <tr>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <div class="me-4">
-                              <img
-                                src="../assets/images/profile/user1.jpg"
-                                width="50"
-                                class="rounded-circle"
-                                alt=""
-                              />
-                            </div>
-
-                            <div>
-                              <h6 class="mb-1 fw-bolder">Mark J. Freeman</h6>
-                              <p class="fs-3 mb-0">Prof. English</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="fs-3 fw-normal mb-0">$150/hour</p>
-                        </td>
-                        <td>
-                          <p class="fs-3 fw-normal mb-0 text-success">
-                            +53
-                          </p>
-                        </td>
-                        <td>
-                          <span
-                            class="badge bg-light-success rounded-pill text-success px-3 py-2 fs-3"
-                            >Available</span
-                          >
-                        </td>
+                        <td><?php echo $sno++; ?></td>
+                        <td><?php echo htmlspecialchars($agent['agent_name']); ?></td>
+                        <td><?php echo $agent['num_bookings']; ?></td>
+                        <td>₹<?php echo number_format($agent['total_amount']); ?></td>
+                        <td><?php echo htmlspecialchars($agent['city']); ?></td>
                       </tr>
-
-                      <tr>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <div class="me-4">
-                              <img
-                                src="../assets/images/profile/user2.jpg"
-                                width="50"
-                                class="rounded-circle"
-                                alt=""
-                              />
-                            </div>
-
-                            <div>
-                              <h6 class="mb-1 fw-bolder">Nina R. Oldman</h6>
-                              <p class="fs-3 mb-0">Prof. History</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="fs-3 fw-normal mb-0">$150/hour</p>
-                        </td>
-                        <td>
-                          <p class="fs-3 fw-normal mb-0 text-success">
-                            +68
-                          </p>
-                        </td>
-                        <td>
-                          <span
-                            class="badge bg-light-primary rounded-pill text-primary px-3 py-2 fs-3"
-                            >In Class</span
-                          >
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <div class="me-4">
-                              <img
-                                src="../assets/images/profile/user3.jpg"
-                                width="50"
-                                class="rounded-circle"
-                                alt=""
-                              />
-                            </div>
-
-                            <div>
-                              <h6 class="mb-1 fw-bolder">Arya H. Shah</h6>
-                              <p class="fs-3 mb-0">Prof. Maths</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="fs-3 fw-normal mb-0">$150/hour</p>
-                        </td>
-                        <td>
-                          <p class="fs-3 fw-normal mb-0 text-success">
-                            +94
-                          </p>
-                        </td>
-                        <td>
-                          <span
-                            class="badge bg-light-danger rounded-pill text-danger px-3 py-2 fs-3"
-                            >Absent</span
-                          >
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <div class="me-4">
-                              <img
-                                src="../assets/images/profile/user4.jpg"
-                                width="50"
-                                class="rounded-circle"
-                                alt=""
-                              />
-                            </div>
-
-                            <div>
-                              <h6 class="mb-1 fw-bolder">June R. Smith</h6>
-                              <p class="fs-3 mb-0">Prof. Arts</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="fs-3 fw-normal mb-0">$150/hour</p>
-                        </td>
-                        <td>
-                          <p class="fs-3 fw-normal mb-0 text-success">
-                            +27
-                          </p>
-                        </td>
-                        <td>
-                          <span
-                            class="badge bg-light-warning rounded-pill text-warning px-3 py-2 fs-3"
-                            >On Leave</span
-                          >
-                        </td>
-                      </tr>
+                      <?php 
+                          }
+                        } else {
+                      ?>
+                      <tr><td colspan="5" class="text-center">No data found</td></tr>
+                      <?php } ?>
                     </tbody>
                   </table>
                 </div>
@@ -353,82 +339,47 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-              <div class="position-relative">
-                <a href="javascript:void(0)"><img src="../assets/images/products/s4.jpg" class="card-img-top rounded-0" alt="..."></a>
-                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
-              <div class="card-body pt-3 p-4">
-                <h6 class="fw-semibold fs-4">Boat Headphone</h6>
-                <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="fw-semibold fs-4 mb-0">$50 <span class="ms-2 fw-normal text-muted fs-3"><del>$65</del></span></h6>
-                  <ul class="list-unstyled d-flex align-items-center mb-0">
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star-filled text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star-filled text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star-filled text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  </ul>
-                </div>
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title fw-semibold">Top Selling Bikes</h5>
               </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-              <div class="position-relative">
-                <a href="javascript:void(0)"><img src="../assets/images/products/s5.jpg" class="card-img-top rounded-0" alt="..."></a>
-                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
-              <div class="card-body pt-3 p-4">
-                <h6 class="fw-semibold fs-4">MacBook Air Pro</h6>
-                <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="fw-semibold fs-4 mb-0">$650 <span class="ms-2 fw-normal text-muted fs-3"><del>$900</del></span></h6>
-                  <ul class="list-unstyled d-flex align-items-center mb-0">
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star-filled text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star-filled text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star-filled text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-              <div class="position-relative">
-                <a href="javascript:void(0)"><img src="../assets/images/products/s7.jpg" class="card-img-top rounded-0" alt="..."></a>
-                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
-              <div class="card-body pt-3 p-4">
-                <h6 class="fw-semibold fs-4">Red Valvet Dress</h6>
-                <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="fw-semibold fs-4 mb-0">$150 <span class="ms-2 fw-normal text-muted fs-3"><del>$200</del></span></h6>
-                  <ul class="list-unstyled d-flex align-items-center mb-0">
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star-filled text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star-filled text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star-filled text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-xl-3">
-            <div class="card overflow-hidden rounded-2">
-              <div class="position-relative">
-                <a href="javascript:void(0)"><img src="../assets/images/products/s11.jpg" class="card-img-top rounded-0" alt="..."></a>
-                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
-              <div class="card-body pt-3 p-4">
-                <h6 class="fw-semibold fs-4">Cute Soft Teddybear</h6>
-                <div class="d-flex align-items-center justify-content-between">
-                  <h6 class="fw-semibold fs-4 mb-0">$285 <span class="ms-2 fw-normal text-muted fs-3"><del>$345</del></span></h6>
-                  <ul class="list-unstyled d-flex align-items-center mb-0">
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star-filled text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star-filled text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star-filled text-warning"></i></a></li>
-                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                  </ul>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>S.No.</th>
+                        <th>Bike Name</th>
+                        <th>Number of Booking</th>
+                        <th>Success</th>
+                        <th>Cancel</th>
+                        <th>Pending</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php 
+                        $top_bikes = $admin->get_top_selling_bikes();
+                        if($top_bikes) {
+                          $sno = 1;
+                          foreach($top_bikes as $bike) {
+                      ?>
+                      <tr>
+                        <td><?php echo $sno++; ?></td>
+                        <td><?php echo htmlspecialchars($bike['bike_name']); ?></td>
+                        <td><?php echo $bike['total_bookings']; ?></td>
+                        <td><span class="badge bg-success"><?php echo $bike['success_bookings']; ?></span></td>
+                        <td><span class="badge bg-danger"><?php echo $bike['cancel_bookings']; ?></span></td>
+                        <td><span class="badge bg-warning"><?php echo $bike['pending_bookings']; ?></span></td>
+                      </tr>
+                      <?php 
+                          }
+                        } else {
+                      ?>
+                      <tr><td colspan="6" class="text-center">No data found</td></tr>
+                      <?php } ?>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -436,4 +387,5 @@
         </div>
         
        
+      </div>
       </div>

@@ -284,6 +284,109 @@ function get_all_policy()
     return $result;
 }
 
+function get_total_sales_inr()
+{
+    $query = "SELECT SUM(ubt.amount) as total 
+              FROM user_booking_transaction ubt
+              INNER JOIN user_booking ub ON ubt.bookingid = ub.id
+              WHERE ub.status = '1'";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result[0]['total'] ?? 0;
+}
+
+function get_monthly_sales_data()
+{
+    $current_year = date('Y');
+    $query = "SELECT 
+                MONTH(ubt.date_time) as month,
+                SUM(ubt.amount) as total_amount
+              FROM user_booking_transaction ubt
+              INNER JOIN user_booking ub ON ubt.bookingid = ub.id
+              WHERE ub.status = '1' 
+              AND YEAR(ubt.date_time) = '$current_year'
+              GROUP BY MONTH(ubt.date_time)
+              ORDER BY month";
+    
+    $result = $this->db_handle->runBaseQuery($query);
+    
+    // Initialize array with all months set to 0
+    $monthly_data = array();
+    for($i = 1; $i <= 12; $i++) {
+        $monthly_data[$i] = 0;
+    }
+    
+    // Fill in actual data
+    if($result) {
+        foreach($result as $row) {
+            $monthly_data[$row['month']] = (int)$row['total_amount'];
+        }
+    }
+    
+    return $monthly_data;
+}
+
+function get_recent_bookings()
+{
+    $query = "SELECT 
+                ub.id,
+                ub.booking_from,
+                ub.booking_to,
+                ub.amount,
+                ub.status,
+                ub.booking_date_time,
+                ub.uid,
+                ub.aid,
+                u.uname as customer_name,
+                u.phone as customer_phone,
+                a.fname as agent_fname,
+                a.lname as agent_lname,
+                a.phone as agent_phone
+              FROM user_booking ub
+              LEFT JOIN user u ON ub.uid = u.id
+              LEFT JOIN agent a ON ub.aid = a.id
+              ORDER BY ub.booking_date_time DESC
+              LIMIT 15";
+    
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+function get_top_performing_agents()
+{
+    $query = "SELECT 
+                a.id as agent_id,
+                CONCAT(a.fname, ' ', a.lname) as agent_name,
+                COUNT(ub.id) as num_bookings,
+                COALESCE(SUM(ub.amount), 0) as total_amount,
+                c.name as city
+              FROM agent a
+              LEFT JOIN user_booking ub ON a.id = ub.aid
+              LEFT JOIN cities c ON a.city = c.id
+              GROUP BY a.id, agent_name, city
+              ORDER BY num_bookings DESC, total_amount DESC
+              LIMIT 10";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+function get_top_selling_bikes()
+{
+    $query = "SELECT 
+                b.id as bike_id,
+                CONCAT(b.brand, ' ', b.name) as bike_name,
+                COUNT(ub.id) as total_bookings,
+                SUM(CASE WHEN ub.status = '3' THEN 1 ELSE 0 END) as success_bookings,
+                SUM(CASE WHEN ub.status IN ('4', '5') THEN 1 ELSE 0 END) as cancel_bookings,
+                SUM(CASE WHEN ub.status = '1' THEN 1 ELSE 0 END) as pending_bookings
+              FROM bikes b
+              LEFT JOIN agent_bikes ab ON b.id = ab.bid
+              LEFT JOIN user_booking ub ON ab.id = ub.bid
+              GROUP BY b.id, bike_name
+              ORDER BY total_bookings DESC
+              LIMIT 10";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
 
 
 
