@@ -89,7 +89,7 @@ data-sidebar-position="fixed" data-header-position="fixed">
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link primary-hover-bg"
-                href="<?php echo $base_url.'index.php?action=dashboard&page=support_tickets';?>"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=admin_support';?>"
                 aria-expanded="false"
               >
                 <span class="aside-icon p-2 bg-light-primary rounded-3">

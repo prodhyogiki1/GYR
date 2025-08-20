@@ -109,6 +109,60 @@ case "agent":
 			{echo "<div class='text-danger'>Something Went Wrong !!!</div>";}
 		}
 
+		if($_GET['query']=='save_support_ticket')
+		{
+			$aid = $_SESSION['aid'];
+			$subject = $_POST['subject'];
+			$category = $_POST['category'];
+			$message = $_POST['message'];
+			$bid = isset($_POST['booking_id']) ? (int)$_POST['booking_id'] : 0;
+			$support_type = 0; // agent support
+			$insertId = $admin->save_support_ticket($aid,$subject,$category,$message,$bid,$support_type);
+			if($insertId){
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_support&status=1';</script>";
+			} else {
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_support&status=0';</script>";
+			}
+		}
+
+		if($_GET['query']=='save_support_response')
+		{
+			$ticket_id = $_POST['ticket_id'];
+			$comment = $_POST['response'];
+			$admin_id = $_SESSION['uid'];
+			$insertId = $admin->save_support_ticket_response($ticket_id, $comment, $admin_id);
+			if($insertId){
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=admin_support&status=1';</script>";
+			} else {
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=admin_support&status=0';</script>";
+			}
+		}
+
+		if($_GET['query']=='save_agent_response')
+		{
+			$ticket_id = $_POST['ticket_id'];
+			$comment = $_POST['response'];
+			$agent_id = $_SESSION['aid'];
+			$insertId = $admin->save_agent_response($ticket_id, $comment, $agent_id);
+			if($insertId){
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_my_tickets&status=1';</script>";
+			} else {
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_my_tickets&status=0';</script>";
+			}
+		}
+
+		if($_GET['query']=='update_ticket_status')
+		{
+			$ticket_id = $_POST['ticket_id'];
+			$status = $_POST['status'];
+			$result = $admin->update_support_ticket_status($ticket_id, $status);
+			if($result){
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=admin_support&status=1';</script>";
+			} else {
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=admin_support&status=0';</script>";
+			}
+		}
+
 		if($_GET['query']=='booking_accept')
 		{
 			$rate=$agent->booking_accept($_POST['mode_of_payment'],$_POST['amount'],$_POST['status'],$_POST['bookingid'],$_POST['km_covered_start']);
@@ -214,6 +268,33 @@ case "admin":
 				
 
 				
+			}
+
+			//--- support ticket response
+			if($_GET['query']=='save_support_response')
+			{
+				$ticket_id = $_POST['ticket_id'];
+				$comment = $_POST['response'];
+				$admin_id = $_SESSION['uid'];
+				$insertId = $admin->save_support_ticket_response($ticket_id, $comment, $admin_id);
+				if($insertId){
+					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=admin_support&status=1';</script>";
+				} else {
+					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=admin_support&status=0';</script>";
+				}
+			}
+
+			//--- update ticket status
+			if($_GET['query']=='update_ticket_status')
+			{
+				$ticket_id = $_POST['ticket_id'];
+				$status = $_POST['status'];
+				$result = $admin->update_support_ticket_status($ticket_id, $status);
+				if($result){
+					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=admin_support&status=1';</script>";
+				} else {
+					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=admin_support&status=0';</script>";
+				}
 			}
 			
 		}	

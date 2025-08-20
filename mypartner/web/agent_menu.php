@@ -99,6 +99,19 @@ data-sidebar-position="fixed" data-header-position="fixed">
             <li class="sidebar-item">
               <a
                 class="sidebar-link sidebar-link secondary-hover-bg"
+                href="<?php echo $base_url.'index.php?action=dashboard&page=agent_support';?>"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-secondary rounded-3">
+                  <i class="ti ti-life-buoy fs-7 text-secondary"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">Support</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link secondary-hover-bg"
                 href="<?php echo $base_url.'index.php?action=dashboard&page=agent_payment';?>"
                 aria-expanded="false"
               >
