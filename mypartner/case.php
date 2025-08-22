@@ -296,6 +296,64 @@ case "admin":
 					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=admin_support&status=0';</script>";
 				}
 			}
+
+			//--- add policy
+			if($_GET['query']=='add_policy')
+			{
+				$policy_name = $_POST['policy_name'];
+				$policy_type = $_POST['policy_type'];
+				$calculation_on = $_POST['calculation_on'];
+				$value = $_POST['value'];
+				$result = $admin->add_policy($policy_name, $policy_type, $calculation_on, $value);
+				if($result){
+					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=policy&status=1';</script>";
+				} else {
+					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=policy&status=0';</script>";
+				}
+			}
+
+			//--- update policy
+			if($_GET['query']=='update_policy')
+			{
+				$policy_id = $_POST['policy_id'];
+				$policy_name = $_POST['policy_name'];
+				$policy_type = $_POST['policy_type'];
+				$calculation_on = $_POST['calculation_on'];
+				$value = $_POST['value'];
+				$result = $admin->update_policy($policy_id, $policy_name, $policy_type, $calculation_on, $value);
+				if($result){
+					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=policy&status=1';</script>";
+				} else {
+					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=policy&status=0';</script>";
+				}
+			}
+
+			//--- delete policy
+			if($_GET['query']=='delete_policy')
+			{
+				$policy_id = $_POST['policy_id'];
+				$result = $admin->delete_policy($policy_id);
+				if($result){
+					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=policy&status=1';</script>";
+				} else {
+					echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=policy&status=0';</script>";
+				}
+			}
+
+			//--- get policy for editing
+			if($_GET['query']=='get_policy')
+			{
+				$policy_id = $_GET['id'];
+				$policy = $admin->get_policy_by_id($policy_id);
+				if($policy) {
+					$response = array('success' => true, 'policy' => $policy[0]);
+				} else {
+					$response = array('success' => false, 'message' => 'Policy not found');
+				}
+				header('Content-Type: application/json');
+				echo json_encode($response);
+				exit;
+			}
 			
 		}	
 break;

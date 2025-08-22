@@ -16,122 +16,87 @@ if(isset($_GET['status'])) {
 ?>
 
 <div class="container-fluid">
-    <!-- Header with View All link -->
+    <!-- Header -->
     <div class="row mb-3">
         <div class="col-md-6">
-            <h4 class="mb-0">Policy Management</h4>
+            <h4 class="mb-0">All Policies</h4>
         </div>
         <div class="col-md-6 text-end">
-            <a href="<?php echo $base_url.'index.php?action=dashboard&page=viewall_policies';?>" class="btn btn-primary">
-                <i class="ti ti-eye me-1"></i>View All Policies
+            <a href="<?php echo $base_url.'index.php?action=dashboard&page=policy';?>" class="btn btn-primary">
+                <i class="ti ti-plus me-1"></i>Add New Policy
             </a>
         </div>
     </div>
 
-    <!-- Add Policy Form -->
+    <!-- Policies Data Table -->
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title mb-0">Add New Policy</h5>
+            <h5 class="card-title mb-0">Policies List</h5>
         </div>
         <div class="card-body">
-            <form name="add_policy" id="add_policy" method="post" action="<?php echo $base_url.'index.php?action=admin&query=add_policy'?>">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="policy_name" class="form-label">Policy Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="policy_name" name="policy_name" placeholder="Enter Policy Name" required>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="policy_type" class="form-label">Policy Type <span class="text-danger">*</span></label>
-                            <select class="form-select" id="policy_type" name="policy_type" required>
-                                <option value="">Select Policy Type</option>
-                                <option value="1">Booking</option>
-                                <option value="5">Cancellation</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="calculation_on" class="form-label">Calculation On <span class="text-danger">*</span></label>
-                            <select class="form-select" id="calculation_on" name="calculation_on" required>
-                                <option value="">Select Calculation</option>
-                                <option value="Percentage">Percentage</option>
-                                <option value="Amount">Amount</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="value" class="form-label">Value <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" id="value" name="value" step="0.01" min="0" placeholder="Enter Value" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="ti ti-plus me-1"></i>Add Policy
-                        </button>
-                        <button type="reset" class="btn btn-secondary ms-2">
-                            <i class="ti ti-refresh me-1"></i>Reset
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Existing Policies -->
-    <div class="card mt-4">
-        <div class="card-header">
-            <h5 class="card-title mb-0">Existing Policies</h5>
-        </div>
-        <div class="card-body">
-            <?php 
-            $policies = $admin->get_all_policies();
-            if($policies && count($policies) > 0) {
-                foreach($policies as $policy) {
-                    $policy_type_text = ($policy['policy_type'] == '1') ? 'Booking' : 'Cancellation';
-            ?>
-            <div class="row mb-3 p-3 border rounded">
-                <div class="col-md-3">
-                    <strong>Policy Name:</strong><br>
-                    <span class="text-primary"><?php echo htmlspecialchars($policy['policy_name']); ?></span>
-                </div>
-                <div class="col-md-2">
-                    <strong>Type:</strong><br>
-                    <span class="badge bg-<?php echo ($policy['policy_type'] == '1') ? 'success' : 'warning'; ?>">
-                        <?php echo $policy_type_text; ?>
-                    </span>
-                </div>
-                <div class="col-md-2">
-                    <strong>Calculation:</strong><br>
-                    <span class="text-info"><?php echo htmlspecialchars($policy['calculation_on']); ?></span>
-                </div>
-                <div class="col-md-2">
-                    <strong>Value:</strong><br>
-                    <span class="text-success"><?php echo htmlspecialchars($policy['value']); ?></span>
-                </div>
-                <div class="col-md-3 text-end">
-                    <button type="button" class="btn btn-sm btn-primary" onclick="editPolicy(<?php echo $policy['id']; ?>)">
-                        <i class="ti ti-edit me-1"></i>Edit
-                    </button>
-                    <button type="button" class="btn btn-sm btn-danger" onclick="deletePolicy(<?php echo $policy['id']; ?>, '<?php echo htmlspecialchars($policy['policy_name']); ?>')">
-                        <i class="ti ti-trash me-1"></i>Delete
-                    </button>
-                </div>
+            <div class="table-responsive">
+                <table id="policiesTable" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Policy Name</th>
+                            <th>Policy Type</th>
+                            <th>Calculation On</th>
+                            <th>Value</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                        $policies = $admin->get_all_policies();
+                        if($policies && count($policies) > 0) {
+                            foreach($policies as $policy) {
+                                $policy_type_text = ($policy['policy_type'] == '1') ? 'Booking' : 'Cancellation';
+                                $policy_type_badge = ($policy['policy_type'] == '1') ? 'success' : 'warning';
+                        ?>
+                        <tr>
+                            <td><?php echo $policy['id']; ?></td>
+                            <td>
+                                <strong><?php echo htmlspecialchars($policy['policy_name']); ?></strong>
+                            </td>
+                            <td>
+                                <span class="badge bg-<?php echo $policy_type_badge; ?>">
+                                    <?php echo $policy_type_text; ?>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="text-info">
+                                    <?php echo htmlspecialchars($policy['calculation_on']); ?>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="text-success fw-bold">
+                                    <?php echo htmlspecialchars($policy['value']); ?>
+                                    <?php echo ($policy['calculation_on'] == 'Percentage') ? '%' : ''; ?>
+                                </span>
+                            </td>
+                            <td><?php echo date('d M Y H:i', strtotime($policy['created_at'])); ?></td>
+                            <td><?php echo date('d M Y H:i', strtotime($policy['updated_at'])); ?></td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-sm btn-primary" onclick="editPolicy(<?php echo $policy['id']; ?>)">
+                                        <i class="ti ti-edit"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="deletePolicy(<?php echo $policy['id']; ?>, '<?php echo htmlspecialchars($policy['policy_name']); ?>')">
+                                        <i class="ti ti-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php 
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
-            <?php 
-                }
-            } else {
-                echo '<div class="text-center text-muted py-4">
-                        <i class="ti ti-file-text fs-1"></i>
-                        <p class="mt-2">No policies found. Add your first policy above.</p>
-                      </div>';
-            }
-            ?>
         </div>
     </div>
 </div>
@@ -214,7 +179,52 @@ if(isset($_GET['status'])) {
     </div>
 </div>
 
+<!-- DataTables CSS and JS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.bootstrap5.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.bootstrap5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.min.js"></script>
+
 <script>
+$(document).ready(function() {
+    // Initialize DataTable with advanced features
+    $('#policiesTable').DataTable({
+        responsive: true,
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+        pageLength: 25,
+        order: [[0, 'desc']],
+        columnDefs: [
+            {
+                targets: [7], // Actions column
+                orderable: false,
+                searchable: false
+            }
+        ],
+        language: {
+            search: "Search policies:",
+            lengthMenu: "Show _MENU_ policies per page",
+            info: "Showing _START_ to _END_ of _TOTAL_ policies",
+            paginate: {
+                first: "First",
+                last: "Last",
+                next: "Next",
+                previous: "Previous"
+            }
+        }
+    });
+});
+
 function editPolicy(policyId) {
     // Fetch policy data and populate modal
     fetch('<?php echo $base_url; ?>index.php?action=admin&query=get_policy&id=' + policyId)
@@ -257,7 +267,3 @@ setTimeout(function() {
     });
 }, 5000);
 </script>
-
-
-     
-     

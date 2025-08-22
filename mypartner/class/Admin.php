@@ -96,6 +96,71 @@ function get_all_support_tickets()
     return $result;
 }
 
+// add new support ticket
+function save_support_ticket($aid,$subject,$category,$message,$bid = 0,$support_type = 0)
+{
+    $now = $this->db_handle->default_timezone();
+    $query = "insert into support_tickets(name,category,status,last_modified,date_time,aid,bid,support_type)VALUES(?,?,?,?,?,?,?,?)";
+    $paramType = "ssissiii";
+    $paramValue = array($subject,$category,0,$now,$now,$aid,(int)$bid,(int)$support_type);
+    $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
+    return $insertId;
+}
+
+// update support ticket
+function update_support_ticket($id,$subject,$category,$status,$support_type,$aid,$bid)
+{
+    $now = $this->db_handle->default_timezone();
+    $query = "update support_tickets set name='$subject',category='$category',status='$status',last_modified='$now',aid='$aid',bid='$bid',support_type='$support_type' where id='$id'";
+    $result = $this->db_handle->update($query);
+    return $result;
+}
+
+// get support tickets by agent ID
+function get_support_tickets_by_agent($aid)
+{
+    $query = "SELECT * FROM support_tickets WHERE aid = '$aid' ORDER BY date_time DESC";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+// get support ticket responses/comments
+function get_support_ticket_responses($ticket_id)
+{
+    $query = "SELECT * FROM support_tickets_details WHERE sid = '$ticket_id' ORDER BY id ASC";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+// save support ticket response/comment
+function save_support_ticket_response($ticket_id, $comment, $admin_id = 1)
+{
+    $query = "INSERT INTO support_tickets_details(sid, comment, commentby) VALUES(?, ?, ?)";
+    $paramType = "isi";
+    $paramValue = array($ticket_id, $comment, $admin_id);
+    $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
+    return $insertId;
+}
+
+// save agent response to support ticket
+function save_agent_response($ticket_id, $comment, $agent_id = 0)
+{
+    $query = "INSERT INTO support_tickets_details(sid, comment, commentby) VALUES(?, ?, ?)";
+    $paramType = "isi";
+    $paramValue = array($ticket_id, $comment, $agent_id);
+    $insertId = $this->db_handle->insert($query, $paramType, $paramValue);
+    return $insertId;
+}
+
+// update support ticket status
+function update_support_ticket_status($ticket_id, $status)
+{
+    $now = $this->db_handle->default_timezone();
+    $query = "UPDATE support_tickets SET status = '$status', last_modified = '$now' WHERE id = '$ticket_id'";
+    $result = $this->db_handle->update($query);
+    return $result;
+}
+
 function get_all_feedback()
 {
     $query = "select * from feedback";
@@ -187,6 +252,7 @@ function read_alerts($uid)
     $result = $this->db_handle->runBaseQuery($query);
     return $result;
 }
+
 
 
 
@@ -384,6 +450,50 @@ function get_top_selling_bikes()
               GROUP BY b.id, bike_name
               ORDER BY total_bookings DESC
               LIMIT 10";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+//---------- policy methods
+function add_policy($policy_name, $policy_type, $calculation_on, $value)
+{
+    $query = "INSERT INTO policies (policy_name, policy_type, calculation_on, value, created_at, updated_at) VALUES (?, ?, ?, ?, NOW(), NOW())";
+    $paramType = "siss";
+    $paramValue = array($policy_name, $policy_type, $calculation_on, $value);
+    $result = $this->db_handle->insert($query, $paramType, $paramValue);
+    return $result;
+}
+
+function update_policy($policy_id, $policy_name, $policy_type, $calculation_on, $value)
+{
+    $query = "UPDATE policies SET policy_name = ?, policy_type = ?, calculation_on = ?, value = ?, updated_at = NOW() WHERE id = ?";
+    $paramType = "sissi";
+    $paramValue = array($policy_name, $policy_type, $calculation_on, $value, $policy_id);
+    $result = $this->db_handle->update($query, $paramType, $paramValue);
+    return $result;
+}
+
+function delete_policy($policy_id)
+{
+    $query = "DELETE FROM policies WHERE id = ?";
+    $paramType = "i";
+    $paramValue = array($policy_id);
+    $result = $this->db_handle->update($query, $paramType, $paramValue);
+    return $result;
+}
+
+function get_policy_by_id($policy_id)
+{
+    $query = "SELECT * FROM policies WHERE id = ?";
+    $paramType = "i";
+    $paramValue = array($policy_id);
+    $result = $this->db_handle->runQuery($query, $paramType, $paramValue);
+    return $result;
+}
+
+function get_all_policies()
+{
+    $query = "SELECT * FROM policies ORDER BY created_at DESC";
     $result = $this->db_handle->runBaseQuery($query);
     return $result;
 }
