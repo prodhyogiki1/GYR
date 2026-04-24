@@ -196,6 +196,7 @@ class User
                         $city = $this->admin->get_city($result[$r]['city']);
 
                         $returnObj = new stdClass();
+                     $returnObj->id = $result[$r]['city'];
                      $returnObj->city = $city[0]['name'];
                     array_push($data, $returnObj);
                     }

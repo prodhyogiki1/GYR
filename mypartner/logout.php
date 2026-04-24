@@ -8,6 +8,14 @@ unset($_SESSION['uid']);
 unset($_SESSION['uname']); 		
 unset($_SESSION['ucompany']);
 
+// Unset user login session variables
+unset($_SESSION['user_id']);
+unset($_SESSION['user_name']);
+unset($_SESSION['user_email']);
+unset($_SESSION['user_phone']);
+unset($_SESSION['user_address']);
+unset($_SESSION['user_logged_in']);
+
 ?>
 <script type="text/javascript">
     //alert("Successfully logout!") ;

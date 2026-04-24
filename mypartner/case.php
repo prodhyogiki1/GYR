@@ -220,6 +220,19 @@ case "agent":
 			$bank_details=$agent->bank_details($_POST['acc_name'],$_POST['acc_nu'],$_POST['ifsc'],$_POST['bank_name'],$_SESSION['uid']);
 			echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=agent_profile&id=".$_POST['id']."&status=3';</script>";
 		}
+
+		if($_GET['query']=='edit_agent')
+		{
+			$edit = $agent->edit_agent($_POST['fname'],$_POST['lname'],$_POST['phone'],$_POST['email'],$_POST['designation'],$_POST['phone2'],$_POST['bname'],$_POST['baddress'],$_POST['landmark'],$_POST['country'],$_POST['state'],$_POST['city'],$_POST['google_business_link'],$_POST['gstin'],$_POST['pan'],$_POST['business_licence'],$_POST['id']);
+			if($edit)
+			{
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=edit_agent&id=".$_POST['id']."&status=1';</script>";
+			}
+			else
+			{
+				echo "<script>window.location.href='".$base_url."index.php?action=dashboard&page=edit_agent&id=".$_POST['id']."&status=0';</script>";
+			}
+		}
 	}
 	break;
 

@@ -120,7 +120,29 @@ function add_agent($fname,$lname,$phone,$email,$designation,$phone2,$bname,$land
     } 
 }
 
-function edit_agent(){}
+function edit_agent($fname,$lname,$phone,$email,$designation,$phone2,$bname,$baddress,$landmark,$country,$state,$city,$google_business_link,$gstin,$pan,$business_licence,$id)
+{
+    $update_fields = "fname='$fname',lname='$lname',phone='$phone',email='$email',designation='$designation',phone2='$phone2',bname='$bname',baddress='$baddress',landmark='$landmark',country='$country',state='$state',city='$city',google_business_link='$google_business_link',gstin='$gstin',pan='$pan',business_licence='$business_licence'";
+    
+    if(isset($_FILES['gstin_file']) && $_FILES['gstin_file']['name'] != ''){
+        $gstin_file = $this->admin->upload_files($_FILES['gstin_file']);
+        $update_fields .= ",gstin_file='$gstin_file'";
+    }
+    
+    if(isset($_FILES['pan_file']) && $_FILES['pan_file']['name'] != ''){
+        $pan_file = $this->admin->upload_files($_FILES['pan_file']);
+        $update_fields .= ",pan_file='$pan_file'";
+    }
+    
+    if(isset($_FILES['business_licence_file']) && $_FILES['business_licence_file']['name'] != ''){
+        $business_licence_file = $this->admin->upload_files($_FILES['business_licence_file']);
+        $update_fields .= ",business_licence_file='$business_licence_file'";
+    }
+    
+    $query = "update agent set $update_fields where id='$id'";
+    $result = $this->db_handle->update($query);
+    return $result;
+}
 function viewall()
 {
     $query="select * from agent ORDER BY id DESC";

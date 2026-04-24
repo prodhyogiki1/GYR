@@ -1,5 +1,4 @@
 <?php 
-
 include('mypartner/session.php');
 include('mypartner/class/Admin.php');
 $admin = new Admin();
@@ -18,7 +17,7 @@ $company = $admin->get_company();
 	<!-- Page Title -->
 	<title><?php echo $company[0]['cname']; ?></title>
 	<!-- Favicon Icon -->
-	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $web_url;?>images/favicon.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $web_url;?>images/favicon_new.png">
 	<!-- Google Fonts Css-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,11 +39,17 @@ $company = $admin->get_company();
     <!-- font awesome -->
     <link rel="stylesheet" href="<?php echo $web_url;?>css/fontawesome-672/css/fontawesome.min.css">
     <link rel="stylesheet" href="<?php echo $web_url;?>css/fontawesome-672/css/brands.css">
+    <link rel="stylesheet" href="<?php echo $web_url;?>css/fontawesome-672/css/solid.css">
 	<!-- Main Custom Css -->
 	<link href="<?php echo $web_url;?>css/custom.css?ver=<?php echo rand(0,999);?>" rel="stylesheet" media="screen">
     <!-- Main untouched Css -->
 	<link href="<?php echo $web_url;?>css/untouched.css?ver=<?php echo rand(0,999);?>" rel="stylesheet" media="screen">
-    
+    <!-- Select2 Css -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+    <style>
+        .select2-container { width: 100% !important; }
+        .select2-container .select2-dropdown { z-index: 2099 !important; }
+    </style>
 </head>
 <body>
 
@@ -52,7 +57,7 @@ $company = $admin->get_company();
 	<div class="preloader">
 		<div class="loading-container">
 			<div class="loading"></div>
-			<div id="loading-icon"><img src="<?php echo $web_url;?>images/loader.svg" alt=""></div>
+			<div id="loading-icon"><img src="<?php echo $web_url;?>images/favicon_new.png" alt=""></div>
 		</div>
 	</div>
 	<!-- Preloader End -->
@@ -64,7 +69,7 @@ $company = $admin->get_company();
 				<div class="container">
 					<!-- Logo Start -->
 					<a class="navbar-brand" href="<?php echo $web_url;?>./">
-						<img src="https://getyourride.in/mypartner/theme/assets/images/logo.jpeg" style="height:45px; width:auto;" >
+						<img src="<?php echo $web_url;?>images/logo_new.png" style="height:55px; width:auto;" >
 					</a>
 					<!-- Logo End -->
 
@@ -115,12 +120,18 @@ $company = $admin->get_company();
                                     </ul>
                                 </li> -->
                                 <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+<!-- Let’s Start Button Start -->
+
+                                <li class="btn btn-secondary">
+                                    <i class="fas fa-map-marker-alt mr-2" aria-hidden="true"></i>
+                            <span id="selectedLocationText"><?php echo !empty($_SESSION['location_name']) ? $_SESSION['location_name'] : 'Select Location'; ?></span>
+                                </li>
                             </ul>
                         </div>
-                        <!-- Let’s Start Button Start -->
-                        <div class="header-btn">
-                            <a href="#" class="btn-default"><?php echo $company[0]['phone'];?></a>
-                        </div>
+                                                
+                        
+                            <a href="#" class="btn btn-warning">Login / Sign Up</a>
+                    
                         <!-- Let’s Start Button End -->
 					</div>
 					<!-- Main Menu End -->
@@ -146,10 +157,10 @@ $company = $admin->get_company();
                                 <p class="wow fadeInUp" data-wow-delay="0.25s">Whether you're planning a weekend getaway, a business trip, or just need a reliable ride for the day, we offers a wide range of vehicles to suit your needs.</p>
                             </div>
     
-                            <div class="cta-box-btn wow fadeInUp" data-wow-delay="0.5s">
+                            <!-- <div class="cta-box-btn wow fadeInUp" data-wow-delay="0.5s">
                             <a href="#" class="btn-default"><i class="fa-brands fa-android"></i> Download Now</a>
                             <a href="#" class="btn-default"><i class="fa-brands fa-apple"></i> Download Now</a>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- Hero Content End -->                    
                     </div>
@@ -158,14 +169,14 @@ $company = $admin->get_company();
         </div>
 
         <!-- Rent Details Section Start -->
-        <!-- <div class="rent-details wow fadeInUp" data-wow-delay="0.75s">
+        <div class="rent-details wow fadeInUp" data-wow-delay="0.75s">
             <div class="container">
-				<form action="#" method="get">
+				<form action="<?php echo $web_url;?>pages/list.php" method="get">
                     <div class="row no-gutters align-items-center">
                         <div class="col-md-12">
                             <div class="rent-details-box">
                                 <div class="rent-details-form">
-                                    <div class="rent-details-item">
+                                    <!-- <div class="rent-details-item">
                                         <div class="icon-box">
                                             <img src="<?php echo $web_url;?>images/icon-rent-details-1.svg" alt="">
                                         </div>
@@ -181,19 +192,23 @@ $company = $admin->get_company();
                                                 <option value="coupe_car">coupe car</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="rent-details-item">
                                         <div class="icon-box">
                                             <img src="<?php echo $web_url;?>images/icon-rent-details-2.svg" alt="">
                                         </div>
                                         <div class="rent-details-content">
                                             <h3>pickup location</h3>
-                                            <select class="rent-details-form form-select">
+                                            <select class="rent-details-form form-select" name="pickup_location">
                                                 <option value="" disabled selected>Pick Up Location</option>
-                                                <option value="abu_dhabi">abu dhabi</option>
-                                                <option value="alain">alain</option>
-                                                <option value="dubai">dubai</option>
-                                                <option value="sharjah">sharjah</option>
+                                                <?php 
+                                                $cities = $admin->get_distinct_agent_cities();
+                                                if(!empty($cities)) {
+                                                    foreach($cities as $city) {
+                                                        echo '<option value="'.$city['id'].'">'.$city['city'].'</option>';
+                                                    }
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -203,10 +218,10 @@ $company = $admin->get_company();
                                         </div>
                                         <div class="rent-details-content">
                                             <h3>pickup date</h3>
-                                            <p><input type="text" name="date" placeholder="mm/dd/yyyy" class="rent-details-form datepicker" required></p>
+                                            <p><input type="text" name="pickup_date" placeholder="mm/dd/yyyy" class="rent-details-form datepicker" required></p>
                                         </div>
                                     </div>
-                                    <div class="rent-details-item">
+                                    <!-- <div class="rent-details-item">
                                         <div class="icon-box">
                                             <img src="<?php echo $web_url;?>images/icon-rent-details-4.svg" alt="">
                                         </div>
@@ -219,19 +234,20 @@ $company = $admin->get_company();
                                                 <option value="sharjah">sharjah</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="rent-details-item">
                                         <div class="icon-box">
                                             <img src="<?php echo $web_url;?>images/icon-rent-details-5.svg" alt="">
                                         </div>
                                         <div class="rent-details-content">
                                             <h3>Return Date</h3>
-                                            <p><input type="text" name="date" placeholder="mm/dd/yyyy" class="rent-details-form datepicker" required></p>
+                                            <p><input type="text" name="return_date" placeholder="mm/dd/yyyy" class="rent-details-form datepicker" required></p>
                                         </div>
                                     </div>
                                      
                                     <div class="rent-details-item rent-details-search">
-                                        <a href="<?php echo $web_url;?>#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                        <!-- <a href="<?php echo $web_url;?>#"><i class="fa-solid fa-magnifying-glass"></i></a> -->
+                                         <input type="submit" value="Search" class="btn btn-default">
                                     </div>
                                 </div>   
                                 
@@ -240,7 +256,7 @@ $company = $admin->get_company();
                     </div>
                 </form> 
             </div>
-        </div> -->
+        </div>
         <!-- Rent Details Section End -->
 	</div>
 	<!-- Hero Section End -->
@@ -1050,7 +1066,7 @@ $company = $admin->get_company();
                      <div class="about-footer">
                         <!-- Footer Logo Start -->
                         <div class="footer-logo">
-                            <img src="<?php echo $base_url.'theme/assets/images/'.$company[0]['logo'];?>" alt="">
+                            <img src="<?php echo $web_url.'/images/logo_new.png';?>" alt="logo">
                         </div>
                         <!-- Footer Logo End -->
 
@@ -1174,6 +1190,71 @@ $company = $admin->get_company();
     <script src="<?php echo $web_url;?>js/wow.js"></script>
     <!-- Main Custom js file -->
     <script src="<?php echo $web_url;?>js/function.js"></script>
+    <!-- Select2 js -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        var hasLocation = <?php echo !empty($_SESSION['location_id']) ? 'true' : 'false'; ?>;
+        if (!hasLocation) {
+            $.ajax({
+                url: '<?php echo $base_url; ?>api/index.php',
+                type: 'POST',
+                data: JSON.stringify({action: 'api', page: 'served_location'}),
+                contentType: 'application/json',
+                success: function(data){
+                    var options = '<option value="">Select Location</option>';
+                    if (data.success && data.response && data.response.length > 0) {
+                        data.response.forEach(function(loc){
+                            options += '<option value="' + loc.id + '">' + loc.city + '</option>';
+                        });
+                    } else {
+                        options = '<option value="">No locations available</option>';
+                    }
+                    $('#locationSelect').html(options);
+                    $('#locationSelect').select2({
+                        dropdownParent: $('#locationModal'),
+                        width: '100%'
+                    });
+                    $('#locationModal').modal({backdrop: 'static', keyboard: false});
+                    $('#locationModal').modal('show');
+                },
+                error: function(xhr, status, error){
+                    $('#locationSelect').html('<option value="">Error loading locations</option>');
+                    $('#locationSelect').select2({
+                        dropdownParent: $('#locationModal'),
+                        width: '100%'
+                    });
+                    $('#locationModal').modal({backdrop: 'static', keyboard: false});
+                    $('#locationModal').modal('show');
+                }
+            });
+        }
+        $('#locationSelect').on('change', function(){
+            var id = $(this).val();
+            var text = $('#locationSelect option:selected').text();
+            if (id) {
+                $('#selectedLocationText').text(text);
+                $.post('<?php echo $base_url; ?>set_location.php', {id: id}, function(response){
+                    $('#locationModal').modal('hide');
+                });
+            }
+        });
+    });
+    </script>
 	
+    <!-- Location Modal -->
+    <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="locationModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content" style="background-image: url('<?php echo $web_url; ?>images/location.jpg'); background-size: cover; background-position: center;">
+                <div class="modal-body" style="background: rgba(255,255,255,0.9); padding: 2rem;">
+                    <h5 class="text-center mb-3">Select Your Location</h5>
+                    <select id="locationSelect" class="form-control" style="width: 100%;">
+                        <option value="">Loading...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

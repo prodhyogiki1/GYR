@@ -59,6 +59,13 @@ function get_city($id)
     return $result;
 }
 
+function get_distinct_agent_cities()
+{
+    $query = "SELECT DISTINCT c.id, c.name as city FROM agent a LEFT JOIN cities c ON a.city = c.id WHERE a.city IS NOT NULL AND a.city != '' ORDER BY c.name ASC";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
 //---------- bikes
 function get_all_bikes()
 {
@@ -77,6 +84,20 @@ function get_bikes_brand()
 function get_bikes($brand)
 {
     $query = "select * from bikes where brand='$brand'";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+function get_bikes_by_city($city_id)
+{
+    $query = "SELECT * FROM bikes WHERE city_id = '$city_id'";
+    $result = $this->db_handle->runBaseQuery($query);
+    return $result;
+}
+
+function get_all_bikes_with_city()
+{
+    $query = "SELECT * FROM bikes";
     $result = $this->db_handle->runBaseQuery($query);
     return $result;
 }
