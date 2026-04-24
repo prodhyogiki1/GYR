@@ -11,7 +11,7 @@ function get_details(inputid,outputid,url)
            url: url+id,
            success: function(data)
            {
-           //alert(data);
+           alert(data);
                $('#msg'+outputid).html("Please Wait !!!");
                $('#'+outputid).html(data);
                $('#msg'+outputid).html("")
