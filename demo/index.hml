@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your Ride | Premium Bike Rentals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+    <div class="header-top">
+        <div class="container-wide flex-header">
+            <div class="contact-info">
+                <span><i>📞</i> +91 98765 43210</span>
+                <span><i>✉️</i> support@Get Your Rideal.com</span>
+            </div>
+            <div class="social-links">
+                <a href="#">FB</a>
+                <a href="#">IG</a>
+                <a href="#">TW</a>
+            </div>
+        </div>
+    </div>
+    
+    <nav class="navbar">
+        <div class="container-wide flex-nav">
+            <div class="logo">
+                <a href="#"><img src="images/logo_new.png"></a>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#fleet">Our Fleet</a></li>
+                <li><a href="#features">Services</a></li>
+                <li><a href="#locations">Locations</a></li>
+                <li><a href="#blog">Blog</a></li>
+            </ul>
+            
+            <div class="nav-btns">
+                <a href="#" class="btn-login">Login</a>
+                <a href="#fleet" class="btn-primary">Book Now</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    <section class="hero-slider">
+        <div class="slider-container">
+            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/bg.jpg');"></div>
+        </div>
+        <div class="hero-overlay-content">
+            <div class="container">
+                <h1 class="reveal-up"><span style="color:#FFF;">Find Your Perfect</span> <span class="gradient-text">Adventure</span></h1>
+                <div class="search-container-round">
+                    <div class="search-input-group">
+                        <input type="text" placeholder="Search bikes (e.g. Enfield, Activa)..." class="round-input">
+                        <button class="btn-search-round">Search Bikes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container flex-row">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1515777315835-281b94c9589f?auto=format&fit=crop&q=80&w=800" alt="About Get Your Ride">
+                <div class="experience-badge">10+ Years Experience</div>
+            </div>
+            <div class="about-content">
+                <span class="badge">About Us</span>
+                <h2>Your Trusted Partner for <br><span class="gradient-text">Road Explorations</span></h2>
+                <p>At Get Your Ride, we believe every journey should be an adventure. Based in Jodhpur, we provide a premium fleet of well-maintained bikes that combine performance with safety.</p>
+                <ul class="about-list">
+                    <li>✓ 24/7 Roadside Assistance</li>
+                    <li>✓ Sanitized Helmets Provided</li>
+                    <li>✓ Flexible Rental Plans</li>
+                </ul>
+                <button class="btn-secondary-outline">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="fleet" class="fleet-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="badge">OUR PREMIUM FLEET</span>
+            <h2>Top Suggestions <span>For You</span></h2>
+            <div class="header-line"></div>
+        </div>
+
+        <div class="bike-grid-four">
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://www.royalenfield.com/content/dam/royal-enfield/motorcycles/new-classic-350/studio-shots/new-360/commando-sand/01.png" alt="Royal Enfield">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹800 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>5.0</span></div>
+                    <h3>Royal Enfield Classic 350</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 350cc</div>
+                        <div class="info-item"><i>🛣️</i> 1.2k+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://m.media-amazon.com/images/I/31qqjwaB9OL._AC_UF350,350_QL80_.jpg" alt="Ather">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹450 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>4.9</span></div>
+                    <h3>Ather 450X Electric</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>⚡</i> 3.3kW</div>
+                        <div class="info-item"><i>🛣️</i> 950+ Rides</div>
+                        <div class="info-item"><i>🔋</i> Electric</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1622185135505-2d795003994a?w=600" alt="TVS Apache">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹600 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★☆ <span>4.7</span></div>
+                    <h3>TVS Apache RTR 160</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 160cc</div>
+                        <div class="info-item"><i>🛣️</i> 800+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://www.carandbike.com/_next/image?url=https%3A%2F%2Fimages.carandbike.com%2Fbike-images%2Flarge%2Fbajaj%2Fpulsar-ns-125%2Fbajaj-pulsar-ns-125.jpg%3Fv%3D14&w=1920&q=80" alt="Bajaj Pulsar">
+                    <div class="status-badge booked">Booked</div>
+                    <div class="price-badge">₹550 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★☆ <span>4.8</span></div>
+                    <h3>Bajaj Pulsar NS200</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 200cc</div>
+                        <div class="info-item"><i>🛣️</i> 1.5k+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://cdn.bikedekho.com/processedimages/ola-electric/2025-s1-pro/source/2025-s1-pro68da2dd1c2f71.jpg" alt="Ola S1">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹450 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★☆ <span>4.5</span></div>
+                    <h3>Ola S1 Pro (EV)</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>⚡</i> 8.5kW</div>
+                        <div class="info-item"><i>🛣️</i> 600+ Rides</div>
+                        <div class="info-item"><i>🔋</i> Electric</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://cdn.bikedekho.com/processedimages/tvs/ntorq-125/source/ntorq-12568a8080b61608.jpg" alt="TVS Ntorq">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹380 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>4.8</span></div>
+                    <h3>TVS Ntorq 125</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 125cc</div>
+                        <div class="info-item"><i>🛣️</i> 1.1k+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2021/5/TR/EI/QJ/45461290/bajaj-dominar-400-bike-500x500.png" alt="Bajaj Dominar">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹900 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>4.9</span></div>
+                    <h3>Bajaj Dominar 400</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 400cc</div>
+                        <div class="info-item"><i>🛣️</i> 500+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2022/3/MF/CG/IU/127321734/honda-activa-6g-scooter.jpg" alt="Activa">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹350 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>4.9</span></div>
+                    <h3>Honda Activa 6G</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 110cc</div>
+                        <div class="info-item"><i>🛣️</i> 2.5k+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEKR5jEntNrhi7Zzoh2TUa5lVzhha2n3gojQ&s" alt="Pulsar 150">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹500 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★☆ <span>4.6</span></div>
+                    <h3>Bajaj Pulsar 150</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 150cc</div>
+                        <div class="info-item"><i>🛣️</i> 1.8k+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://www.cycleworld.com/resizer/v2/DF67TS7ENNEPFDEDBA3ISJHPPQ.jpg?auth=9b59bf60ed8cc36cd746575c27f052f432a4795cb9cc37a215cb904532ab3ef2" alt="RE Meteor">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹1000 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>5.0</span></div>
+                    <h3>Royal Enfield Meteor</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 350cc</div>
+                        <div class="info-item"><i>🛣️</i> 400+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://imgd.aeplcdn.com/1280x720/n/cw/ec/103181/jupiter-125-right-front-three-quarter-19.jpeg?isig=0" alt="TVS Jupiter">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹350 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>4.7</span></div>
+                    <h3>TVS Jupiter 125</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 125cc</div>
+                        <div class="info-item"><i>🛣️</i> 1.4k+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?w=600" alt="RE Himalayan">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹1200 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>4.9</span></div>
+                    <h3>Royal Enfield Himalayan</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 411cc</div>
+                        <div class="info-item"><i>🛣️</i> 700+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--- informative-->
+<section class="features-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="badge">WHY CHOOSE US</span>
+            <h2>We Provide Best Service <span>For You</span></h2>
+            <div class="header-line"></div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon-box">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3710/3710257.png" alt="Best Price">
+                </div>
+                <h3>Best Price Guarantee</h3>
+                <p>We offer the most competitive rental rates in the city with no hidden charges or extra fees.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3144/3144467.png" alt="Sanitized Bikes">
+                </div>
+                <h3>Fully Sanitized</h3>
+                <p>Your safety is our priority. Every vehicle is deep cleaned and sanitized after every single ride.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2830/2830305.png" alt="Free Helmet">
+                </div>
+                <h3>Free Helmet & Docs</h3>
+                <p>We provide complimentary ISI-marked helmets and all valid vehicle documents for a worry-free ride.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box">
+                    <img src="https://cdn-icons-png.flaticon.com/512/912/912316.png" alt="24/7 Support">
+                </div>
+                <h3>24/7 Roadside Support</h3>
+                <p>Experience peace of mind with our round-the-clock emergency assistance and mechanical support.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--- cities--->
+<section class="serving-cities">
+    <div class="container">
+        <div class="section-header">
+            <span class="badge">OUR NETWORK</span>
+            <h2>Cities We <span>Serve</span></h2>
+            <div class="header-line"></div>
+            <p>Expanding our horizons to provide premium bike rentals across these major cities.</p>
+        </div>
+
+        <div class="cities-grid-six">
+            <div class="city-item">
+                <div class="city-icon"><img src="https://cdn-icons-png.flaticon.com/512/1865/1865269.png" alt="Jodhpur"></div>
+                <h3>Jodhpur</h3>
+            </div>
+            <div class="city-item">
+                <div class="city-icon"><img src="https://cdn-icons-png.flaticon.com/512/1865/1865141.png" alt="Jaipur"></div>
+                <h3>Jaipur</h3>
+            </div>
+            <div class="city-item">
+                <div class="city-icon"><img src="https://cdn-icons-png.flaticon.com/512/1865/1865230.png" alt="Udaipur"></div>
+                <h3>Udaipur</h3>
+            </div>
+            <div class="city-item">
+                <div class="city-icon"><img src="https://cdn-icons-png.flaticon.com/512/1864/1864814.png" alt="Jaisalmer"></div>
+                <h3>Jaisalmer</h3>
+            </div>
+            <div class="city-item">
+                <div class="city-icon"><img src="https://cdn-icons-png.flaticon.com/512/1865/1865115.png" alt="Bikaner"></div>
+                <h3>Bikaner</h3>
+            </div>
+            <div class="city-item">
+                <div class="city-icon"><img src="https://cdn-icons-png.flaticon.com/512/1865/1865008.png" alt="Ajmer"></div>
+                <h3>Ajmer</h3>
+            </div>
+
+            <div class="city-item">
+                <div class="city-icon"><img src="https://cdn-icons-png.flaticon.com/512/1865/1865269.png" alt="Pushkar"></div>
+                <h3>Pushkar</h3>
+            </div>
+            <div class="city-item">
+                <div class="city-icon"><img src="https://cdn-icons-png.flaticon.com/512/1865/1865141.png" alt="Kota"></div>
+                <h3>Kota</h3>
+            </div>
+            <div class="city-item">
+                <div class="city-icon"><img src="https://cdn-icons-png.flaticon.com/512/1865/1865230.png" alt="Mount Abu"></div>
+                <h3>Mount Abu</h3>
+            </div>
+            <div class="city-item">
+                <div class="city-icon"><img src="https://cdn-icons-png.flaticon.com/512/1864/1864814.png" alt="New Delhi"></div>
+                <h3>New Delhi</h3>
+            </div>
+            <div class="city-item">
+                <div class="city-icon"><img src="https://cdn-icons-png.flaticon.com/512/1865/1865115.png" alt="Agra"></div>
+                <h3>Agra</h3>
+            </div>
+            <div class="city-item">
+                <div class="city-icon"><img src="https://cdn-icons-png.flaticon.com/512/1865/1865008.png" alt="Ahmedabad"></div>
+                <h3>Ahmedabad</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--- blog------>
+<section class="blog-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="badge">NEWS & BLOG</span>
+            <h2>Latest From <span>Our Blog</span></h2>
+            <div class="header-line"></div>
+        </div>
+
+        <div class="blog-carousel">
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="https://images.unsplash.com/photo-1444491741275-3747c53c99b4?w=600" alt="Blog 1">
+                    <div class="date-badge">28 <span>Apr</span></div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>👤 Admin</span> | <span>💬 5 Comments</span>
+                    </div>
+                    <h3>Top 10 Places to Visit in Jodhpur on a Bike</h3>
+                    <p>Discover the hidden gems of the Sun City that are best explored on two wheels...</p>
+                    <a href="#" class="read-more">Read More +</a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600" alt="Blog 2">
+                    <div class="date-badge">25 <span>Apr</span></div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>👤 Admin</span> | <span>💬 3 Comments</span>
+                    </div>
+                    <h3>How to Maintain Your Rental Bike During Long Trips</h3>
+                    <p>Essential tips and tricks to keep your ride smooth and safe during long-distance travels...</p>
+                    <a href="#" class="read-more">Read More +</a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="https://images.unsplash.com/photo-1510006851064-e6056cd0e3a8?w=600" alt="Blog 3">
+                    <div class="date-badge">20 <span>Apr</span></div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>👤 Admin</span> | <span>💬 8 Comments</span>
+                    </div>
+                    <h3>The Rise of Electric Bikes in Indian Tourism</h3>
+                    <p>Why travelers are shifting towards eco-friendly electric scooters for city tours...</p>
+                    <a href="#" class="read-more">Read More +</a>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-img">
+                    <img src="https://images.unsplash.com/photo-1484399172022-72a90b12e3c1?w=600" alt="Blog 4">
+                    <div class="date-badge">15 <span>Apr</span></div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span>👤 Admin</span> | <span>💬 2 Comments</span>
+                    </div>
+                    <h3>Safety First: Why Helmets Are Mandatory</h3>
+                    <p>Understanding the importance of safety gear while riding through busy city streets...</p>
+                    <a href="#" class="read-more">Read More +</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo">
+                    <a href="#" style="color:#fff;">
+                    <img src="images/logo_new.png">
+                    </a>
+                </div>
+                <p>Jodhpur's leading bike rental platform. We offer a wide range of well-maintained bikes and scooters for all your travel needs.</p>
+                <div class="social-icons">
+                    <a href="#">FB</a><a href="#">IG</a><a href="#">YT</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Fleet</a></li>
+                    <li><a href="#">Pricing Plan</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">How it Works</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Subscribe to get latest updates and offers.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Email Address">
+                    <button>✈️</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Get Your Ride Jodhpur. All Rights Reserved. Designed by <span>Prodhgyogiki</span></p>
+        </div>
+    </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 150) {
+        navbar.classList.add('fixed');
+    } else {
+        navbar.classList.remove('fixed');
+    }
+});
+</script>
+
+</body>
+</html>
