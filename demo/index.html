@@ -53,37 +53,119 @@
         <div class="hero-overlay-content">
             <div class="container">
                 <h1 class="reveal-up"><span style="color:#FFF;">Find Your Perfect</span> <span class="gradient-text">Adventure</span></h1>
-                <div class="search-container-round">
-                    <div class="search-input-group">
-                        <input type="text" placeholder="Search bikes (e.g. Enfield, Activa)..." class="round-input">
-                        <button class="btn-search-round">Search Bikes</button>
+                <div class="search-form-wrapper">
+            <form class="hero-search-form">
+                
+                <div class="form-group">
+                    <label>LOCATION</label>
+                    <div class="input-with-icon">
+                        <input type="text" placeholder="Select City" list="cities">
+                        <span class="gps-icon">🎯</span>
                     </div>
                 </div>
+
+                <div class="divider"></div>
+
+                <div class="form-group">
+                    <label>PICKUP</label>
+                    <input type="text" onfocus="(this.type='datetime-local')" placeholder="Select Date & Time">
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="form-group">
+                    <label>VEHICLE TYPE</label>
+                    <select>
+                        <option value="bike">Bike / Scooter</option>
+                        <option value="car">Car Rental</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-search">
+                    <span class="search-icon">🔍</span> Search
+                </button>
+            </form>
+        </div>
             </div>
+
+             <div class="trust-badges">
+            <div class="badge-item"><span class="icon">🤍</span> 10K+ Bikes & Cars</div>
+            <div class="badge-item"><span class="icon">✓</span> Verified Partners</div>
+            <div class="badge-item"><span class="icon">😊</span> 40K+ Happy Riders</div>
+            <div class="badge-item"><span class="icon">★</span> Genuine Reviews</div>
+        </div>
+
+        <div class="hero-text-content">
+            <p class="description">
+                India's leading bike & car rental company, offering a diversified range of vehicles on rent. 
+                We are one of the best rental companies in India because of our personalized service 
+                and high commitment levels. We have a huge fleet of exclusive bikes & cars for riders to choose from.
+            </p>
+        </div>
         </div>
     </section>
 
-    <section id="about" class="about-section">
-        <div class="container flex-row">
-            <div class="about-img">
-                <img src="https://images.unsplash.com/photo-1515777315835-281b94c9589f?auto=format&fit=crop&q=80&w=800" alt="About Get Your Ride">
-                <div class="experience-badge">10+ Years Experience</div>
+    <section class="how-it-works">
+    <div class="container">
+        <div class="guide-header">
+            <h2>Your Ultimate Guide for Rental Vehicles in India</h2>
+            <p>Compare & Book in a <span>Snap! 💡</span></p>
+        </div>
+
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="step-img">
+                    <img src="https://img.freepik.com/premium-vector/search-icon-logo-vector-design-template_827767-481.jpg" alt="Search">
+                </div>
+                <h3>Search</h3>
+                <p>Browse our wide range of bikes and cars across 100+ cities to find the perfect rental for your needs.</p>
+                <div class="step-arrow arrow-1">
+                    <svg width="100" height="50" viewBox="0 0 100 50"><path d="M5,45 Q50,-10 95,40" fill="none" stroke="#26baaf" stroke-width="2" marker-end="url(#arrowhead)"/></svg>
+                </div>
             </div>
-            <div class="about-content">
-                <span class="badge">About Us</span>
-                <h2>Your Trusted Partner for <br><span class="gradient-text">Road Explorations</span></h2>
-                <p>At Get Your Ride, we believe every journey should be an adventure. Based in Jodhpur, we provide a premium fleet of well-maintained bikes that combine performance with safety.</p>
-                <ul class="about-list">
-                    <li>✓ 24/7 Roadside Assistance</li>
-                    <li>✓ Sanitized Helmets Provided</li>
-                    <li>✓ Flexible Rental Plans</li>
-                </ul>
-                <button class="btn-secondary-outline">Learn More</button>
+
+            <div class="step-item">
+                <div class="step-img">
+                    <img src="https://cdn-icons-png.flaticon.com/512/12700/12700229.png" alt="Compare">
+                </div>
+                <h3>Compare</h3>
+                <p>Compare prices, features, and vendor ratings side-by-side to make an informed choice.</p>
+                <div class="step-arrow arrow-2">
+                    <svg width="100" height="50" viewBox="0 0 100 50"><path d="M5,10 Q50,60 95,10" fill="none" stroke="#26baaf" stroke-width="2" marker-end="url(#arrowhead)"/></svg>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-img">
+                    <img src="https://img.freepik.com/premium-vector/booking-icon_701961-11749.jpg" alt="Book">
+                </div>
+                <h3>Book</h3>
+                <p>Add multiple vehicles to your cart or book instantly with the "Book Now" button — zero deposit options available.</p>
+                <div class="step-arrow arrow-3">
+                    <svg width="100" height="50" viewBox="0 0 100 50"><path d="M5,45 Q50,-10 95,40" fill="none" stroke="#26baaf" stroke-width="2" marker-end="url(#arrowhead)"/></svg>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-img">
+                    <img src="https://img.freepik.com/premium-vector/biker-riding-motorcycle-icon-vector-image_498574-1380.jpg" alt="Ride">
+                </div>
+                <h3>Ride</h3>
+                <p>Pick up your vehicle or get doorstep delivery — ride anywhere, anytime with 24/7 roadside assistance.</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="fleet" class="fleet-section">
+    <svg style="width:0;height:0;position:absolute;">
+        <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#26baaf" />
+            </marker>
+        </defs>
+    </svg>
+</section>
+
+    <!-- <section id="fleet" class="fleet-section">
     <div class="container">
         <div class="section-header">
             <span class="badge">OUR PREMIUM FLEET</span>
@@ -345,7 +427,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 
 <!--- informative-->
@@ -527,6 +609,37 @@
                     <a href="#" class="read-more">Read More +</a>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!--- informative section  -->
+<section class="info-segment">
+    <div class="container-wide">
+        <div class="info-header">
+            <h2>Bike on rent in India <span>🏙️</span></h2>
+            <p>Get Your Ride, Jodhpur's premier bike rental platform, offers a diversified range of bikes and scooters on rent. We are one of the most trusted rental companies because of our personalized service and high commitment levels. We have a huge fleet of exclusive bikes for riders to choose from.</p>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-block">
+                <h3>Rent A Bike From Get Your Ride</h3>
+                <p>Want to take a spin around the neighborhood, ride to work, or go on a long road trip? Get Your Ride is here to provide the best bike rental service with easy access and comfort. We offer a varied range of bikes such as Pulsar, Apache, Duke, KTM, Classic 350, Himalayan, and many more. You can use our bike rental service for short city rides or long-distance tours to places like Leh or Jaisalmer with your friends. You can also rent a bike on a weekly or monthly basis.</p>
+            </div>
+
+            <div class="info-block">
+                <h3>Bike On Rent At Get Your Ride</h3>
+                <p>Our unique deals and perfect offers have helped us gain the absolute trust of our customers. We are continually upgrading our fleet with a new and latest collection of bikes. Get Your Ride offers competitive pricing and optimum quality bikes that provide an exquisite experience for all. We have a pool of bikes for rent to suit various requirements and specifications that our customers may have.</p>
+            </div>
+
+            <div class="info-block">
+                <h3>Hire A Bike At Get Your Ride</h3>
+                <p>We have a variety of bikes that you can rent from us. For example, you can rent an Activa for city errands, a Bullet for that classic feel, or even a high-performance sports bike. Our bikes are well-maintained and serviced regularly at our Jodhpur hub to give you a memorable and glitch-free riding experience.</p>
+            </div>
+        </div>
+
+        <div class="info-footer">
+            <button class="btn-show-more">Show More</button>
         </div>
     </div>
 </section>

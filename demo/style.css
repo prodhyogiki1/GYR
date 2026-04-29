@@ -905,7 +905,7 @@ h1 {
 
 
 .serving-cities {
-    padding: 80px 0;
+    padding: 10px 0;
     background-color: #F9FAFB;
 }
 
@@ -982,7 +982,7 @@ h1 {
 }
 
 .blog-section {
-    padding: 100px 0;
+    padding: 10px 0;
     background-color: #ffffff;
 }
 
@@ -1094,4 +1094,276 @@ h1 {
 /* Responsive */
 @media (max-width: 768px) {
     .blog-card { min-width: 300px; }
+}
+
+.hero-search-section {
+    padding: 100px 0;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('your-hero-bg.jpg');
+    background-size: cover;
+    text-align: center;
+    color: #fff;
+}
+
+/* Rounded Search Bar Wrapper */
+.search-form-wrapper {
+    max-width: 1000px;
+    margin: 0 auto 40px;
+    background: #fff;
+    border-radius: 100px; /* Perfect Pill Shape */
+    padding: 10px 10px 10px 40px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.hero-search-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-group {
+    flex: 1;
+    text-align: left;
+    padding: 0 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #888;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input, .form-group select {
+    border: none;
+    outline: none;
+    font-weight: 700;
+    color: #111;
+    width: 100%;
+    background: transparent;
+    font-size: 0.95rem;
+}
+
+/* Vertical Divider */
+.divider {
+    width: 1px;
+    height: 40px;
+    background: #eee;
+}
+
+/* GPS Icon Styling */
+.input-with-icon { display: flex; align-items: center; }
+.gps-icon { color: #FF4500; margin-left: 10px; cursor: pointer; }
+
+/* Search Button */
+.btn-search {
+    background: #FF5A5F; /* Soft Red/Coral from screenshot */
+    color: #fff;
+    border: none;
+    padding: 15px 45px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.btn-search:hover { background: #FF4500; transform: scale(1.05); }
+
+/* Trust Badges Styling */
+.trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.badge-item {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+}
+
+/* Hero Content Text */
+.hero-text-content h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.hero-text-content .subtitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-text-content .description {
+    max-width: 850px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+}
+
+.how-it-works {
+    padding: 80px 0;
+    background-color: #fff;
+    text-align: center;
+}
+
+.guide-header h2 {
+    font-size: 2.5rem;
+    color: #1a2b3c;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.guide-header p {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 60px;
+}
+
+.guide-header p span {
+    color: #26baaf; /* Teal color from screenshot */
+    font-weight: 700;
+}
+
+/* Steps Grid */
+.steps-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 10px;
+}
+
+.step-item {
+    flex: 1;
+    padding: 0 20px;
+    position: relative;
+}
+
+.step-img {
+    height: 150px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-img img {
+    max-height: 100%;
+    width: auto;
+}
+
+.step-item h3 {
+    font-size: 1.5rem;
+    color: #1a2b3c;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.step-item p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Connecting Arrows Positioning */
+.step-arrow {
+    position: absolute;
+    top: 40%;
+    right: -50px;
+    width: 100px;
+    z-index: 1;
+}
+
+/* Alternating Arrow Directions */
+.arrow-2 { top: 60%; }
+
+/* Responsive View */
+@media (max-width: 991px) {
+    .steps-container { flex-direction: column; gap: 50px; }
+    .step-arrow { display: none; } /* Hide arrows on mobile for better flow */
+    .step-item { width: 100%; }
+}
+
+/* Informational Segment */
+
+.info-segment {
+    padding: 2px 0;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.info-header h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 20px;
+}
+
+.info-header p {
+    max-width: 1100px;
+    margin: 0 auto 40px;
+    color: #666;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.info-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.info-block {
+    margin-bottom: 35px;
+}
+
+.info-block h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.info-block p {
+    color: #555;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+/* Show More Button Styling */
+.info-footer {
+    margin-top: 20px;
+}
+
+.btn-show-more {
+    background: transparent;
+    border: none;
+    color: #111;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.btn-show-more:hover {
+    color: #FF4500;
 }
