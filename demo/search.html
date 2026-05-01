@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your Ride | Premium Bike Rentals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <div class="header-top">
+        <div class="container-wide flex-header">
+            <div class="contact-info">
+                <span><i>📞</i> +91 98765 43210</span>
+                <span><i>✉️</i> support@Get Your Rideal.com</span>
+            </div>
+            <div class="social-links">
+                <a href="#">FB</a>
+                <a href="#">IG</a>
+                <a href="#">TW</a>
+            </div>
+        </div>
+    </div>
+
+
+<header class="navbar-main">
+
+    <div class="container-header nav-flex">
+            <div class="logo">
+                <a href="#"><img src="images/logo_new.png"></a>
+            </div>
+
+
+        <div class="nav-center">
+            <div class="search-pill">
+                <div class="pill-sec loc">
+                    <span class="pill-lab">CITY</span>
+                    <div class="pill-inp">
+                        <input type="text" value="Jodhpur" readonly>
+                        <span class="gps-ico">🎯</span>
+                    </div>
+                </div>
+                <div class="pill-sep"></div>
+                <div class="pill-sec">
+                    <span class="pill-lab">PICKUP</span>
+                    <input type="text" value="29 Apr, 4:30 PM" readonly>
+                </div>
+                <div class="pill-sep"></div>
+                <div class="pill-sec">
+                    <span class="pill-lab">DROPOFF</span>
+                    <input type="text" value="30 Apr, 4:30 PM" readonly>
+                </div>
+                <button class="pill-btn">🔍</button>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <a href="/" class="icon-link" title="Home">🏠 <span>Home</span></a>
+            <a href="/contact" class="icon-link" title="Contact Us">📞 <span>Contact</span></a>
+            <div class="user-action-pill">
+                <span class="user-ico">👤</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="search-results-container">
+    <div class="type-filter-bar">
+        <button class="type-pill active">🛵 Scooter</button>
+        <button class="type-pill">🏍️ Motorbike</button>
+        <button class="type-pill">🚗 Car</button>
+        <button class="type-pill">🔋 E-Scooter</button>
+        <button class="type-pill btn-filters" onclick="toggleFilter()">⚙️ Filters</button>
+    </div>
+
+<!---- filter start -->
+<!-- Filter Overlay -->
+<div class="filter-overlay" id="filterOverlay" ></div>
+
+<!-- Slide-out Sidebar -->
+<aside class="filter-drawer" id="filterDrawer">
+    <div class="drawer-header">
+        <h3>Filters</h3>
+        <button class="close-btn" onclick="toggleFilter()">✕</button>
+    </div>
+    
+    <div class="drawer-body">
+        <div class="filter-group">
+            <label>Sort By</label>
+            <div class="filter-pills">
+                <button class="pill active">Price: Low to High</button>
+                <button class="pill">Price: High to Low</button>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label>Transmission</label>
+            <div class="filter-pills">
+                <button class="pill">Manual</button>
+                <button class="pill">Automatic</button>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label>Fuel Type</label>
+            <div class="filter-pills">
+                <button class="pill">Petrol</button>
+                <button class="pill">Electric</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="drawer-footer">
+        <button class="btn-clear" onclick="toggleFilter()">Clear All</button>
+        <button class="btn-apply" onclick="toggleFilter()">Show Results</button>
+    </div>
+</aside>
+<!-- filter ends-->
+    
+
+<div class="container">
+        <div class="section-header">
+            <span class="badge">Search Results</span>
+            <h2>Top Suggestions <span>For You</span></h2>
+            <div class="header-line"></div>
+        </div>
+
+        <div class="bike-grid-four">
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://www.royalenfield.com/content/dam/royal-enfield/motorcycles/new-classic-350/studio-shots/new-360/commando-sand/01.png" alt="Royal Enfield">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹800 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>5.0</span></div>
+                    <h3>Royal Enfield Classic 350</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 350cc</div>
+                        <div class="info-item"><i>🛣️</i> 1.2k+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://m.media-amazon.com/images/I/31qqjwaB9OL._AC_UF350,350_QL80_.jpg" alt="Ather">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹450 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>4.9</span></div>
+                    <h3>Ather 450X Electric</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>⚡</i> 3.3kW</div>
+                        <div class="info-item"><i>🛣️</i> 950+ Rides</div>
+                        <div class="info-item"><i>🔋</i> Electric</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1622185135505-2d795003994a?w=600" alt="TVS Apache">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹600 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★☆ <span>4.7</span></div>
+                    <h3>TVS Apache RTR 160</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 160cc</div>
+                        <div class="info-item"><i>🛣️</i> 800+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://www.carandbike.com/_next/image?url=https%3A%2F%2Fimages.carandbike.com%2Fbike-images%2Flarge%2Fbajaj%2Fpulsar-ns-125%2Fbajaj-pulsar-ns-125.jpg%3Fv%3D14&w=1920&q=80" alt="Bajaj Pulsar">
+                    <div class="status-badge booked">Booked</div>
+                    <div class="price-badge">₹550 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★☆ <span>4.8</span></div>
+                    <h3>Bajaj Pulsar NS200</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 200cc</div>
+                        <div class="info-item"><i>🛣️</i> 1.5k+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://cdn.bikedekho.com/processedimages/ola-electric/2025-s1-pro/source/2025-s1-pro68da2dd1c2f71.jpg" alt="Ola S1">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹450 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★☆ <span>4.5</span></div>
+                    <h3>Ola S1 Pro (EV)</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>⚡</i> 8.5kW</div>
+                        <div class="info-item"><i>🛣️</i> 600+ Rides</div>
+                        <div class="info-item"><i>🔋</i> Electric</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://cdn.bikedekho.com/processedimages/tvs/ntorq-125/source/ntorq-12568a8080b61608.jpg" alt="TVS Ntorq">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹380 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>4.8</span></div>
+                    <h3>TVS Ntorq 125</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 125cc</div>
+                        <div class="info-item"><i>🛣️</i> 1.1k+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2021/5/TR/EI/QJ/45461290/bajaj-dominar-400-bike-500x500.png" alt="Bajaj Dominar">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹900 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>4.9</span></div>
+                    <h3>Bajaj Dominar 400</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 400cc</div>
+                        <div class="info-item"><i>🛣️</i> 500+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2022/3/MF/CG/IU/127321734/honda-activa-6g-scooter.jpg" alt="Activa">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹350 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>4.9</span></div>
+                    <h3>Honda Activa 6G</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 110cc</div>
+                        <div class="info-item"><i>🛣️</i> 2.5k+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEKR5jEntNrhi7Zzoh2TUa5lVzhha2n3gojQ&s" alt="Pulsar 150">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹500 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★☆ <span>4.6</span></div>
+                    <h3>Bajaj Pulsar 150</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 150cc</div>
+                        <div class="info-item"><i>🛣️</i> 1.8k+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://www.cycleworld.com/resizer/v2/DF67TS7ENNEPFDEDBA3ISJHPPQ.jpg?auth=9b59bf60ed8cc36cd746575c27f052f432a4795cb9cc37a215cb904532ab3ef2" alt="RE Meteor">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹1000 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>5.0</span></div>
+                    <h3>Royal Enfield Meteor</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 350cc</div>
+                        <div class="info-item"><i>🛣️</i> 400+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://imgd.aeplcdn.com/1280x720/n/cw/ec/103181/jupiter-125-right-front-three-quarter-19.jpeg?isig=0" alt="TVS Jupiter">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹350 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>4.7</span></div>
+                    <h3>TVS Jupiter 125</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 125cc</div>
+                        <div class="info-item"><i>🛣️</i> 1.4k+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bike-card-modern">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1615172282427-9a57ef2d142e?w=600" alt="RE Himalayan">
+                    <div class="status-badge available">Available</div>
+                    <div class="price-badge">₹1200 <span>/ Day</span></div>
+                </div>
+                <div class="card-body">
+                    <div class="rating-stars">★★★★★ <span>4.9</span></div>
+                    <h3>Royal Enfield Himalayan</h3>
+                    <div class="bike-info-grid">
+                        <div class="info-item"><i>🏍️</i> 411cc</div>
+                        <div class="info-item"><i>🛣️</i> 700+ Rides</div>
+                        <div class="info-item"><i>⛽</i> Petrol</div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-view">View Details</button>
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main> 
+
+<!-- footer -->
+    <footer class="main-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo">
+                    <a href="#" style="color:#fff;">
+                    <img src="images/logo_new.png">
+                    </a>
+                </div>
+                <p>Jodhpur's leading bike rental platform. We offer a wide range of well-maintained bikes and scooters for all your travel needs.</p>
+                <div class="social-icons">
+                    <a href="#">FB</a><a href="#">IG</a><a href="#">YT</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Fleet</a></li>
+                    <li><a href="#">Pricing Plan</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">How it Works</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p>Subscribe to get latest updates and offers.</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Email Address">
+                    <button>✈️</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Get Your Ride Jodhpur. All Rights Reserved. Designed by <span>Prodhgyogiki</span></p>
+        </div>
+    </div>
+</footer>
+
+<script>
+function toggleFilter() {
+    const drawer = document.getElementById('filterDrawer');
+    const overlay = document.getElementById('filterOverlay');
+    
+    drawer.classList.toggle('open');
+    overlay.classList.toggle('open');
+    
+    // Prevent background scrolling when open
+    document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : 'auto';
+}
+</script>
+
+</body>
+</html>
